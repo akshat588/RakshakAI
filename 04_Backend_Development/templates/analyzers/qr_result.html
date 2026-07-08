@@ -1,0 +1,498 @@
+{% extends "layout/base.html" %}
+
+{% block title %}
+RakshakAI | QR Code Threat Analyzer
+{% endblock %}
+
+{% block content %}
+
+<div class="space-y-8 fade-up">
+
+    <!-- Header -->
+
+    <section class="flex flex-col xl:flex-row justify-between gap-6">
+
+        <div>
+
+            <p class="text-sm text-muted">
+
+                Dashboard / AI Analyzers
+
+            </p>
+
+            <h1 class="text-4xl font-bold mt-2">
+
+                QR Code Threat Analyzer
+
+            </h1>
+
+            <p class="text-muted mt-3 max-w-3xl">
+
+                RakshakAI decoded the uploaded QR code and performed
+                AI-powered security analysis to detect phishing,
+                malicious redirects and suspicious payloads.
+
+            </p>
+
+        </div>
+
+        <div class="glass rounded-3xl px-6 py-5 min-w-[260px]">
+
+            <div class="flex items-center gap-4">
+
+                <div class="w-4 h-4 rounded-full bg-success animate-pulse"></div>
+
+                <div>
+
+                    <h3 class="font-semibold">
+
+                        QR Engine Status
+
+                    </h3>
+
+                    <p class="text-muted text-sm">
+
+                        QR Threat Detector Online
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <div id="resultContainer">
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+
+<script>
+
+const data=JSON.parse(sessionStorage.getItem("qrResult"));
+
+if(!data){
+
+window.location="/qr";
+
+}
+
+renderResult(data);
+
+function renderResult(data){
+
+let badge="bg-success/20 text-success";
+
+if(data.risk==="HIGH"){
+
+badge="bg-danger/20 text-danger";
+
+}
+
+else if(data.risk==="MEDIUM"){
+
+badge="bg-warning/20 text-warning";
+
+}
+
+let indicators="";
+
+(data.flags||[]).forEach(item=>{
+
+indicators+=`
+
+<div class="flex items-center gap-3">
+
+<span class="text-danger text-xl">
+
+✔
+
+</span>
+
+<span>
+
+${item}
+
+</span>
+
+</div>
+
+`;
+
+});
+
+let explanation="";
+
+(data.explanation||[]).forEach(item=>{
+
+explanation+=`
+
+<div class="flex items-center gap-3">
+
+<span class="text-primary text-xl">
+
+➜
+
+</span>
+
+<span>
+
+${item}
+
+</span>
+
+</div>
+
+`;
+
+});
+
+let recommendations="";
+
+(data.recommendation||[]).forEach(item=>{
+
+recommendations+=`
+
+<div class="flex items-center gap-3">
+
+<span class="text-success text-xl">
+
+✔
+
+</span>
+
+<span>
+
+${item}
+
+</span>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("resultContainer").innerHTML=`
+
+<div class="space-y-8">
+
+<div class="grid xl:grid-cols-3 gap-6">
+
+<div class="glass rounded-3xl p-7">
+
+<p class="text-muted">
+
+Threat Score
+
+</p>
+
+<h2 class="text-5xl font-bold mt-3">
+
+${data.risk_score}<span class="text-2xl">%</span>
+
+</h2>
+
+<div class="w-full h-3 rounded-full bg-white/10 mt-6">
+
+<div
+class="h-3 rounded-full bg-primary"
+style="width:${data.risk_score}%">
+
+</div>
+
+</div>
+
+</div>
+
+<div class="glass rounded-3xl p-7">
+
+<p class="text-muted">
+
+Risk Level
+
+</p>
+
+<div class="mt-5">
+
+<span class="px-5 py-2 rounded-full font-bold ${badge}">
+
+${data.risk}
+
+</span>
+
+</div>
+
+</div>
+
+<div class="glass rounded-3xl p-7">
+
+<p class="text-muted">
+
+QR Type
+
+</p>
+
+<h2 class="text-3xl font-bold mt-4">
+
+${data.qr_type}
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="grid xl:grid-cols-2 gap-6">
+
+<div class="glass rounded-3xl p-7">
+
+<h3 class="text-xl font-bold mb-6">
+
+Scan Information
+
+</h3>
+
+<div class="space-y-5">
+
+<div class="flex justify-between">
+
+<span class="text-muted">
+
+Engine
+
+</span>
+
+<span>
+
+${data.engine}
+
+</span>
+
+</div>
+
+<div class="flex justify-between">
+
+<span class="text-muted">
+
+Confidence
+
+</span>
+
+<span>
+
+${data.confidence}%
+
+</span>
+
+</div>
+
+<div class="flex justify-between">
+
+<span class="text-muted">
+
+Prediction
+
+</span>
+
+<span>
+
+${data.prediction}
+
+</span>
+
+</div>
+
+<div class="flex justify-between">
+
+<span class="text-muted">
+
+Scan ID
+
+</span>
+
+<span class="font-mono">
+
+${data.scan_id}
+
+</span>
+
+</div>
+
+<div class="flex justify-between">
+
+<span class="text-muted">
+
+Timestamp
+
+</span>
+
+<span>
+
+${data.timestamp}
+
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="glass rounded-3xl p-7">
+
+<h3 class="text-xl font-bold mb-6">
+
+Decoded QR Content
+
+</h3>
+
+<div class="rounded-2xl bg-[#0B1220] border border-white/10 p-5 break-all">
+
+${data.decoded_content}
+
+</div>
+
+</div>
+
+</div>
+
+<div class="glass rounded-3xl p-7">
+
+<h3 class="text-xl font-bold mb-6">
+
+Explainable AI
+
+</h3>
+
+${explanation}
+
+</div>
+
+<div class="glass rounded-3xl p-7">
+
+<h3 class="text-xl font-bold mb-6">
+
+Threat Indicators
+
+</h3>
+
+${indicators || '<p class="text-success">No suspicious indicators detected.</p>'}
+
+</div>
+
+<div class="glass rounded-3xl p-7">
+
+<h3 class="text-xl font-bold mb-6">
+
+AI Recommendation
+
+</h3>
+
+${recommendations}
+
+</div>
+
+<div class="flex flex-wrap gap-4">
+
+<button
+id="newScan"
+class="bg-primary text-black font-bold px-6 py-3 rounded-2xl">
+
+🔄 New Scan
+
+</button>
+
+<button
+id="copyBtn"
+class="glass px-6 py-3 rounded-2xl">
+
+📋 Copy Result
+
+</button>
+
+<button
+id="exportBtn"
+class="glass px-6 py-3 rounded-2xl">
+
+⬇ Export JSON
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+document.getElementById("newScan").addEventListener("click",()=>{
+
+sessionStorage.removeItem("qrResult");
+
+window.location="/qr";
+
+});
+
+document.getElementById("exportBtn").addEventListener("click",()=>{
+
+const blob=new Blob(
+[JSON.stringify(data,null,4)],
+{type:"application/json"}
+);
+
+const a=document.createElement("a");
+
+a.href=URL.createObjectURL(blob);
+
+a.download=data.scan_id+".json";
+
+a.click();
+
+});
+
+document.getElementById("copyBtn").addEventListener("click",()=>{
+
+const text = `
+
+=========================
+RakshakAI QR Report
+=========================
+
+Engine : ${data.engine}
+
+Prediction : ${data.prediction}
+
+Risk : ${data.risk}
+
+Confidence : ${data.confidence}%
+
+Threat Score : ${data.risk_score}%
+
+QR Type : ${data.qr_type}
+
+Decoded Content :
+${data.decoded_content}
+
+Scan ID :
+${data.scan_id}
+
+`;
+
+navigator.clipboard.writeText(text);
+
+alert("Result copied successfully.");
+
+});
+
+}
+
+</script>
+
+{% endblock %}

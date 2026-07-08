@@ -1,0 +1,47 @@
+{% extends "layout/base.html" %}
+
+{% block title %}Voice Scam Detector{% endblock %}
+
+{% block content %}
+
+<section class="max-w-4xl mx-auto py-12">
+
+    <div class="bg-slate-900 rounded-3xl border border-slate-700 p-10">
+
+        <h1 class="text-4xl font-bold text-white mb-4">
+            Voice Scam Detector
+        </h1>
+
+        <p class="text-slate-400 mb-8">
+            Upload a voice recording to detect AI-generated voices and social engineering scams.
+        </p>
+
+        <form
+            id="voiceForm"
+            enctype="multipart/form-data"
+            class="space-y-6">
+
+            <input
+                id="audio"
+                name="audio"
+                type="file"
+                accept=".wav,.mp3,.m4a,.ogg"
+                class="block w-full rounded-xl border border-slate-700 bg-slate-800 p-4 text-white">
+
+            <button
+                type="submit"
+                class="w-full bg-cyan-600 hover:bg-cyan-500 rounded-xl py-4 text-white font-semibold">
+
+                Analyze Voice
+
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+<script src="{{ url_for('static', filename='js/voice.js') }}"></script>
+
+{% endblock %}

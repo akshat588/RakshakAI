@@ -1,0 +1,95 @@
+{% extends "layout/base.html" %}
+
+{% block title %}Scan History{% endblock %}
+
+{% block content %}
+
+<section class="max-w-7xl mx-auto py-10">
+
+    <div class="flex items-center justify-between mb-8">
+
+        <h1 class="text-4xl font-bold text-white">
+
+            Scan History
+
+        </h1>
+
+    </div>
+
+    <div class="bg-slate-900 border border-slate-700 rounded-3xl overflow-hidden">
+
+        <table class="w-full">
+
+            <thead class="bg-slate-800">
+
+                <tr>
+
+                    <th class="text-left p-4 text-slate-300">Engine</th>
+
+                    <th class="text-left p-4 text-slate-300">Prediction</th>
+
+                    <th class="text-left p-4 text-slate-300">Risk</th>
+
+                    <th class="text-left p-4 text-slate-300">Confidence</th>
+
+                    <th class="text-left p-4 text-slate-300">Scan ID</th>
+
+                    <th class="text-left p-4 text-slate-300">Time</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="historyTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+<script>
+
+async function loadHistory(){
+
+    const response = await fetch("/api/history");
+
+    const data = await response.json();
+
+    const table = document.getElementById("historyTable");
+
+    table.innerHTML = "";
+
+    data.history.forEach(scan=>{
+
+        table.innerHTML += `
+
+        <tr class="border-t border-slate-700">
+
+            <td class="p-4 text-white">${scan.engine}</td>
+
+            <td class="p-4 text-white">${scan.prediction}</td>
+
+            <td class="p-4 text-white">${scan.risk}</td>
+
+            <td class="p-4 text-cyan-400">${scan.confidence ?? "-"}%</td>
+
+            <td class="p-4 text-slate-300">${scan.scan_id}</td>
+
+            <td class="p-4 text-slate-300">${scan.saved_at}</td>
+
+        </tr>
+
+        `;
+
+    });
+
+}
+
+loadHistory();
+
+</script>
+
+{% endblock %}

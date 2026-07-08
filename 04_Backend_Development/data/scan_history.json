@@ -1,0 +1,88 @@
+[
+    {
+        "scan_id": "RK-F2C7A667",
+        "engine": "Email Detector",
+        "analyzer": "Email Detector",
+        "prediction": "Phishing Email",
+        "result": "Safe Email",
+        "risk": "LOW",
+        "confidence": null,
+        "risk_score": null,
+        "timestamp": "08-07-2026 21:05:52",
+        "saved_at": "2026-07-08 21:05:52"
+    },
+    {
+        "scan_id": "RK-BB623C11",
+        "engine": "Email Detector",
+        "analyzer": "Email Detector",
+        "prediction": "Phishing Email",
+        "result": "Safe Email",
+        "risk": "LOW",
+        "confidence": null,
+        "risk_score": null,
+        "timestamp": "08-07-2026 21:05:17",
+        "saved_at": "2026-07-08 21:05:17"
+    },
+    {
+        "scan_id": "RK-E4D452C2",
+        "engine": "UPI Fraud Detector",
+        "analyzer": "UPI Fraud Detector",
+        "prediction": 1,
+        "result": "Fraudulent Transaction",
+        "risk": "HIGH",
+        "confidence": null,
+        "risk_score": 90,
+        "timestamp": "08-07-2026 20:41:48",
+        "saved_at": "2026-07-08 20:41:48"
+    },
+    {
+        "success": true,
+        "engine": "Deepfake Detector",
+        "prediction": "Authentic Image",
+        "risk": "LOW",
+        "confidence": 99.98,
+        "risk_score": 99.98,
+        "scan_id": "RK-DF-940DF7F4",
+        "explanation": [
+            "No significant manipulation detected."
+        ],
+        "recommendation": [
+            "Image appears authentic."
+        ],
+        "saved_at": "2026-07-08 20:06:43"
+    },
+    {
+        "success": true,
+        "engine": "Deepfake Detector",
+        "prediction": "Authentic Image",
+        "risk": "LOW",
+        "confidence": 99.98,
+        "risk_score": 99.98,
+        "scan_id": "RK-DF-3EC7C379",
+        "explanation": [
+            "No significant manipulation detected."
+        ],
+        "recommendation": [
+            "Image appears authentic."
+        ],
+        "saved_at": "2026-07-08 19:26:26"
+    },
+    {
+        "success": true,
+        "engine": "Deepfake Detector",
+        "prediction": "Deepfake Image",
+        "risk": "HIGH",
+        "confidence": 100.0,
+        "risk_score": 100.0,
+        "scan_id": "RK-DF-75374376",
+        "explanation": [
+            "AI-generated facial patterns detected.",
+            "Deep learning model classified the image as manipulated."
+        ],
+        "recommendation": [
+            "Do not trust this image without verification.",
+            "Cross-check with the original source."
+        ],
+        "saved_at": "2026-07-08 19:25:25"
+    }
+]

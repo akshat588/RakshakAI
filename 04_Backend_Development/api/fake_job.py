@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from utils.response_builder import build_response
 from utils.risk_mapper import get_risk
+from utils.history_manager import save_scan
 from core.model_loader import (
     load_model,
     load_vectorizer,
@@ -28,7 +29,9 @@ def analyze_fake_job():
         features = vectorizer.transform([text])
 
         prediction = model.predict(features)[0]
+        probabilities = model.predict_proba(features)[0]
 
+        confidence = round(max(probabilities) * 100, 2)
         if isinstance(prediction, str):
             result = prediction
             risk = "HIGH" if "fake" in prediction.lower() else "LOW"
@@ -37,14 +40,17 @@ def analyze_fake_job():
             result = "Fake Job" if prediction == 1 else "Legitimate Job"
             risk = "HIGH" if prediction == 1 else "LOW"
 
-        return jsonify(
-            build_response(
-                engine="Fake Job Detector",
-                prediction=prediction,
-                result=result,
-                risk=risk,
-            )
+        response = build_response(
+            engine="Fake Job Detector",
+            prediction=prediction,
+            result=result,
+            risk=risk,
+            confidence=confidence,
         )
+
+        save_scan(response)
+
+        return jsonify(response)
     except Exception as e:
         import traceback
 

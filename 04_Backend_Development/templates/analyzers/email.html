@@ -1,0 +1,836 @@
+{% extends "layout/base.html" %}
+
+{% block title %}
+RakshakAI | Email Analyzer
+{% endblock %}
+
+{% block content %}
+
+<div class="space-y-8 fade-up">
+
+    <!-- ================================================= -->
+    <!-- PAGE HEADER -->
+    <!-- ================================================= -->
+
+    <section class="flex flex-col xl:flex-row justify-between gap-6">
+
+        <div>
+
+            <p class="text-sm text-muted">
+
+                Dashboard / AI Analyzers
+
+            </p>
+
+            <h1 class="text-4xl font-bold mt-2">
+
+                Email Threat Analyzer
+
+            </h1>
+
+            <p class="text-muted mt-3 max-w-3xl">
+
+                Analyze suspicious emails using RakshakAI's AI-powered phishing detection engine. Detect phishing attempts, business email compromise, credential theft, fake banking emails and other social engineering attacks.
+
+            </p>
+
+        </div>
+
+        <div class="glass rounded-3xl px-6 py-5 min-w-[260px]">
+
+            <div class="flex items-center gap-4">
+
+                <div class="w-4 h-4 rounded-full bg-success animate-pulse"></div>
+
+                <div>
+
+                    <h3 class="font-semibold">
+
+                        AI Engine Status
+
+                    </h3>
+
+                    <p class="text-muted text-sm">
+
+                        Email Detector Online
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================================================= -->
+    <!-- INPUT AREA -->
+    <!-- ================================================= -->
+
+    <section class="grid xl:grid-cols-3 gap-6">
+
+        <!-- LEFT -->
+
+        <div class="xl:col-span-2 glass rounded-3xl p-8">
+
+            <div class="flex justify-between items-center mb-6">
+
+                <h2 class="text-2xl font-bold">
+
+                    Email Content
+
+                </h2>
+
+                <span
+                    id="charCount"
+                    class="font-mono text-muted">
+
+                    0 Characters
+
+                </span>
+
+            </div>
+
+            <textarea
+
+                id="emailText"
+
+                rows="18"
+
+                placeholder="Paste suspicious email content here..."
+
+                class="w-full rounded-2xl bg-background border border-white/10 p-6 resize-none outline-none focus:border-primary transition"
+
+            ></textarea>
+
+            <div class="flex flex-wrap gap-4 mt-6">
+
+                <button
+                    id="sampleBtn"
+                    class="glass px-6 py-3 rounded-2xl hover:border-primary border border-transparent transition">
+
+                    Load Sample
+
+                </button>
+
+                <button
+                    id="clearBtn"
+                    class="glass px-6 py-3 rounded-2xl hover:border-danger border border-transparent transition">
+
+                    Clear
+
+                </button>
+
+                <button
+                    id="scanBtn"
+                    class="bg-primary text-black font-bold px-8 py-3 rounded-2xl hover:scale-105 transition">
+
+                    Analyze Email
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT -->
+
+        <div class="space-y-6">
+
+            <!-- Detection -->
+
+            <div class="glass rounded-3xl p-6">
+
+                <h3 class="text-xl font-bold mb-5">
+
+                    AI Detection
+
+                </h3>
+
+                <div class="space-y-4">
+
+                    <div class="flex justify-between">
+
+                        <span>Phishing</span>
+
+                        <span class="text-success">✓</span>
+
+                    </div>
+
+                    <div class="flex justify-between">
+
+                        <span>Credential Theft</span>
+
+                        <span class="text-success">✓</span>
+
+                    </div>
+
+                    <div class="flex justify-between">
+
+                        <span>Fake Banking</span>
+
+                        <span class="text-success">✓</span>
+
+                    </div>
+
+                    <div class="flex justify-between">
+
+                        <span>Lottery Scam</span>
+
+                        <span class="text-success">✓</span>
+
+                    </div>
+
+                    <div class="flex justify-between">
+
+                        <span>BEC Attack</span>
+
+                        <span class="text-success">✓</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Tips -->
+
+            <div class="glass rounded-3xl p-6">
+
+                <h3 class="text-xl font-bold mb-5">
+
+                    Security Tips
+
+                </h3>
+
+                <ul class="space-y-3 text-muted">
+
+                    <li>• Verify sender domain.</li>
+
+                    <li>• Avoid unknown links.</li>
+
+                    <li>• Never share OTP.</li>
+
+                    <li>• Check attachments.</li>
+
+                    <li>• Report phishing immediately.</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================================================= -->
+    <!-- LOADING -->
+    <!-- ================================================= -->
+
+    <section
+        id="loadingCard"
+        class="hidden glass rounded-3xl p-8">
+
+        <div class="flex items-center gap-6">
+
+            <div
+                class="w-12 h-12 rounded-full border-4 border-primary border-t-transparent animate-spin">
+
+            </div>
+
+            <div>
+
+                <h2 class="text-2xl font-bold">
+
+                    AI Analysis Running
+
+                </h2>
+
+                <p class="text-muted mt-2">
+
+                    RakshakAI is processing your email...
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- RESULT -->
+
+    <section
+        id="resultContainer"
+        class="hidden">
+
+    </section>
+
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+
+<script>
+
+const textarea=document.getElementById("emailText");
+const counter=document.getElementById("charCount");
+
+const sampleBtn=document.getElementById("sampleBtn");
+const clearBtn=document.getElementById("clearBtn");
+const scanBtn=document.getElementById("scanBtn");
+
+const loadingCard=document.getElementById("loadingCard");
+const resultContainer=document.getElementById("resultContainer");
+
+/* ===========================
+Character Counter
+=========================== */
+
+textarea.addEventListener("input",()=>{
+
+    counter.textContent=`${textarea.value.length} Characters`;
+
+});
+
+/* ===========================
+Clear
+=========================== */
+
+clearBtn.addEventListener("click",()=>{
+
+    textarea.value="";
+
+    counter.textContent="0 Characters";
+
+    loadingCard.classList.add("hidden");
+
+    resultContainer.classList.add("hidden");
+
+});
+
+/* ===========================
+Sample Email
+=========================== */
+
+sampleBtn.addEventListener("click",()=>{
+
+textarea.value=`Dear Customer,
+
+Your account has been temporarily suspended due to suspicious login activity.
+
+Please verify your account immediately by clicking the secure link below.
+
+https://secure-bank-verification-login.com
+
+Failure to verify your account within 24 hours will permanently suspend your online banking services.
+
+Regards,
+Bank Security Department`;
+
+counter.textContent=`${textarea.value.length} Characters`;
+
+});
+
+/* ===========================
+Scan Email
+=========================== */
+
+scanBtn.addEventListener("click",async()=>{
+
+const emailText=textarea.value.trim();
+
+if(emailText===""){
+
+alert("Please paste an email first.");
+
+return;
+
+}
+
+scanBtn.disabled=true;
+
+scanBtn.innerHTML="Analyzing...";
+
+loadingCard.classList.remove("hidden");
+
+resultContainer.classList.add("hidden");
+
+try{
+
+const response=await fetch("/api/email",{
+
+method:"POST",
+
+headers:{
+
+"Content-Type":"application/json"
+
+},
+
+body:JSON.stringify({
+
+text:emailText
+
+})
+
+});
+
+const data = await response.json();
+
+console.log("EMAIL API RESPONSE:", data);
+
+alert(JSON.stringify(data, null, 2));
+
+loadingCard.classList.add("hidden");
+
+resultContainer.classList.remove("hidden");
+
+renderResult(data);
+
+}
+
+catch(error){
+
+loadingCard.classList.add("hidden");
+
+resultContainer.classList.remove("hidden");
+
+resultContainer.innerHTML=`
+
+<div class="glass rounded-3xl p-8 border border-red-500/30">
+
+<h2 class="text-2xl font-bold text-danger">
+
+Analysis Failed
+
+</h2>
+
+<p class="text-muted mt-4">
+
+Unable to connect to RakshakAI backend.
+
+</p>
+
+</div>
+
+`;
+
+}
+
+finally{
+
+scanBtn.disabled=false;
+
+scanBtn.innerHTML="Analyze Email";
+
+}
+
+});
+
+/* ===========================
+Render Result
+=========================== */
+
+function renderResult(data){
+
+let score=15;
+let badge="bg-success/20 text-success";
+let recommendation="No major phishing indicators detected.";
+
+if(data.risk==="MEDIUM"){
+
+score=60;
+
+badge="bg-warning/20 text-warning";
+
+recommendation="Exercise caution before interacting with this email.";
+
+}
+
+if(data.risk==="HIGH"){
+
+score=90;
+
+badge="bg-danger/20 text-danger";
+
+recommendation="This email appears malicious. Avoid clicking links, downloading attachments, or replying.";
+
+}
+
+if(data.risk==="CRITICAL"){
+
+score=100;
+
+badge="bg-danger text-white";
+
+recommendation="Critical phishing attack detected. Delete this email immediately and report it to your security team.";
+
+}
+
+const confidence=data.confidence ?? "Unavailable";
+
+resultContainer.innerHTML=`
+
+<div class="space-y-8">
+
+<div class="grid xl:grid-cols-3 gap-6">
+
+<div class="glass rounded-3xl p-7">
+
+<p class="text-muted">
+
+Threat Score
+
+</p>
+
+<h2 class="text-5xl font-bold mt-3">
+
+${score}<span class="text-2xl">%</span>
+
+</h2>
+
+<div class="w-full h-3 rounded-full bg-white/10 mt-6">
+
+<div
+
+class="h-3 rounded-full bg-primary"
+
+style="width:${score}%">
+
+</div>
+
+</div>
+
+</div>
+
+<div class="glass rounded-3xl p-7">
+
+<p class="text-muted">
+
+Risk Level
+
+</p>
+
+<div class="mt-5">
+
+<span class="px-5 py-2 rounded-full font-bold ${badge}">
+
+${data.risk}
+
+</span>
+
+</div>
+
+</div>
+
+<div class="glass rounded-3xl p-7">
+
+<p class="text-muted">
+
+Prediction
+
+</p>
+
+<h2 class="text-3xl font-bold mt-4">
+
+${data.result}
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="grid xl:grid-cols-2 gap-6">
+
+    <!-- Scan Information -->
+
+    <div class="glass rounded-3xl p-7">
+
+        <h3 class="text-xl font-bold mb-6">
+
+            Scan Information
+
+        </h3>
+
+        <div class="space-y-5">
+
+            <div class="flex justify-between">
+
+                <span class="text-muted">
+
+                    AI Engine
+
+                </span>
+
+                <span>
+
+                    ${data.engine}
+
+                </span>
+
+            </div>
+
+            <div class="flex justify-between">
+
+                <span class="text-muted">
+
+                    Confidence
+
+                </span>
+
+                <span>
+
+                    ${confidence}
+
+                </span>
+
+            </div>
+
+            <div class="flex justify-between">
+
+                <span class="text-muted">
+
+                    Scan ID
+
+                </span>
+
+                <span class="font-mono">
+
+                    ${data.scan_id}
+
+                </span>
+
+            </div>
+
+            <div class="flex justify-between">
+
+                <span class="text-muted">
+
+                    Timestamp
+
+                </span>
+
+                <span>
+
+                    ${data.timestamp}
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- AI Recommendation -->
+
+    <div class="glass rounded-3xl p-7">
+
+        <h3 class="text-xl font-bold mb-6">
+
+            AI Recommendation
+
+        </h3>
+
+        <div class="rounded-2xl border border-primary/20 bg-primary/5 p-5">
+
+            <p class="leading-8 text-slate-300">
+
+                ${recommendation}
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="glass rounded-3xl p-7">
+
+<h3 class="text-xl font-bold mb-6">
+
+Explainable AI
+
+</h3>
+
+<div class="space-y-4">
+
+<div class="flex items-center gap-3">
+
+<span class="text-primary text-xl">➜</span>
+
+<span>
+Email classified as <strong>${data.result}</strong>.
+</span>
+
+</div>
+
+<div class="flex items-center gap-3">
+
+<span class="text-primary text-xl">➜</span>
+
+<span>
+Risk level detected as <strong>${data.risk}</strong>.
+</span>
+
+</div>
+
+<div class="flex items-center gap-3">
+
+<span class="text-primary text-xl">➜</span>
+
+<span>
+AI confidence: <strong>${confidence}</strong>.
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="glass rounded-3xl p-7">
+
+<h3 class="text-xl font-bold mb-6">
+
+Threat Indicators
+
+</h3>
+
+<div class="space-y-4">
+
+<div class="flex items-center gap-3">
+
+<span class="text-danger text-xl">✔</span>
+
+<span>
+
+Prediction: ${data.result}
+
+</span>
+
+</div>
+
+<div class="flex items-center gap-3">
+
+<span class="text-danger text-xl">✔</span>
+
+<span>
+
+Risk Level: ${data.risk}
+
+</span>
+
+</div>
+
+<div class="flex items-center gap-3">
+
+<span class="text-danger text-xl">✔</span>
+
+<span>
+
+Engine: ${data.engine}
+
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Action Buttons -->
+
+<div class="flex flex-wrap gap-4">
+
+<button
+id="newScan"
+class="bg-primary text-black font-bold px-6 py-3 rounded-2xl">
+
+🔄 New Scan
+
+</button>
+
+<button
+id="copyResult"
+class="glass px-6 py-3 rounded-2xl">
+
+📋 Copy Result
+
+</button>
+
+<button
+id="exportBtn"
+class="glass px-6 py-3 rounded-2xl">
+
+⬇ Export JSON
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+document.getElementById("copyResult").addEventListener("click",()=>{
+
+const text=`
+Prediction : ${data.result}
+Risk : ${data.risk}
+Engine : ${data.engine}
+Scan ID : ${data.scan_id}
+Timestamp : ${data.timestamp}
+`;
+
+navigator.clipboard.writeText(text);
+
+alert("Result copied successfully.");
+
+});
+document.getElementById("exportBtn").addEventListener("click",()=>{
+
+const blob=new Blob(
+[JSON.stringify(data,null,4)],
+{type:"application/json"}
+);
+
+const a=document.createElement("a");
+
+a.href=URL.createObjectURL(blob);
+
+a.download=data.scan_id+".json";
+
+a.click();
+
+});
+document.getElementById("newScan").addEventListener("click",()=>{
+
+textarea.value="";
+
+counter.textContent="0 Characters";
+
+resultContainer.classList.add("hidden");
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+});
+
+}
+
+</script>
+
+{% endblock %}

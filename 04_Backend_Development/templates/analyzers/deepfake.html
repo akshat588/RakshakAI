@@ -1,0 +1,47 @@
+{% extends "layout/base.html" %}
+
+{% block title %}Deepfake Image Analyzer{% endblock %}
+
+{% block content %}
+
+<section class="max-w-4xl mx-auto py-12">
+
+    <div class="bg-slate-900 rounded-3xl border border-slate-700 p-10">
+
+        <h1 class="text-4xl font-bold text-white mb-4">
+            Deepfake Image Analyzer
+        </h1>
+
+        <p class="text-slate-400 mb-8">
+            Upload an image to detect AI-generated or manipulated faces using the RakshakAI Vision Engine.
+        </p>
+
+        <form
+            id="deepfakeForm"
+            enctype="multipart/form-data"
+            class="space-y-6">
+
+            <input
+                id="image"
+                name="image"
+                type="file"
+                accept="image/*"
+                class="block w-full rounded-xl border border-slate-700 bg-slate-800 p-4 text-white">
+
+            <button
+                type="submit"
+                class="w-full bg-cyan-600 hover:bg-cyan-500 rounded-xl py-4 text-white font-semibold">
+
+                Analyze Image
+
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+<script src="{{ url_for('static', filename='js/deepfake.js') }}"></script>
+
+{% endblock %}

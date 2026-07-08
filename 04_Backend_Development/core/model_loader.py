@@ -4,6 +4,23 @@ RakshakAI Model Loader
 ===============================================================================
 """
 
+import torch
+
+
+def load_torch_model(model_path, model):
+
+    checkpoint = torch.load(
+        model_path,
+        map_location=torch.device("cpu"),
+    )
+
+    model.load_state_dict(checkpoint["model_state_dict"])
+
+    model.eval()
+
+    return model
+
+
 import joblib
 from config import NLP_MODEL_DIR
 

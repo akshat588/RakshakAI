@@ -1,0 +1,829 @@
+{% extends "layout/base.html" %}
+
+{% block title %}
+RakshakAI | SMS Analyzer
+{% endblock %}
+
+{% block content %}
+
+<div class="space-y-8 fade-up">
+
+    <!-- ========================= -->
+    <!-- HEADER -->
+    <!-- ========================= -->
+
+    <section class="flex flex-col xl:flex-row justify-between gap-6">
+
+        <div>
+
+            <p class="text-sm text-muted">
+
+                Dashboard / AI Analyzers
+
+            </p>
+
+            <h1 class="text-4xl font-bold mt-2">
+
+                SMS Threat Analyzer
+
+            </h1>
+
+            <p class="text-muted mt-3 max-w-3xl">
+
+                Detect spam messages, phishing SMS, OTP fraud, banking scams and malicious text messages using RakshakAI AI.
+
+            </p>
+
+        </div>
+
+        <div class="glass rounded-3xl px-6 py-5 min-w-[260px]">
+
+            <div class="flex items-center gap-4">
+
+                <div class="w-4 h-4 rounded-full bg-success animate-pulse"></div>
+
+                <div>
+
+                    <h3 class="font-semibold">
+
+                        AI Engine Status
+
+                    </h3>
+
+                    <p class="text-muted text-sm">
+
+                        SMS Detector Online
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- MAIN -->
+    <!-- ========================= -->
+
+    <section class="grid xl:grid-cols-3 gap-6">
+
+        <!-- LEFT -->
+
+        <div class="xl:col-span-2 glass rounded-3xl p-8">
+
+            <div class="flex justify-between items-center mb-6">
+
+                <h2 class="text-2xl font-bold">
+
+                    SMS Content
+
+                </h2>
+
+                <span
+                    id="charCount"
+                    class="font-mono text-muted">
+
+                    0 Characters
+
+                </span>
+
+            </div>
+
+            <textarea
+
+                id="smsText"
+
+                rows="16"
+
+                placeholder="Paste suspicious SMS here..."
+
+                class="w-full rounded-2xl bg-background border border-white/10 p-6 resize-none outline-none focus:border-primary transition"
+
+            ></textarea>
+
+            <div class="flex flex-wrap gap-4 mt-6">
+
+                <button
+
+                    id="sampleBtn"
+
+                    class="glass px-6 py-3 rounded-2xl">
+
+                    Load Sample
+
+                </button>
+
+                <button
+
+                    id="clearBtn"
+
+                    class="glass px-6 py-3 rounded-2xl">
+
+                    Clear
+
+                </button>
+
+                <button
+
+                    id="scanBtn"
+
+                    class="bg-primary text-black font-bold px-8 py-3 rounded-2xl">
+
+                    Analyze SMS
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT -->
+
+        <div class="space-y-6">
+
+            <div class="glass rounded-3xl p-6">
+
+                <h3 class="text-xl font-bold mb-5">
+
+                    Detection
+
+                </h3>
+
+                <div class="space-y-4">
+
+                    <div class="flex justify-between">
+
+                        <span>Spam SMS</span>
+
+                        <span class="text-success">✓</span>
+
+                    </div>
+
+                    <div class="flex justify-between">
+
+                        <span>OTP Scam</span>
+
+                        <span class="text-success">✓</span>
+
+                    </div>
+
+                    <div class="flex justify-between">
+
+                        <span>Banking Fraud</span>
+
+                        <span class="text-success">✓</span>
+
+                    </div>
+
+                    <div class="flex justify-between">
+
+                        <span>Prize Scam</span>
+
+                        <span class="text-success">✓</span>
+
+                    </div>
+
+                    <div class="flex justify-between">
+
+                        <span>Fake Offers</span>
+
+                        <span class="text-success">✓</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="glass rounded-3xl p-6">
+
+                <h3 class="text-xl font-bold mb-5">
+
+                    Safety Tips
+
+                </h3>
+
+                <ul class="space-y-3 text-muted">
+
+                    <li>• Never share OTP.</li>
+
+                    <li>• Ignore prize messages.</li>
+
+                    <li>• Verify banking alerts.</li>
+
+                    <li>• Block unknown senders.</li>
+
+                    <li>• Report spam immediately.</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Loading -->
+
+    <section
+        id="loadingCard"
+        class="hidden glass rounded-3xl p-8">
+
+        <div class="flex items-center gap-6">
+
+            <div class="w-12 h-12 rounded-full border-4 border-primary border-t-transparent animate-spin">
+
+            </div>
+
+            <div>
+
+                <h2 class="text-2xl font-bold">
+
+                    AI Analysis Running
+
+                </h2>
+
+                <p class="text-muted mt-2">
+
+                    RakshakAI is analyzing the SMS...
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Result -->
+
+    <section
+
+        id="resultContainer"
+
+        class="hidden">
+
+    </section>
+
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+
+<script>
+
+const smsText=document.getElementById("smsText");
+const counter=document.getElementById("charCount");
+
+const sampleBtn=document.getElementById("sampleBtn");
+const clearBtn=document.getElementById("clearBtn");
+const scanBtn=document.getElementById("scanBtn");
+
+const loadingCard=document.getElementById("loadingCard");
+const resultContainer=document.getElementById("resultContainer");
+
+/* ===========================
+Character Counter
+=========================== */
+
+smsText.addEventListener("input",()=>{
+
+    counter.textContent=`${smsText.value.length} Characters`;
+
+});
+
+/* ===========================
+Clear
+=========================== */
+
+clearBtn.addEventListener("click",()=>{
+
+    smsText.value="";
+
+    counter.textContent="0 Characters";
+
+    loadingCard.classList.add("hidden");
+
+    resultContainer.classList.add("hidden");
+
+});
+
+/* ===========================
+Sample SMS
+=========================== */
+
+sampleBtn.addEventListener("click",()=>{
+
+smsText.value=`Congratulations!
+
+You have won ₹25,00,000 in our lucky draw.
+
+Claim your reward now by clicking:
+
+https://claim-your-prize-now.com
+
+Offer expires today.`;
+
+counter.textContent=`${smsText.value.length} Characters`;
+
+});
+
+/* ===========================
+Analyze SMS
+=========================== */
+
+scanBtn.addEventListener("click",async()=>{
+
+const text=smsText.value.trim();
+
+if(text===""){
+
+alert("Please paste an SMS first.");
+
+return;
+
+}
+
+scanBtn.disabled=true;
+
+scanBtn.innerHTML="Analyzing...";
+
+loadingCard.classList.remove("hidden");
+
+resultContainer.classList.add("hidden");
+
+try{
+
+const response=await fetch("/api/sms",{
+
+method:"POST",
+
+headers:{
+
+"Content-Type":"application/json"
+
+},
+
+body:JSON.stringify({
+
+text:text
+
+})
+
+});
+
+const data=await response.json();
+
+loadingCard.classList.add("hidden");
+
+resultContainer.classList.remove("hidden");
+
+renderResult(data);
+
+}
+
+catch(error){
+
+loadingCard.classList.add("hidden");
+
+resultContainer.classList.remove("hidden");
+
+resultContainer.innerHTML=`
+
+<div class="glass rounded-3xl p-8 border border-red-500/30">
+
+<h2 class="text-2xl font-bold text-danger">
+
+Analysis Failed
+
+</h2>
+
+<p class="text-muted mt-4">
+
+Unable to connect to RakshakAI backend.
+
+</p>
+
+</div>
+
+`;
+
+}
+
+finally{
+
+scanBtn.disabled=false;
+
+scanBtn.innerHTML="Analyze SMS";
+
+}
+
+});
+
+/* ===========================
+Render Result
+=========================== */
+
+function renderResult(data){
+
+let score=15;
+let badge="bg-success/20 text-success";
+let recommendation="The SMS appears to be safe.";
+
+if(data.risk==="MEDIUM"){
+
+score=60;
+
+badge="bg-warning/20 text-warning";
+
+recommendation="Exercise caution before responding to this SMS.";
+
+}
+
+if(data.risk==="HIGH"){
+
+score=90;
+
+badge="bg-danger/20 text-danger";
+
+recommendation="Potential spam or phishing SMS detected. Do not click any links or share personal information.";
+
+}
+
+if(data.risk==="CRITICAL"){
+
+score=100;
+
+badge="bg-danger text-white";
+
+recommendation="Critical malicious SMS detected. Delete the message immediately and block the sender.";
+
+}
+
+const confidence=data.confidence ?? "Unavailable";
+
+resultContainer.innerHTML=`
+
+<div class="space-y-8">
+
+<div class="grid xl:grid-cols-3 gap-6">
+
+<div class="glass rounded-3xl p-7">
+
+<p class="text-muted">
+
+Threat Score
+
+</p>
+
+<h2 class="text-5xl font-bold mt-3">
+
+${score}<span class="text-2xl">%</span>
+
+</h2>
+
+<div class="w-full h-3 rounded-full bg-white/10 mt-6">
+
+<div
+class="h-3 rounded-full bg-primary"
+style="width:${score}%">
+
+</div>
+
+</div>
+
+</div>
+
+<div class="glass rounded-3xl p-7">
+
+<p class="text-muted">
+
+Risk Level
+
+</p>
+
+<div class="mt-5">
+
+<span class="px-5 py-2 rounded-full font-bold ${badge}">
+
+${data.risk}
+
+</span>
+
+</div>
+
+</div>
+
+<div class="glass rounded-3xl p-7">
+
+<p class="text-muted">
+
+Prediction
+
+</p>
+
+<h2 class="text-3xl font-bold mt-4">
+
+${data.result}
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="grid xl:grid-cols-2 gap-6">
+
+    <!-- Scan Information -->
+
+    <div class="glass rounded-3xl p-7">
+
+        <h3 class="text-xl font-bold mb-6">
+
+            Scan Information
+
+        </h3>
+
+        <div class="space-y-5">
+
+            <div class="flex justify-between">
+
+                <span class="text-muted">
+
+                    AI Engine
+
+                </span>
+
+                <span>
+
+                    ${data.engine}
+
+                </span>
+
+            </div>
+
+            <div class="flex justify-between">
+
+                <span class="text-muted">
+
+                    Confidence
+
+                </span>
+
+                <span>
+
+                    ${confidence}
+
+                </span>
+
+            </div>
+
+            <div class="flex justify-between">
+
+                <span class="text-muted">
+
+                    Scan ID
+
+                </span>
+
+                <span class="font-mono">
+
+                    ${data.scan_id}
+
+                </span>
+
+            </div>
+
+            <div class="flex justify-between">
+
+                <span class="text-muted">
+
+                    Timestamp
+
+                </span>
+
+                <span>
+
+                    ${data.timestamp}
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- AI Recommendation -->
+
+    <div class="glass rounded-3xl p-7">
+
+        <h3 class="text-xl font-bold mb-6">
+
+            AI Recommendation
+
+        </h3>
+
+        <div class="rounded-2xl border border-primary/20 bg-primary/5 p-5">
+
+            <p class="leading-8 text-slate-300">
+
+                ${recommendation}
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="glass rounded-3xl p-7">
+
+<h3 class="text-xl font-bold mb-6">
+
+Explainable AI
+
+</h3>
+
+<div class="space-y-4">
+
+<div class="flex items-center gap-3">
+
+<span class="text-primary text-xl">➜</span>
+
+<span>
+Email classified as <strong>${data.result}</strong>.
+</span>
+
+</div>
+
+<div class="flex items-center gap-3">
+
+<span class="text-primary text-xl">➜</span>
+
+<span>
+Risk level detected as <strong>${data.risk}</strong>.
+</span>
+
+</div>
+
+<div class="flex items-center gap-3">
+
+<span class="text-primary text-xl">➜</span>
+
+<span>
+AI confidence: <strong>${confidence}</strong>.
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="glass rounded-3xl p-7">
+
+<h3 class="text-xl font-bold mb-6">
+
+Threat Indicators
+
+</h3>
+
+<div class="space-y-4">
+
+<div class="flex items-center gap-3">
+
+<span class="text-danger text-xl">✔</span>
+
+<span>
+
+Prediction: ${data.result}
+
+</span>
+
+</div>
+
+<div class="flex items-center gap-3">
+
+<span class="text-danger text-xl">✔</span>
+
+<span>
+
+Risk Level: ${data.risk}
+
+</span>
+
+</div>
+
+<div class="flex items-center gap-3">
+
+<span class="text-danger text-xl">✔</span>
+
+<span>
+
+Engine: ${data.engine}
+
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Action Buttons -->
+
+<div class="flex flex-wrap gap-4">
+
+<button
+id="newScan"
+class="bg-primary text-black font-bold px-6 py-3 rounded-2xl">
+
+🔄 New Scan
+
+</button>
+
+<button
+id="copyResult"
+class="glass px-6 py-3 rounded-2xl">
+
+📋 Copy Result
+
+</button>
+
+<button
+id="exportBtn"
+class="glass px-6 py-3 rounded-2xl">
+
+⬇ Export JSON
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+document.getElementById("copyResult").addEventListener("click",()=>{
+
+const text=`
+Result : ${data.result}
+Risk : ${data.risk}
+Engine : ${data.engine}
+Scan ID : ${data.scan_id}
+Timestamp : ${data.timestamp}
+`;
+
+navigator.clipboard.writeText(text);
+
+alert("Result copied successfully.");
+
+});
+
+document.getElementById("exportBtn").addEventListener("click",()=>{
+
+const blob=new Blob(
+[JSON.stringify(data,null,4)],
+{type:"application/json"}
+);
+
+const a=document.createElement("a");
+
+a.href=URL.createObjectURL(blob);
+
+a.download=data.scan_id+".json";
+
+a.click();
+
+});
+document.getElementById("newScan").addEventListener("click",()=>{
+
+smsText.value="";
+
+counter.textContent="0 Characters";
+
+resultContainer.classList.add("hidden");
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+});
+
+}
+
+</script>
+
+{% endblock %}

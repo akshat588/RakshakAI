@@ -1,0 +1,499 @@
+{% extends "layout/base.html" %}
+
+{% block title %}
+RakshakAI | Deepfake AI Analyzer
+{% endblock %}
+
+{% block content %}
+
+<div class="space-y-8 fade-up">
+
+    <!-- Header -->
+
+    <section class="flex flex-col xl:flex-row justify-between gap-6">
+
+        <div>
+
+            <p class="text-sm text-muted">
+
+                Dashboard / AI Analyzers
+
+            </p>
+
+            <h1 class="text-4xl font-bold mt-2">
+
+                Deepfake AI Analyzer
+
+            </h1>
+
+            <p class="text-muted mt-3 max-w-3xl">
+
+                RakshakAI analyzed the uploaded media using the trained
+                Deepfake Detection Engine to identify manipulated,
+                AI-generated or authentic content.
+
+            </p>
+
+        </div>
+
+        <div class="glass rounded-3xl px-6 py-5 min-w-[260px]">
+
+            <div class="flex items-center gap-4">
+
+                <div class="w-4 h-4 rounded-full bg-success animate-pulse"></div>
+
+                <div>
+
+                    <h3 class="font-semibold">
+
+                        Deepfake Engine Status
+
+                    </h3>
+
+                    <p class="text-muted text-sm">
+
+                        Deepfake Detector Online
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <div id="resultContainer"></div>
+
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+
+<script>
+
+const result = JSON.parse(sessionStorage.getItem("deepfake_result"));
+
+if(!result){
+
+    window.location="/deepfake";
+
+}
+
+renderResult(result);
+
+function renderResult(result){
+
+let badge="bg-success/20 text-success";
+
+if(result.risk==="HIGH"){
+
+badge="bg-danger/20 text-danger";
+
+}
+
+else if(result.risk==="MEDIUM"){
+
+badge="bg-warning/20 text-warning";
+
+}
+
+let explanation="";
+
+(result.explanation||[]).forEach(item=>{
+
+explanation+=`
+
+<div class="flex items-center gap-3">
+
+<span class="text-primary text-xl">
+
+➜
+
+</span>
+
+<span>
+
+${item}
+
+</span>
+
+</div>
+
+`;
+
+});
+
+let recommendation="";
+
+(result.recommendation||[]).forEach(item=>{
+
+recommendation+=`
+
+<div class="flex items-center gap-3">
+
+<span class="text-success text-xl">
+
+✔
+
+</span>
+
+<span>
+
+${item}
+
+</span>
+
+</div>
+
+`;
+
+});
+
+let indicators=`
+
+<div class="flex items-center gap-3">
+
+<span class="text-danger text-xl">
+
+✔
+
+</span>
+
+<span>
+
+Prediction classified as ${result.prediction}
+
+</span>
+
+</div>
+
+<div class="flex items-center gap-3 mt-3">
+
+<span class="text-danger text-xl">
+
+✔
+
+</span>
+
+<span>
+
+AI Confidence ${result.confidence}%
+
+</span>
+
+</div>
+
+`;
+
+document.getElementById("resultContainer").innerHTML=`
+
+<div class="space-y-8">
+
+<div class="grid xl:grid-cols-3 gap-6">
+
+<div class="glass rounded-3xl p-7">
+
+<p class="text-muted">
+
+Threat Score
+
+</p>
+
+<h2 class="text-5xl font-bold mt-3">
+
+${result.risk_score ?? result.confidence}<span class="text-2xl">%</span>
+
+</h2>
+
+<div class="w-full h-3 rounded-full bg-white/10 mt-6">
+
+<div
+
+class="h-3 rounded-full bg-primary"
+
+style="width:${result.risk_score ?? result.confidence}%">
+
+</div>
+
+</div>
+
+</div>
+
+<div class="glass rounded-3xl p-7">
+
+<p class="text-muted">
+
+Risk Level
+
+</p>
+
+<div class="mt-5">
+
+<span class="px-5 py-2 rounded-full font-bold ${badge}">
+
+${result.risk}
+
+</span>
+
+</div>
+
+</div>
+
+<div class="glass rounded-3xl p-7">
+
+<p class="text-muted">
+
+Media Type
+
+</p>
+
+<h2 class="text-3xl font-bold mt-4">
+
+${result.media_type || "Image"}
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="grid grid-cols-1 gap-6">
+
+<div class="glass rounded-3xl p-7">
+
+<h3 class="text-xl font-bold mb-6">
+
+Scan Information
+
+</h3>
+
+<div class="space-y-5">
+
+<div class="flex justify-between">
+
+<span class="text-muted">
+
+Engine
+
+</span>
+
+<span>
+
+${result.engine}
+
+</span>
+
+</div>
+
+<div class="flex justify-between">
+
+<span class="text-muted">
+
+Prediction
+
+</span>
+
+<span>
+
+${result.prediction}
+
+</span>
+
+</div>
+
+<div class="flex justify-between">
+
+<span class="text-muted">
+
+Confidence
+
+</span>
+
+<span>
+
+${result.confidence}%
+
+</span>
+
+</div>
+
+<div class="flex justify-between">
+
+<span class="text-muted">
+
+Scan ID
+
+</span>
+
+<span class="font-mono">
+
+${result.scan_id}
+
+</span>
+
+</div>
+
+<div class="flex justify-between">
+
+<span class="text-muted">
+
+Threat Score
+
+</span>
+
+<span>
+
+${result.risk_score ?? result.confidence}%
+
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="glass rounded-3xl p-7">
+
+<h3 class="text-xl font-bold mb-6">
+
+Explainable AI
+
+</h3>
+
+${explanation}
+
+</div>
+
+<div class="glass rounded-3xl p-7">
+
+<h3 class="text-xl font-bold mb-6">
+
+Threat Indicators
+
+</h3>
+
+${indicators}
+
+</div>
+
+<div class="glass rounded-3xl p-7">
+
+<h3 class="text-xl font-bold mb-6">
+
+AI Recommendation
+
+</h3>
+
+${recommendation}
+
+</div>
+
+<div class="flex flex-wrap gap-4">
+
+<button
+
+id="newScan"
+
+class="bg-primary text-black font-bold px-6 py-3 rounded-2xl">
+
+🔄 New Scan
+
+</button>
+
+<button
+
+id="copyBtn"
+
+class="glass px-6 py-3 rounded-2xl">
+
+📋 Copy Result
+
+</button>
+
+<button
+
+id="exportBtn"
+
+class="glass px-6 py-3 rounded-2xl">
+
+⬇ Export JSON
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+document.getElementById("newScan").addEventListener("click",()=>{
+
+sessionStorage.removeItem("deepfake_result");
+
+window.location="/deepfake";
+
+});
+
+document.getElementById("exportBtn").addEventListener("click",()=>{
+
+const blob=new Blob(
+
+[JSON.stringify(result,null,4)],
+
+{type:"application/json"}
+
+);
+
+const a=document.createElement("a");
+
+a.href=URL.createObjectURL(blob);
+
+a.download=result.scan_id+".json";
+
+a.click();
+
+});
+
+document.getElementById("copyBtn").addEventListener("click",()=>{
+
+const text=`
+
+=========================
+
+RakshakAI Deepfake Report
+
+=========================
+
+Engine : ${result.engine}
+
+Prediction : ${result.prediction}
+
+Risk : ${result.risk}
+
+Confidence : ${result.confidence}%
+
+Threat Score : ${result.risk_score ?? result.confidence}%
+
+Media Type : ${result.media_type || "Image"}
+
+Scan ID : ${result.scan_id}
+
+`;
+
+navigator.clipboard.writeText(text);
+
+alert("Result copied successfully.");
+
+});
+
+}
+
+</script>
+
+{% endblock %}

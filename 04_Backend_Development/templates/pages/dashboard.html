@@ -1,0 +1,914 @@
+{% extends "layout/base.html" %}
+
+{% block title %}
+RakshakAI | Dashboard
+{% endblock %}
+
+{% block content %}
+
+<div class="space-y-8 fade-up">
+
+    <!-- ========================================= -->
+    <!-- HERO -->
+    <!-- ========================================= -->
+
+    <section
+        class="relative overflow-hidden glass rounded-[28px] border border-cyan-400/10 px-10 py-8 border border-cyan-400/10 px-10 py-6">
+
+        <div
+            class="absolute right-0 top-0 w-96 h-96 rounded-full bg-primary/5 blur-[140px]">
+        </div>
+
+        <div class="relative z-10">
+
+            <div
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
+
+                <span class="w-2 h-2 rounded-full bg-success animate-pulse"></span>
+
+                <span class="text-primary text-sm font-semibold">
+
+                    All AI Detection Engines Operational
+
+                </span>
+
+            </div>
+
+            <h1
+                class="mt-3 text-4xl xl:text-5xl font-extrabold font-extrabold leading-tight max-w-4xl">
+
+                Welcome to
+
+                <span class="text-primary">
+
+                    RakshakAI
+
+                </span>
+
+            </h1>
+
+            <p
+                class="mt-3 text-base leading-7 text-slate-300 text-lg leading-8 max-w-3xl">
+
+                Monitor phishing attacks, malicious URLs, fraudulent UPI IDs,
+                fake job scams, SMS fraud and social engineering attempts
+                using AI-powered threat intelligence.
+
+            </p>
+
+            <div class="mt-5 flex flex-wrap gap-4">
+
+                <button
+                    class="px-6 py-3 rounded-2xl bg-primary text-black font-bold hover:scale-105 transition">
+
+                    Launch AI Scan
+
+                </button>
+
+                <button
+                    class="px-7 py-4 rounded-2xl glass border border-primary/20 hover:border-primary transition">
+
+                    View Reports
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Threat Status -->
+
+<div class="grid xl:grid-cols-4 md:grid-cols-2 gap-4 mt-10">
+
+    <!-- Current Threat Level -->
+
+    <div class="glass rounded-2xl p-5">
+
+        <div class="flex items-center gap-2 text-muted text-sm">
+
+            <i data-lucide="shield-alert"
+               class="w-4 h-4 text-danger"></i>
+
+            <span>Current Threat Level</span>
+
+        </div>
+
+        <h3 class="text-2xl font-bold text-danger mt-3">
+
+            HIGH
+
+        </h3>
+
+    </div>
+
+    <!-- Active AI Engines -->
+
+    <div class="glass rounded-2xl p-5">
+
+        <div class="flex items-center gap-2 text-muted text-sm">
+
+            <i data-lucide="cpu"
+               class="w-4 h-4 text-success"></i>
+
+            <span>Active AI Engines</span>
+
+        </div>
+
+        <h3 class="text-2xl font-bold text-success mt-3">
+
+            7 / 7
+
+        </h3>
+
+    </div>
+
+    <!-- Today's Scans -->
+
+    <div class="glass rounded-2xl p-5">
+
+        <div class="flex items-center gap-2 text-muted text-sm">
+
+            <i data-lucide="scan-search"
+               class="w-4 h-4 text-primary"></i>
+
+            <span>Today's Scans</span>
+
+        </div>
+
+        <h3 class="text-2xl font-bold text-primary mt-3">
+
+            326
+
+        </h3>
+
+    </div>
+
+    <!-- Detection Accuracy -->
+
+    <div class="glass rounded-2xl p-5">
+
+        <div class="flex items-center gap-2 text-muted text-sm">
+
+            <i data-lucide="badge-check"
+               class="w-4 h-4 text-success"></i>
+
+            <span>Detection Accuracy</span>
+
+        </div>
+
+        <h3 class="text-2xl font-bold text-success mt-3">
+
+            99.2%
+
+        </h3>
+
+    </div>
+
+</div>
+
+</div>
+
+</section>
+
+    <!-- ========================================= -->
+    <!-- OVERVIEW -->
+    <!-- ========================================= -->
+
+    <section>
+
+        <div class="flex items-center justify-between mb-6">
+
+            <div>
+
+                <h2 class="text-2xl font-bold">
+
+                    Security Overview
+
+                </h2>
+
+                <p class="text-muted">
+
+                    Live statistics from RakshakAI
+
+                </p>
+
+            </div>
+
+            <div id="liveTime"
+                 class="font-mono text-primary">
+
+                Loading...
+
+            </div>
+
+        </div>
+
+        <div
+            class="grid xl:grid-cols-4 lg:grid-cols-2 gap-6">
+
+            <!-- Card -->
+
+            <div class="glass rounded-3xl p-6 hover:border-primary/30 border border-transparent transition-all duration-300 hover:-translate-y-1">
+
+                <div
+                    class="flex items-center justify-between">
+
+                    <div>
+
+                        <p class="text-muted">
+
+                            Total Scans
+
+                        </p>
+
+                        <h3
+                            class="counter text-5xl font-bold mt-3"
+                            data-target="12482">
+
+                            0
+
+                        </h3>
+
+                    </div>
+
+                    <div
+                        class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
+
+                        <i data-lucide="scan-search"
+                           class="w-8 h-8 text-primary"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Card -->
+
+            <div class="glass rounded-3xl p-6 hover:border-primary/30 border border-transparent transition-all duration-300 hover:-translate-y-1">
+
+                <div
+                    class="flex items-center justify-between">
+
+                    <div>
+
+                        <p class="text-muted">
+
+                            Threats Blocked
+
+                        </p>
+
+                        <h3
+                            class="counter text-5xl font-bold mt-3"
+                            data-target="9821">
+
+                            0
+
+                        </h3>
+
+                    </div>
+
+                    <div
+                        class="w-16 h-16 rounded-2xl bg-danger/10 flex items-center justify-center">
+
+                        <i data-lucide="shield-alert"
+                           class="w-8 h-8 text-danger"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Card -->
+
+            <div class="glass rounded-3xl p-6 hover:border-primary/30 border border-transparent transition-all duration-300 hover:-translate-y-1">
+
+                <div
+                    class="flex items-center justify-between">
+
+                    <div>
+
+                        <p class="text-muted">
+
+                            AI Models
+
+                        </p>
+
+                        <h3
+                            class="counter text-5xl font-bold mt-3"
+                            data-target="7">
+
+                            0
+
+                        </h3>
+
+                    </div>
+
+                    <div
+                        class="w-16 h-16 rounded-2xl bg-success/10 flex items-center justify-center">
+
+                        <i data-lucide="brain-circuit"
+                           class="w-8 h-8 text-success"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Card -->
+
+            <div class="glass rounded-3xl p-6 hover:border-primary/30 border border-transparent transition-all duration-300 hover:-translate-y-1">
+
+                <div
+                    class="flex items-center justify-between">
+
+                    <div>
+
+                        <p class="text-muted">
+
+                            Detection Rate
+
+                        </p>
+
+                        <h3
+                            class="counter text-5xl font-bold mt-3"
+                            data-target="99">
+
+                            0
+
+                        </h3>
+
+                    </div>
+
+                    <div
+                        class="w-16 h-16 rounded-2xl bg-warning/10 flex items-center justify-center">
+
+                        <i data-lucide="activity"
+                           class="w-8 h-8 text-warning"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+<!-- ========================================= -->
+<!-- AI ENGINE STATUS + THREAT CHART -->
+<!-- ========================================= -->
+
+<section class="grid xl:grid-cols-3 gap-6">
+
+    <!-- AI Engines -->
+
+    <div class="glass rounded-3xl p-6 hover:border-primary/30 border border-transparent transition-all duration-300 hover:-translate-y-1">
+
+        <div class="flex items-center justify-between mb-6">
+
+            <h2 class="text-xl font-bold">
+
+                AI Detection Engines
+
+            </h2>
+
+            <span class="text-success text-sm">
+
+                7 Active
+
+            </span>
+
+        </div>
+
+        <div class="space-y-4">
+
+            <div class="engine-item">
+
+                <span>Email Analyzer</span>
+
+                <span class="status-online">ONLINE</span>
+
+            </div>
+
+            <div class="engine-item">
+
+                <span>URL Analyzer</span>
+
+                <span class="status-online">ONLINE</span>
+
+            </div>
+
+            <div class="engine-item">
+
+                <span>SMS Analyzer</span>
+
+                <span class="status-online">ONLINE</span>
+
+            </div>
+
+            <div class="engine-item">
+
+                <span>WhatsApp Analyzer</span>
+
+                <span class="status-online">ONLINE</span>
+
+            </div>
+
+            <div class="engine-item">
+
+                <span>Fake Job Detector</span>
+
+                <span class="status-online">ONLINE</span>
+
+            </div>
+
+            <div class="engine-item">
+
+                <span>Social Engineering</span>
+
+                <span class="status-online">ONLINE</span>
+
+            </div>
+
+            <div class="engine-item">
+
+                <span>UPI Fraud Detector</span>
+
+                <span class="status-online">ONLINE</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Threat Chart -->
+
+    <div class="glass rounded-3xl p-7 xl:col-span-2">
+
+        <div class="flex items-center justify-between mb-6">
+
+            <h2 class="text-xl font-bold">
+
+                Threat Distribution
+
+            </h2>
+
+            <span class="text-muted">
+
+                Last 30 Days
+
+            </span>
+
+        </div>
+
+        <canvas
+        id="threatChart"
+        class="mt-5">
+                height="120"></canvas>
+
+    </div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- QUICK ACTIONS -->
+<!-- ========================================= -->
+
+<section class="glass rounded-3xl p-8">
+
+    <div class="flex items-center justify-between mb-8">
+
+        <div>
+
+            <h2 class="text-2xl font-bold">
+
+                Quick Actions
+
+            </h2>
+
+            <p class="text-muted">
+
+                Launch any AI engine instantly
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="grid xl:grid-cols-7 md:grid-cols-2 gap-5">
+
+        <button class="quick-card">
+
+            <i data-lucide="mail-search"></i>
+
+            <span>Analyze Email</span>
+
+        </button>
+
+        <button class="quick-card">
+
+            <i data-lucide="link"></i>
+
+            <span>Analyze URL</span>
+
+        </button>
+
+        <button class="quick-card">
+
+            <i data-lucide="message-square-warning"></i>
+
+            <span>Analyze SMS</span>
+
+        </button>
+
+        <button class="quick-card">
+
+            <i data-lucide="wallet-cards"></i>
+
+            <span>Verify UPI</span>
+
+        </button>
+
+        <a href="/qr" class="quick-card">
+
+        <i data-lucide="scan-qr-code"></i>
+
+        <span>Analyze QR</span>
+
+        </a>
+
+        <a href="/deepfake" class="quick-card">
+            <i data-lucide="image"></i>
+            <span>Analyze Deepfake</span>
+        </a>
+
+        <a href="/voice" class="quick-card">
+
+            <i data-lucide="audio-lines"></i>
+            <span>Analyze Voice</span>
+
+        </a>
+
+
+
+    </div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- LIVE THREAT FEED + RECENT SCANS -->
+<!-- ========================================= -->
+
+<section class="grid xl:grid-cols-3 gap-6">
+
+    <!-- Live Threat Feed -->
+
+    <div class="glass rounded-3xl p-6 hover:border-primary/30 border border-transparent transition-all duration-300 hover:-translate-y-1">
+
+        <div class="flex justify-between items-center mb-6">
+
+            <h2 class="text-xl font-bold">
+
+                Live Threat Feed
+
+            </h2>
+
+            <span class="text-danger text-sm">
+
+                LIVE
+
+            </span>
+
+        </div>
+
+        <div class="space-y-4">
+
+            <div class="feed-item danger">
+
+                <div>
+
+                    <h4>Email Phishing</h4>
+
+                    <p>Blocked Successfully</p>
+
+                </div>
+
+                <span>2m ago</span>
+
+            </div>
+
+            <div class="feed-item warning">
+
+                <div>
+
+                    <h4>Suspicious URL</h4>
+
+                    <p>Risk Score 89%</p>
+
+                </div>
+
+                <span>5m ago</span>
+
+            </div>
+
+            <div class="feed-item success">
+
+                <div>
+
+                    <h4>UPI Verified</h4>
+
+                    <p>No Threat Detected</p>
+
+                </div>
+
+                <span>8m ago</span>
+
+            </div>
+
+            <div class="feed-item danger">
+
+                <div>
+
+                    <h4>Fake Job Scam</h4>
+
+                    <p>High Risk</p>
+
+                </div>
+
+                <span>15m ago</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Recent Scans -->
+
+    <div class="glass rounded-3xl p-7 xl:col-span-2">
+
+        <div class="flex justify-between items-center mb-6">
+
+            <h2 class="text-xl font-bold">
+
+                Recent Scans
+
+            </h2>
+
+            <button class="text-primary">
+
+                View All
+
+            </button>
+
+        </div>
+
+        <div class="overflow-x-auto">
+
+            <table class="w-full">
+
+                <thead>
+
+                    <tr class="text-muted border-b border-white/10">
+
+                        <th class="text-left py-4">Scan ID</th>
+
+                        <th class="text-left">Engine</th>
+
+                        <th class="text-left">Risk</th>
+
+                        <th class="text-left">Status</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td class="py-4 font-mono">RK-164346C2</td>
+
+                        <td>Email</td>
+
+                        <td class="text-danger">HIGH</td>
+
+                        <td>Completed</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td class="py-4 font-mono">RK-93BC112A</td>
+
+                        <td>URL</td>
+
+                        <td class="text-warning">MEDIUM</td>
+
+                        <td>Completed</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td class="py-4 font-mono">RK-AB921FDD</td>
+
+                        <td>UPI</td>
+
+                        <td class="text-success">SAFE</td>
+
+                        <td>Completed</td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- AI RECOMMENDATIONS -->
+<!-- ========================================= -->
+
+<section class="glass rounded-3xl p-8">
+
+    <h2 class="text-2xl font-bold mb-6">
+
+        AI Security Recommendations
+
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-6">
+
+        <div class="recommend-card">
+
+            Enable multi-factor authentication for all critical accounts.
+
+        </div>
+
+        <div class="recommend-card">
+
+            Avoid opening links from unknown email senders.
+
+        </div>
+
+        <div class="recommend-card">
+
+            Regularly monitor suspicious UPI transactions.
+
+        </div>
+
+    </div>
+
+</section>
+
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+
+<script>
+
+const time = document.getElementById("liveTime");
+
+function updateClock() {
+
+    if (!time) return;
+
+    const now = new Date();
+
+    time.textContent = now.toLocaleString();
+
+}
+
+updateClock();
+
+setInterval(updateClock, 1000);
+
+document.querySelectorAll(".counter").forEach(counter=>{
+
+const target=+counter.dataset.target;
+
+let count=0;
+
+const speed=target/100;
+
+const update=()=>{
+
+count+=speed;
+
+if(count<target){
+
+counter.innerText=Math.floor(count);
+
+requestAnimationFrame(update);
+
+}else{
+
+counter.innerText=target.toLocaleString();
+
+}
+
+}
+
+update();
+
+});
+
+const ctx=document.getElementById("threatChart");
+
+new Chart(ctx,{
+
+type:"doughnut",
+
+data:{
+
+labels:[
+
+"Email",
+
+"URL",
+
+"SMS",
+
+"WhatsApp",
+
+"UPI"
+
+],
+
+datasets:[{
+
+data:[38,27,14,12,9],
+
+backgroundColor:[
+
+"#00E5FF",
+
+"#2563EB",
+
+"#F59E0B",
+
+"#EF4444",
+
+"#10B981"
+
+],
+
+borderWidth:0,
+
+hoverOffset:18
+
+}]
+},
+
+options:{
+
+    responsive:true,
+
+    plugins:{
+
+        legend:{
+
+            position:"bottom",
+
+            labels:{
+
+                color:"#F8FAFC",
+
+                padding:20,
+
+                usePointStyle:true,
+
+                pointStyle:"circle",
+
+                font:{
+                    size:13
+                }
+
+            }
+
+        }
+
+    }
+
+}
+
+});
+
+lucide.createIcons();
+
+</script>
+
+{% endblock %}

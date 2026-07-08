@@ -1,0 +1,228 @@
+{% extends "layout/base.html" %}
+
+{% block title %}QR Code Threat Analyzer | RakshakAI{% endblock %}
+
+{% block content %}
+
+<div class="max-w-7xl mx-auto px-6 py-8">
+
+    <!-- Header -->
+
+    <div class="mb-8">
+
+        <h1 class="text-4xl font-bold text-white">
+            QR Code Threat Analyzer
+        </h1>
+
+        <p class="text-slate-400 mt-2">
+            Upload a QR Code and let RakshakAI detect phishing, malicious redirects,
+            suspicious URLs and dangerous QR payloads.
+        </p>
+
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-8">
+
+        <!-- Upload Card -->
+
+        <div
+            class="bg-slate-900 rounded-2xl border border-slate-700 p-8 shadow-xl">
+
+            <h2 class="text-xl font-semibold text-white mb-6">
+
+                Upload QR Image
+
+            </h2>
+
+            <form id="qrForm">
+
+                <label
+                    id="dropZone"
+                    class="flex flex-col justify-center items-center h-80 rounded-xl border-2 border-dashed border-cyan-500 cursor-pointer hover:bg-slate-800 transition">
+
+                    <svg class="w-16 h-16 text-cyan-400 mb-4"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24">
+
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-9-13.5v13.5m0-13.5l-3.75 3.75M12 3l3.75 3.75" />
+
+                    </svg>
+
+                    <span class="text-white font-medium">
+
+                        Drag & Drop QR Image
+
+                    </span>
+
+                    <span class="text-slate-400 mt-2">
+
+                        PNG • JPG • JPEG • WEBP
+
+                    </span>
+
+                    <input
+                        id="qrImage"
+                        type="file"
+                        accept="image/*"
+                        hidden>
+
+                </label>
+
+                <div class="mt-6">
+
+                    <img
+                        id="preview"
+                        class="hidden rounded-xl border border-slate-700 max-h-80 w-full object-contain">
+
+                </div>
+
+                <button
+                    id="scanButton"
+                    type="submit"
+                    class="w-full mt-8 bg-cyan-600 hover:bg-cyan-700 transition rounded-xl py-4 text-white font-semibold">
+
+                    Analyze QR Code
+
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- Instructions -->
+
+        <div
+            class="bg-slate-900 rounded-2xl border border-slate-700 p-8 shadow-xl">
+
+            <h2 class="text-xl font-semibold text-white mb-6">
+
+                RakshakAI Analysis
+
+            </h2>
+
+            <div class="space-y-6">
+
+                <div class="flex items-start gap-4">
+
+                    <div
+                        class="w-10 h-10 rounded-full bg-cyan-600 flex items-center justify-center text-white">
+
+                        1
+
+                    </div>
+
+                    <div>
+
+                        <h3 class="text-white font-semibold">
+
+                            Upload QR
+
+                        </h3>
+
+                        <p class="text-slate-400">
+
+                            Select any QR code image.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="flex items-start gap-4">
+
+                    <div
+                        class="w-10 h-10 rounded-full bg-cyan-600 flex items-center justify-center text-white">
+
+                        2
+
+                    </div>
+
+                    <div>
+
+                        <h3 class="text-white font-semibold">
+
+                            Decode
+
+                        </h3>
+
+                        <p class="text-slate-400">
+
+                            QR content is securely extracted.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="flex items-start gap-4">
+
+                    <div
+                        class="w-10 h-10 rounded-full bg-cyan-600 flex items-center justify-center text-white">
+
+                        3
+
+                    </div>
+
+                    <div>
+
+                        <h3 class="text-white font-semibold">
+
+                            Threat Analysis
+
+                        </h3>
+
+                        <p class="text-slate-400">
+
+                            AI checks URLs, redirects, phishing indicators and suspicious payloads.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="flex items-start gap-4">
+
+                    <div
+                        class="w-10 h-10 rounded-full bg-cyan-600 flex items-center justify-center text-white">
+
+                        4
+
+                    </div>
+
+                    <div>
+
+                        <h3 class="text-white font-semibold">
+
+                            AI Decision
+
+                        </h3>
+
+                        <p class="text-slate-400">
+
+                            Professional threat report generated.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/qr.js') }}"></script>
+
+{% endblock %}
