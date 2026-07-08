@@ -344,7 +344,7 @@ const emailText=textarea.value.trim();
 
 if(emailText===""){
 
-alert("Please paste an email first.");
+showToast("Please enter content before scanning.", "warning");
 
 return;
 
@@ -380,9 +380,17 @@ text:emailText
 
 const data = await response.json();
 
-console.log("EMAIL API RESPONSE:", data);
+console.log(data);
 
-alert(JSON.stringify(data, null, 2));
+if (!data.success) {
+
+    alert(data.error || "Analysis failed.");
+
+    loadingCard.classList.add("hidden");
+
+    return;
+
+}
 
 loadingCard.classList.add("hidden");
 
@@ -792,7 +800,7 @@ Timestamp : ${data.timestamp}
 
 navigator.clipboard.writeText(text);
 
-alert("Result copied successfully.");
+showToast("Result copied successfully.", "success");
 
 });
 document.getElementById("exportBtn").addEventListener("click",()=>{

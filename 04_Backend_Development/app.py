@@ -23,7 +23,6 @@ from api.fake_job import fake_job_bp
 from api.social_engineering import social_bp
 from api.qr import qr_bp
 from api.deepfake import deepfake_bp
-from api.voice import voice_bp
 from api.history import history_bp
 
 # ==========================
@@ -47,7 +46,6 @@ app.register_blueprint(fake_job_bp)
 app.register_blueprint(social_bp)
 app.register_blueprint(qr_bp)
 app.register_blueprint(deepfake_bp)
-app.register_blueprint(voice_bp)
 app.register_blueprint(history_bp)
 
 # ==========================
@@ -130,34 +128,9 @@ def deepfake_result_page():
     return render_template("analyzers/deepfake_result.html")
 
 
-@app.route("/voice")
-def voice_page():
-    return render_template("analyzers/voice.html")
-
-
-@app.route("/voice-result")
-def voice_result_page():
-    return render_template("analyzers/voice_result.html")
-
-
 @app.route("/scan-history")
 def scan_history_page():
     return render_template("analyzers/scan_history.html")
-
-
-@app.route("/analytics")
-def analytics_page():
-    return render_template("analyzers/analytics.html")
-
-
-@app.route("/reports")
-def reports_page():
-    return render_template("analyzers/reports.html")
-
-
-@app.route("/threat-dashboard")
-def threat_dashboard_page():
-    return render_template("analyzers/threat_dashboard.html")
 
 
 # ==========================

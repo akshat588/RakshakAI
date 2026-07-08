@@ -5,13 +5,8 @@ RakshakAI - Base Trainer
 
 Generic training engine for NLP models.
 
-Supports:
-- Logistic Regression
-- Linear SVM
-- Multinomial Naive Bayes
-- Random Forest
-
-Automatically selects the best model based on F1-score.
+Uses Logistic Regression as the production model so that
+all analyzers support predict_proba() for confidence scores.
 """
 
 from pathlib import Path
@@ -34,14 +29,16 @@ class BaseTrainer:
     def __init__(self):
 
         self.models = {
-            "Logistic Regression": LogisticRegression(max_iter=1000),
+            "Logistic Regression": LogisticRegression(
+                max_iter=1000,
+                random_state=42,
+            ),
             "Linear SVM": LinearSVC(),
             "Naive Bayes": MultinomialNB(),
         }
 
         self.best_model = None
         self.best_name = None
-        self.best_score = 0.0
 
     def train(self, X_train, y_train, X_test, y_test):
 
@@ -55,24 +52,30 @@ class BaseTrainer:
 
             predictions = model.predict(X_test)
 
-            accuracy = accuracy_score(y_test, predictions)
+            accuracy = accuracy_score(
+                y_test,
+                predictions,
+            )
 
             precision = precision_score(
                 y_test,
                 predictions,
                 average="weighted",
+                zero_division=0,
             )
 
             recall = recall_score(
                 y_test,
                 predictions,
                 average="weighted",
+                zero_division=0,
             )
 
             f1 = f1_score(
                 y_test,
                 predictions,
                 average="weighted",
+                zero_division=0,
             )
 
             results[name] = {
@@ -82,9 +85,17 @@ class BaseTrainer:
                 "F1": f1,
             }
 
-            if f1 > self.best_score:
+            print(
+                f"{name:<22}"
+                f" Accuracy={accuracy:.4f}"
+                f" Precision={precision:.4f}"
+                f" Recall={recall:.4f}"
+                f" F1={f1:.4f}"
+            )
 
-                self.best_score = f1
+            # Always keep Logistic Regression as the deployment model
+            if name == "Logistic Regression":
+
                 self.best_model = model
                 self.best_name = name
 
@@ -105,5 +116,7 @@ class BaseTrainer:
             model_path,
         )
 
-        print(f"\nBest Model : {self.best_name}")
-        print(f"Saved To   : {model_path}")
+        print("\n" + "=" * 60)
+        print(f"Selected Model : {self.best_name}")
+        print(f"Saved To       : {model_path}")
+        print("=" * 60)

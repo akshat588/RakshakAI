@@ -731,7 +731,7 @@ Timestamp : ${data.timestamp}
 
 navigator.clipboard.writeText(text);
 
-alert("Result copied successfully.");
+showToast("Result copied successfully.", "success");
 
 });
 document.getElementById("exportBtn").addEventListener("click",()=>{

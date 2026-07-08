@@ -36,16 +36,23 @@ def analyze_email():
 
         prediction = model.predict(features)[0]
 
-        try:
-            probabilities = model.predict_proba(features)[0]
-            confidence = round(max(probabilities) * 100, 2)
+        probabilities = model.predict_proba(features)[0]
 
-        except AttributeError:
-            confidence = None
+        confidence = round(max(probabilities) * 100, 2)
 
-        result = "Phishing Email" if prediction == 1 else "Safe Email"
+        if isinstance(prediction, str):
 
-        risk = get_risk(confidence)
+            result = prediction
+
+            risk = "HIGH" if "phishing" in prediction.lower() else "LOW"
+
+        else:
+
+            prediction = int(prediction)
+
+            result = "Phishing Email" if prediction == 1 else "Safe Email"
+
+            risk = "HIGH" if prediction == 1 else "LOW"
 
         response = build_response(
             engine="Email Detector",

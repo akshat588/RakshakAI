@@ -62,29 +62,76 @@ async function loadHistory(){
 
     table.innerHTML = "";
 
-    data.history.forEach(scan=>{
+    data.history
+    .reverse()
+    .forEach(scan=>{
 
-        table.innerHTML += `
+    const prediction =
+        scan.result ||
+        scan.prediction ||
+        "-";
 
-        <tr class="border-t border-slate-700">
+    const confidence =
+        scan.confidence==null
+            ? "-"
+            : scan.confidence + "%";
 
-            <td class="p-4 text-white">${scan.engine}</td>
+    const riskBadge =
+        scan.risk==="HIGH"
+            ? "text-danger"
+            : scan.risk==="MEDIUM"
+                ? "text-warning"
+                : "text-success";
 
-            <td class="p-4 text-white">${scan.prediction}</td>
+    table.innerHTML += `
 
-            <td class="p-4 text-white">${scan.risk}</td>
+<tr class="border-t border-white/5 hover:bg-white/5 transition">
 
-            <td class="p-4 text-cyan-400">${scan.confidence ?? "-"}%</td>
+<td class="p-4 font-semibold">
 
-            <td class="p-4 text-slate-300">${scan.scan_id}</td>
+${scan.engine}
 
-            <td class="p-4 text-slate-300">${scan.saved_at}</td>
+</td>
 
-        </tr>
+<td class="p-4">
 
-        `;
+${prediction}
 
-    });
+</td>
+
+<td class="p-4">
+
+<span class="${riskBadge} font-bold">
+
+${scan.risk}
+
+</span>
+
+</td>
+
+<td class="p-4 text-primary">
+
+${confidence}
+
+</td>
+
+<td class="p-4 font-mono text-sm">
+
+${scan.scan_id}
+
+</td>
+
+<td class="p-4 text-muted">
+
+${scan.saved_at || scan.timestamp || "-"}
+
+</td>
+
+</tr>
+
+`;
+
+});
 
 }
 

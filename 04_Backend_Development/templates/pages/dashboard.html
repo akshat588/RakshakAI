@@ -8,161 +8,68 @@ RakshakAI | Dashboard
 
 <div class="space-y-8 fade-up">
 
-    <!-- ========================================= -->
-    <!-- HERO -->
-    <!-- ========================================= -->
+<!-- ================================================= -->
+<!-- HERO -->
+<!-- ================================================= -->
 
-    <section
-        class="relative overflow-hidden glass rounded-[28px] border border-cyan-400/10 px-10 py-8 border border-cyan-400/10 px-10 py-6">
+<section
+class="relative overflow-hidden glass rounded-[30px] border border-primary/10 px-10 py-10">
 
-        <div
-            class="absolute right-0 top-0 w-96 h-96 rounded-full bg-primary/5 blur-[140px]">
-        </div>
+<div class="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-primary/5"></div>
 
-        <div class="relative z-10">
+<div class="absolute -top-20 -right-20 w-72 h-72 rounded-full bg-primary/10 blur-[120px]"></div>
 
-            <div
-                class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
+<div class="relative z-10">
 
-                <span class="w-2 h-2 rounded-full bg-success animate-pulse"></span>
+<div class="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-success/10 border border-success/20">
 
-                <span class="text-primary text-sm font-semibold">
+<div class="w-2 h-2 rounded-full bg-success animate-pulse"></div>
 
-                    All AI Detection Engines Operational
+<span class="text-success font-semibold">
 
-                </span>
+All AI Detection Engines Operational
 
-            </div>
+</span>
 
-            <h1
-                class="mt-3 text-4xl xl:text-5xl font-extrabold font-extrabold leading-tight max-w-4xl">
+</div>
 
-                Welcome to
+<h1 class="mt-6 text-5xl font-extrabold leading-tight">
 
-                <span class="text-primary">
+Welcome to
 
-                    RakshakAI
+<span class="text-primary">
 
-                </span>
+RakshakAI
 
-            </h1>
+</span>
 
-            <p
-                class="mt-3 text-base leading-7 text-slate-300 text-lg leading-8 max-w-3xl">
+</h1>
 
-                Monitor phishing attacks, malicious URLs, fraudulent UPI IDs,
-                fake job scams, SMS fraud and social engineering attempts
-                using AI-powered threat intelligence.
+<p class="mt-5 max-w-3xl text-slate-300 leading-8 text-lg">
 
-            </p>
+AI Powered Cyber Threat Intelligence Platform for detecting phishing emails,
+malicious URLs, fraudulent UPI IDs, fake jobs, QR scams, SMS fraud,
+WhatsApp scams, deepfake images and social engineering attacks.
 
-            <div class="mt-5 flex flex-wrap gap-4">
+</p>
 
-                <button
-                    class="px-6 py-3 rounded-2xl bg-primary text-black font-bold hover:scale-105 transition">
+<div class="flex flex-wrap gap-5 mt-8">
 
-                    Launch AI Scan
+<a
+href="#quick-actions"
+class="px-8 py-4 rounded-2xl bg-primary text-black font-bold hover:scale-105 transition">
 
-                </button>
+Launch AI Scan
 
-                <button
-                    class="px-7 py-4 rounded-2xl glass border border-primary/20 hover:border-primary transition">
+</a>
 
-                    View Reports
+<a
+href="{{ url_for('scan_history_page') }}"
+class="px-8 py-4 rounded-2xl glass border border-primary/20 hover:border-primary transition">
 
-                </button>
+View Scan History
 
-            </div>
-
-        </div>
-
-        <!-- Threat Status -->
-
-<div class="grid xl:grid-cols-4 md:grid-cols-2 gap-4 mt-10">
-
-    <!-- Current Threat Level -->
-
-    <div class="glass rounded-2xl p-5">
-
-        <div class="flex items-center gap-2 text-muted text-sm">
-
-            <i data-lucide="shield-alert"
-               class="w-4 h-4 text-danger"></i>
-
-            <span>Current Threat Level</span>
-
-        </div>
-
-        <h3 class="text-2xl font-bold text-danger mt-3">
-
-            HIGH
-
-        </h3>
-
-    </div>
-
-    <!-- Active AI Engines -->
-
-    <div class="glass rounded-2xl p-5">
-
-        <div class="flex items-center gap-2 text-muted text-sm">
-
-            <i data-lucide="cpu"
-               class="w-4 h-4 text-success"></i>
-
-            <span>Active AI Engines</span>
-
-        </div>
-
-        <h3 class="text-2xl font-bold text-success mt-3">
-
-            7 / 7
-
-        </h3>
-
-    </div>
-
-    <!-- Today's Scans -->
-
-    <div class="glass rounded-2xl p-5">
-
-        <div class="flex items-center gap-2 text-muted text-sm">
-
-            <i data-lucide="scan-search"
-               class="w-4 h-4 text-primary"></i>
-
-            <span>Today's Scans</span>
-
-        </div>
-
-        <h3 class="text-2xl font-bold text-primary mt-3">
-
-            326
-
-        </h3>
-
-    </div>
-
-    <!-- Detection Accuracy -->
-
-    <div class="glass rounded-2xl p-5">
-
-        <div class="flex items-center gap-2 text-muted text-sm">
-
-            <i data-lucide="badge-check"
-               class="w-4 h-4 text-success"></i>
-
-            <span>Detection Accuracy</span>
-
-        </div>
-
-        <h3 class="text-2xl font-bold text-success mt-3">
-
-            99.2%
-
-        </h3>
-
-    </div>
+</a>
 
 </div>
 
@@ -170,185 +77,221 @@ RakshakAI | Dashboard
 
 </section>
 
-    <!-- ========================================= -->
-    <!-- OVERVIEW -->
-    <!-- ========================================= -->
+<!-- ================================================= -->
+<!-- LIVE STATS -->
+<!-- ================================================= -->
 
-    <section>
+<section>
 
-        <div class="flex items-center justify-between mb-6">
+<div class="grid xl:grid-cols-4 md:grid-cols-2 gap-6">
 
-            <div>
+<!-- Threat -->
 
-                <h2 class="text-2xl font-bold">
+<div class="glass rounded-3xl p-6">
 
-                    Security Overview
+<div class="flex items-center gap-3">
 
-                </h2>
+<div class="w-12 h-12 rounded-xl bg-danger/10 flex items-center justify-center">
 
-                <p class="text-muted">
+<i data-lucide="shield-alert"
+class="w-6 h-6 text-danger"></i>
 
-                    Live statistics from RakshakAI
+</div>
 
-                </p>
+<div>
 
-            </div>
+<p class="text-muted">
 
-            <div id="liveTime"
-                 class="font-mono text-primary">
+Current Threat
 
-                Loading...
+</p>
 
-            </div>
+<h3
+id="currentThreat"
+class="text-3xl font-bold text-danger mt-1">
+
+HIGH
+
+</h3>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Today's Scan -->
+
+<div class="glass rounded-3xl p-6">
+
+<div class="flex items-center gap-3">
+
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+
+<i data-lucide="scan-search"
+class="w-6 h-6 text-primary"></i>
+
+</div>
+
+<div>
+
+<p class="text-muted">
+
+Today's Scans
+
+</p>
+
+<h3
+id="todayScans"
+class="text-3xl font-bold text-primary mt-1">
+
+0
+
+</h3>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- AI Engines -->
+
+<div class="glass rounded-3xl p-6">
+
+<div class="flex items-center gap-3">
+
+<div class="w-12 h-12 rounded-xl bg-success/10 flex items-center justify-center">
+
+<i data-lucide="cpu"
+class="w-6 h-6 text-success"></i>
+
+</div>
+
+<div>
+
+<p class="text-muted">
+
+Active Engines
+
+</p>
+
+<h3
+id="engineCount"
+class="text-3xl font-bold text-success mt-1">
+
+9 / 9
+
+</h3>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Accuracy -->
+
+<div class="glass rounded-3xl p-6">
+
+<div class="flex items-center gap-3">
+
+<div class="w-12 h-12 rounded-xl bg-warning/10 flex items-center justify-center">
+
+<i data-lucide="badge-check"
+class="w-6 h-6 text-warning"></i>
+
+</div>
+
+<div>
+
+<p class="text-muted">
+
+Detection Accuracy
+
+</p>
+
+<h3 class="text-3xl font-bold text-success mt-1">
+
+97.63%
+
+</h3>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- SECURITY OVERVIEW -->
+<!-- ========================================= -->
+
+<section class="space-y-6">
+
+    <div class="flex items-center justify-between">
+
+        <div>
+
+            <h2 class="text-2xl font-bold">
+
+                Security Overview
+
+            </h2>
+
+            <p class="text-muted mt-1">
+
+                Real-time cybersecurity statistics
+
+            </p>
 
         </div>
 
         <div
-            class="grid xl:grid-cols-4 lg:grid-cols-2 gap-6">
+            id="liveTime"
+            class="font-mono text-primary text-sm">
 
-            <!-- Card -->
+            Loading...
 
-            <div class="glass rounded-3xl p-6 hover:border-primary/30 border border-transparent transition-all duration-300 hover:-translate-y-1">
+        </div>
 
-                <div
-                    class="flex items-center justify-between">
+    </div>
 
-                    <div>
+    <div class="grid xl:grid-cols-4 md:grid-cols-2 gap-6">
 
-                        <p class="text-muted">
+        <!-- Total Scans -->
 
-                            Total Scans
+        <div class="glass rounded-3xl p-6">
 
-                        </p>
+            <div class="flex items-center justify-between">
 
-                        <h3
-                            class="counter text-5xl font-bold mt-3"
-                            data-target="12482">
+                <div>
 
-                            0
+                    <p class="text-muted">
 
-                        </h3>
+                        Total Scans
 
-                    </div>
+                    </p>
 
-                    <div
-                        class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
+                    <h2
+                        id="totalScans"
+                        class="text-5xl font-bold mt-3">
 
-                        <i data-lucide="scan-search"
-                           class="w-8 h-8 text-primary"></i>
+                        0
 
-                    </div>
+                    </h2>
 
                 </div>
 
-            </div>
-
-            <!-- Card -->
-
-            <div class="glass rounded-3xl p-6 hover:border-primary/30 border border-transparent transition-all duration-300 hover:-translate-y-1">
-
                 <div
-                    class="flex items-center justify-between">
+                    class="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
 
-                    <div>
-
-                        <p class="text-muted">
-
-                            Threats Blocked
-
-                        </p>
-
-                        <h3
-                            class="counter text-5xl font-bold mt-3"
-                            data-target="9821">
-
-                            0
-
-                        </h3>
-
-                    </div>
-
-                    <div
-                        class="w-16 h-16 rounded-2xl bg-danger/10 flex items-center justify-center">
-
-                        <i data-lucide="shield-alert"
-                           class="w-8 h-8 text-danger"></i>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!-- Card -->
-
-            <div class="glass rounded-3xl p-6 hover:border-primary/30 border border-transparent transition-all duration-300 hover:-translate-y-1">
-
-                <div
-                    class="flex items-center justify-between">
-
-                    <div>
-
-                        <p class="text-muted">
-
-                            AI Models
-
-                        </p>
-
-                        <h3
-                            class="counter text-5xl font-bold mt-3"
-                            data-target="7">
-
-                            0
-
-                        </h3>
-
-                    </div>
-
-                    <div
-                        class="w-16 h-16 rounded-2xl bg-success/10 flex items-center justify-center">
-
-                        <i data-lucide="brain-circuit"
-                           class="w-8 h-8 text-success"></i>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!-- Card -->
-
-            <div class="glass rounded-3xl p-6 hover:border-primary/30 border border-transparent transition-all duration-300 hover:-translate-y-1">
-
-                <div
-                    class="flex items-center justify-between">
-
-                    <div>
-
-                        <p class="text-muted">
-
-                            Detection Rate
-
-                        </p>
-
-                        <h3
-                            class="counter text-5xl font-bold mt-3"
-                            data-target="99">
-
-                            0
-
-                        </h3>
-
-                    </div>
-
-                    <div
-                        class="w-16 h-16 rounded-2xl bg-warning/10 flex items-center justify-center">
-
-                        <i data-lucide="activity"
-                           class="w-8 h-8 text-warning"></i>
-
-                    </div>
+                    <i data-lucide="scan-search"
+                       class="w-8 h-8 text-primary"></i>
 
                 </div>
 
@@ -356,88 +299,109 @@ RakshakAI | Dashboard
 
         </div>
 
-    </section>
-<!-- ========================================= -->
-<!-- AI ENGINE STATUS + THREAT CHART -->
-<!-- ========================================= -->
+        <!-- Threats -->
 
-<section class="grid xl:grid-cols-3 gap-6">
+        <div class="glass rounded-3xl p-6">
 
-    <!-- AI Engines -->
+            <div class="flex items-center justify-between">
 
-    <div class="glass rounded-3xl p-6 hover:border-primary/30 border border-transparent transition-all duration-300 hover:-translate-y-1">
+                <div>
 
-        <div class="flex items-center justify-between mb-6">
+                    <p class="text-muted">
 
-            <h2 class="text-xl font-bold">
+                        Threats Blocked
 
-                AI Detection Engines
+                    </p>
 
-            </h2>
+                    <h2
+                        id="threatBlocked"
+                        class="text-5xl font-bold mt-3 text-danger">
 
-            <span class="text-success text-sm">
+                        0
 
-                7 Active
+                    </h2>
 
-            </span>
+                </div>
+
+                <div
+                    class="w-16 h-16 rounded-2xl bg-danger/10 flex items-center justify-center">
+
+                    <i data-lucide="shield-alert"
+                       class="w-8 h-8 text-danger"></i>
+
+                </div>
+
+            </div>
 
         </div>
 
-        <div class="space-y-4">
+        <!-- AI Models -->
 
-            <div class="engine-item">
+        <div class="glass rounded-3xl p-6">
 
-                <span>Email Analyzer</span>
+            <div class="flex items-center justify-between">
 
-                <span class="status-online">ONLINE</span>
+                <div>
 
-            </div>
+                    <p class="text-muted">
 
-            <div class="engine-item">
+                        AI Models
 
-                <span>URL Analyzer</span>
+                    </p>
 
-                <span class="status-online">ONLINE</span>
+                    <h2
+                        id="aiModels"
+                        class="text-5xl font-bold mt-3 text-success">
 
-            </div>
+                        9
 
-            <div class="engine-item">
+                    </h2>
 
-                <span>SMS Analyzer</span>
+                </div>
 
-                <span class="status-online">ONLINE</span>
+                <div
+                    class="w-16 h-16 rounded-2xl bg-success/10 flex items-center justify-center">
 
-            </div>
+                    <i data-lucide="brain-circuit"
+                       class="w-8 h-8 text-success"></i>
 
-            <div class="engine-item">
-
-                <span>WhatsApp Analyzer</span>
-
-                <span class="status-online">ONLINE</span>
-
-            </div>
-
-            <div class="engine-item">
-
-                <span>Fake Job Detector</span>
-
-                <span class="status-online">ONLINE</span>
+                </div>
 
             </div>
 
-            <div class="engine-item">
+        </div>
 
-                <span>Social Engineering</span>
+        <!-- Accuracy -->
 
-                <span class="status-online">ONLINE</span>
+        <div class="glass rounded-3xl p-6">
 
-            </div>
+            <div class="flex items-center justify-between">
 
-            <div class="engine-item">
+                <div>
 
-                <span>UPI Fraud Detector</span>
+                    <p class="text-muted">
 
-                <span class="status-online">ONLINE</span>
+                        Detection Rate
+
+                    </p>
+
+                    <h2
+                        id="detectionRate"
+                        class="text-5xl font-bold mt-3 text-success">
+
+                        97.63%
+
+                    </h2>
+
+                </div>
+
+                <div
+                    class="w-16 h-16 rounded-2xl bg-warning/10 flex items-center justify-center">
+
+                    <i data-lucide="activity"
+                       class="w-8 h-8 text-warning"></i>
+
+                </div>
 
             </div>
 
@@ -445,30 +409,341 @@ RakshakAI | Dashboard
 
     </div>
 
-    <!-- Threat Chart -->
+</section>
+<!-- ========================================= -->
+<!-- AI DETECTION ENGINES -->
+<!-- ========================================= -->
 
-    <div class="glass rounded-3xl p-7 xl:col-span-2">
+<section class="space-y-6">
 
-        <div class="flex items-center justify-between mb-6">
+    <div class="flex items-center justify-between">
 
-            <h2 class="text-xl font-bold">
+        <div>
 
-                Threat Distribution
+            <h2 class="text-2xl font-bold">
+
+                AI Detection Engines
 
             </h2>
 
-            <span class="text-muted">
+            <p class="text-muted mt-1">
 
-                Last 30 Days
+                Real-time status of all RakshakAI detection engines
+
+            </p>
+
+        </div>
+
+        <div class="px-5 py-2 rounded-xl bg-success/10 border border-success/20">
+
+            <span class="text-success font-semibold">
+
+                9 / 9 Online
 
             </span>
 
         </div>
 
-        <canvas
-        id="threatChart"
-        class="mt-5">
-                height="120"></canvas>
+    </div>
+
+    <div class="grid xl:grid-cols-3 md:grid-cols-2 gap-6">
+
+        <!-- Email -->
+
+        <a href="{{ url_for('email_page') }}"
+           class="glass rounded-3xl p-6 hover:border-primary transition">
+
+            <div class="flex justify-between items-center">
+
+                <div>
+
+                    <h3 class="font-bold text-lg">
+
+                        Email Detector
+
+                    </h3>
+
+                    <p class="text-muted text-sm mt-1">
+
+                        AI Phishing Detection
+
+                    </p>
+
+                </div>
+
+                <span class="text-success font-semibold">
+
+                    Online
+
+                </span>
+
+            </div>
+
+        </a>
+
+        <!-- URL -->
+
+        <a href="{{ url_for('url_page') }}"
+           class="glass rounded-3xl p-6 hover:border-primary transition">
+
+            <div class="flex justify-between items-center">
+
+                <div>
+
+                    <h3 class="font-bold text-lg">
+
+                        URL Analyzer
+
+                    </h3>
+
+                    <p class="text-muted text-sm mt-1">
+
+                        Malicious URL Detection
+
+                    </p>
+
+                </div>
+
+                <span class="text-success font-semibold">
+
+                    Online
+
+                </span>
+
+            </div>
+
+        </a>
+
+        <!-- SMS -->
+
+        <a href="{{ url_for('sms_page') }}"
+           class="glass rounded-3xl p-6 hover:border-primary transition">
+
+            <div class="flex justify-between items-center">
+
+                <div>
+
+                    <h3 class="font-bold text-lg">
+
+                        SMS Detector
+
+                    </h3>
+
+                    <p class="text-muted text-sm mt-1">
+
+                        Scam SMS Detection
+
+                    </p>
+
+                </div>
+
+                <span class="text-success font-semibold">
+
+                    Online
+
+                </span>
+
+            </div>
+
+        </a>
+
+        <!-- WhatsApp -->
+
+        <a href="{{ url_for('whatsapp_page') }}"
+           class="glass rounded-3xl p-6 hover:border-primary transition">
+
+            <div class="flex justify-between items-center">
+
+                <div>
+
+                    <h3 class="font-bold text-lg">
+
+                        WhatsApp Analyzer
+
+                    </h3>
+
+                    <p class="text-muted text-sm mt-1">
+
+                        WhatsApp Scam Detection
+
+                    </p>
+
+                </div>
+
+                <span class="text-success font-semibold">
+
+                    Online
+
+                </span>
+
+            </div>
+
+        </a>
+
+        <!-- UPI -->
+
+        <a href="{{ url_for('upi_page') }}"
+           class="glass rounded-3xl p-6 hover:border-primary transition">
+
+            <div class="flex justify-between items-center">
+
+                <div>
+
+                    <h3 class="font-bold text-lg">
+
+                        UPI Fraud Detector
+
+                    </h3>
+
+                    <p class="text-muted text-sm mt-1">
+
+                        AI Transaction Analysis
+
+                    </p>
+
+                </div>
+
+                <span class="text-success font-semibold">
+
+                    Online
+
+                </span>
+
+            </div>
+
+        </a>
+
+        <!-- QR -->
+
+        <a href="{{ url_for('qr_page') }}"
+           class="glass rounded-3xl p-6 hover:border-primary transition">
+
+            <div class="flex justify-between items-center">
+
+                <div>
+
+                    <h3 class="font-bold text-lg">
+
+                        QR Analyzer
+
+                    </h3>
+
+                    <p class="text-muted text-sm mt-1">
+
+                        Malicious QR Detection
+
+                    </p>
+
+                </div>
+
+                <span class="text-success font-semibold">
+
+                    Online
+
+                </span>
+
+            </div>
+
+        </a>
+
+        <!-- Fake Job -->
+
+        <a href="{{ url_for('fake_job_page') }}"
+           class="glass rounded-3xl p-6 hover:border-primary transition">
+
+            <div class="flex justify-between items-center">
+
+                <div>
+
+                    <h3 class="font-bold text-lg">
+
+                        Fake Job Detector
+
+                    </h3>
+
+                    <p class="text-muted text-sm mt-1">
+
+                        Employment Scam Detection
+
+                    </p>
+
+                </div>
+
+                <span class="text-success font-semibold">
+
+                    Online
+
+                </span>
+
+            </div>
+
+        </a>
+
+        <!-- Social Engineering -->
+
+        <a href="{{ url_for('social_engineering_page') }}"
+           class="glass rounded-3xl p-6 hover:border-primary transition">
+
+            <div class="flex justify-between items-center">
+
+                <div>
+
+                    <h3 class="font-bold text-lg">
+
+                        Social Engineering
+
+                    </h3>
+
+                    <p class="text-muted text-sm mt-1">
+
+                        Human Manipulation Detection
+
+                    </p>
+
+                </div>
+
+                <span class="text-success font-semibold">
+
+                    Online
+
+                </span>
+
+            </div>
+
+        </a>
+
+        <!-- Deepfake -->
+
+        <a href="{{ url_for('deepfake_page') }}"
+           class="glass rounded-3xl p-6 hover:border-primary transition">
+
+            <div class="flex justify-between items-center">
+
+                <div>
+
+                    <h3 class="font-bold text-lg">
+
+                        Deepfake Detector
+
+                    </h3>
+
+                    <p class="text-muted text-sm mt-1">
+
+                        AI Image Verification
+
+                    </p>
+
+                </div>
+
+                <span class="text-success font-semibold">
+
+                    Online
+
+                </span>
+
+            </div>
+
+        </a>
 
     </div>
 
@@ -478,9 +753,9 @@ RakshakAI | Dashboard
 <!-- QUICK ACTIONS -->
 <!-- ========================================= -->
 
-<section class="glass rounded-3xl p-8">
+<section id="quick-actions" class="space-y-6">
 
-    <div class="flex items-center justify-between mb-8">
+    <div class="flex items-center justify-between">
 
         <div>
 
@@ -490,9 +765,9 @@ RakshakAI | Dashboard
 
             </h2>
 
-            <p class="text-muted">
+            <p class="text-muted mt-1">
 
-                Launch any AI engine instantly
+                Launch any AI detection engine instantly
 
             </p>
 
@@ -500,277 +775,480 @@ RakshakAI | Dashboard
 
     </div>
 
-    <div class="grid xl:grid-cols-7 md:grid-cols-2 gap-5">
+    <div class="grid xl:grid-cols-3 md:grid-cols-2 gap-6">
 
-        <button class="quick-card">
+        <a href="{{ url_for('email_page') }}"
+           class="glass rounded-3xl p-6 hover:border-primary hover:-translate-y-1 transition-all duration-300">
 
-            <i data-lucide="mail-search"></i>
+            <i data-lucide="mail" class="w-10 h-10 text-primary mb-4"></i>
 
-            <span>Analyze Email</span>
+            <h3 class="font-bold text-xl">
 
-        </button>
+                Email Analyzer
 
-        <button class="quick-card">
+            </h3>
 
-            <i data-lucide="link"></i>
+            <p class="text-muted mt-2">
 
-            <span>Analyze URL</span>
+                Detect phishing emails and business email compromise.
 
-        </button>
-
-        <button class="quick-card">
-
-            <i data-lucide="message-square-warning"></i>
-
-            <span>Analyze SMS</span>
-
-        </button>
-
-        <button class="quick-card">
-
-            <i data-lucide="wallet-cards"></i>
-
-            <span>Verify UPI</span>
-
-        </button>
-
-        <a href="/qr" class="quick-card">
-
-        <i data-lucide="scan-qr-code"></i>
-
-        <span>Analyze QR</span>
+            </p>
 
         </a>
 
-        <a href="/deepfake" class="quick-card">
-            <i data-lucide="image"></i>
-            <span>Analyze Deepfake</span>
+        <a href="{{ url_for('url_page') }}"
+           class="glass rounded-3xl p-6 hover:border-primary hover:-translate-y-1 transition-all duration-300">
+
+            <i data-lucide="link" class="w-10 h-10 text-primary mb-4"></i>
+
+            <h3 class="font-bold text-xl">
+
+                URL Analyzer
+
+            </h3>
+
+            <p class="text-muted mt-2">
+
+                Scan suspicious URLs using AI and heuristics.
+
+            </p>
+
         </a>
 
-        <a href="/voice" class="quick-card">
+        <a href="{{ url_for('sms_page') }}"
+           class="glass rounded-3xl p-6 hover:border-primary hover:-translate-y-1 transition-all duration-300">
 
-            <i data-lucide="audio-lines"></i>
-            <span>Analyze Voice</span>
+            <i data-lucide="message-square" class="w-10 h-10 text-primary mb-4"></i>
+
+            <h3 class="font-bold text-xl">
+
+                SMS Analyzer
+
+            </h3>
+
+            <p class="text-muted mt-2">
+
+                Detect SMS fraud and phishing attempts.
+
+            </p>
 
         </a>
 
+        <a href="{{ url_for('whatsapp_page') }}"
+           class="glass rounded-3xl p-6 hover:border-primary hover:-translate-y-1 transition-all duration-300">
 
+            <i data-lucide="message-circle" class="w-10 h-10 text-primary mb-4"></i>
+
+            <h3 class="font-bold text-xl">
+
+                WhatsApp Analyzer
+
+            </h3>
+
+            <p class="text-muted mt-2">
+
+                Identify WhatsApp scam messages.
+
+            </p>
+
+        </a>
+
+        <a href="{{ url_for('upi_page') }}"
+           class="glass rounded-3xl p-6 hover:border-primary hover:-translate-y-1 transition-all duration-300">
+
+            <i data-lucide="wallet" class="w-10 h-10 text-primary mb-4"></i>
+
+            <h3 class="font-bold text-xl">
+
+                UPI Fraud Detector
+
+            </h3>
+
+            <p class="text-muted mt-2">
+
+                Analyze suspicious UPI transactions.
+
+            </p>
+
+        </a>
+
+        <a href="{{ url_for('qr_page') }}"
+           class="glass rounded-3xl p-6 hover:border-primary hover:-translate-y-1 transition-all duration-300">
+
+            <i data-lucide="scan-line" class="w-10 h-10 text-primary mb-4"></i>
+
+            <h3 class="font-bold text-xl">
+
+                QR Analyzer
+
+            </h3>
+
+            <p class="text-muted mt-2">
+
+                Detect malicious QR codes.
+
+            </p>
+
+        </a>
+
+        <a href="{{ url_for('fake_job_page') }}"
+           class="glass rounded-3xl p-6 hover:border-primary hover:-translate-y-1 transition-all duration-300">
+
+            <i data-lucide="briefcase" class="w-10 h-10 text-primary mb-4"></i>
+
+            <h3 class="font-bold text-xl">
+
+                Fake Job Detector
+
+            </h3>
+
+            <p class="text-muted mt-2">
+
+                Detect fraudulent recruitment offers.
+
+            </p>
+
+        </a>
+
+        <a href="{{ url_for('social_engineering_page') }}"
+           class="glass rounded-3xl p-6 hover:border-primary hover:-translate-y-1 transition-all duration-300">
+
+            <i data-lucide="users" class="w-10 h-10 text-primary mb-4"></i>
+
+            <h3 class="font-bold text-xl">
+
+                Social Engineering
+
+            </h3>
+
+            <p class="text-muted mt-2">
+
+                Identify manipulation and psychological attacks.
+
+            </p>
+
+        </a>
+
+        <a href="{{ url_for('deepfake_page') }}"
+           class="glass rounded-3xl p-6 hover:border-primary hover:-translate-y-1 transition-all duration-300">
+
+            <i data-lucide="image" class="w-10 h-10 text-primary mb-4"></i>
+
+            <h3 class="font-bold text-xl">
+
+                Deepfake Detector
+
+            </h3>
+
+            <p class="text-muted mt-2">
+
+                Verify AI-generated or manipulated images.
+
+            </p>
+
+        </a>
 
     </div>
 
 </section>
 
 <!-- ========================================= -->
-<!-- LIVE THREAT FEED + RECENT SCANS -->
+<!-- LIVE THREAT FEED -->
 <!-- ========================================= -->
 
-<section class="grid xl:grid-cols-3 gap-6">
+<section class="space-y-6">
 
-    <!-- Live Threat Feed -->
+<div class="glass rounded-3xl p-7">
 
-    <div class="glass rounded-3xl p-6 hover:border-primary/30 border border-transparent transition-all duration-300 hover:-translate-y-1">
+<div class="flex items-center justify-between mb-6">
 
-        <div class="flex justify-between items-center mb-6">
+<div>
 
-            <h2 class="text-xl font-bold">
+<h2 class="text-2xl font-bold">
 
-                Live Threat Feed
+Live Threat Feed
 
-            </h2>
+</h2>
 
-            <span class="text-danger text-sm">
+<p class="text-muted mt-1">
 
-                LIVE
+Latest threats detected by RakshakAI
 
-            </span>
+</p>
 
-        </div>
+</div>
 
-        <div class="space-y-4">
+<div class="px-3 py-1 rounded-full bg-danger/10 text-danger text-xs font-semibold">
 
-            <div class="feed-item danger">
+AUTO REFRESH
 
-                <div>
+</div>
 
-                    <h4>Email Phishing</h4>
+</div>
 
-                    <p>Blocked Successfully</p>
+<div
+id="liveThreatFeed"
+class="space-y-4">
 
-                </div>
+<div class="text-center text-slate-500 py-10">
 
-                <span>2m ago</span>
+Waiting for latest scan...
 
-            </div>
+</div>
 
-            <div class="feed-item warning">
+</div>
 
-                <div>
-
-                    <h4>Suspicious URL</h4>
-
-                    <p>Risk Score 89%</p>
-
-                </div>
-
-                <span>5m ago</span>
-
-            </div>
-
-            <div class="feed-item success">
-
-                <div>
-
-                    <h4>UPI Verified</h4>
-
-                    <p>No Threat Detected</p>
-
-                </div>
-
-                <span>8m ago</span>
-
-            </div>
-
-            <div class="feed-item danger">
-
-                <div>
-
-                    <h4>Fake Job Scam</h4>
-
-                    <p>High Risk</p>
-
-                </div>
-
-                <span>15m ago</span>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- Recent Scans -->
-
-    <div class="glass rounded-3xl p-7 xl:col-span-2">
-
-        <div class="flex justify-between items-center mb-6">
-
-            <h2 class="text-xl font-bold">
-
-                Recent Scans
-
-            </h2>
-
-            <button class="text-primary">
-
-                View All
-
-            </button>
-
-        </div>
-
-        <div class="overflow-x-auto">
-
-            <table class="w-full">
-
-                <thead>
-
-                    <tr class="text-muted border-b border-white/10">
-
-                        <th class="text-left py-4">Scan ID</th>
-
-                        <th class="text-left">Engine</th>
-
-                        <th class="text-left">Risk</th>
-
-                        <th class="text-left">Status</th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                    <tr>
-
-                        <td class="py-4 font-mono">RK-164346C2</td>
-
-                        <td>Email</td>
-
-                        <td class="text-danger">HIGH</td>
-
-                        <td>Completed</td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td class="py-4 font-mono">RK-93BC112A</td>
-
-                        <td>URL</td>
-
-                        <td class="text-warning">MEDIUM</td>
-
-                        <td>Completed</td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td class="py-4 font-mono">RK-AB921FDD</td>
-
-                        <td>UPI</td>
-
-                        <td class="text-success">SAFE</td>
-
-                        <td>Completed</td>
-
-                    </tr>
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 <!-- ========================================= -->
-<!-- AI RECOMMENDATIONS -->
+<!-- RECENT SCANS -->
 <!-- ========================================= -->
 
-<section class="glass rounded-3xl p-8">
+<section class="space-y-6">
 
-    <h2 class="text-2xl font-bold mb-6">
+<div class="glass rounded-3xl p-7">
 
-        AI Security Recommendations
+<div class="flex items-start justify-between mb-6">
 
-    </h2>
+<div>
 
-    <div class="grid md:grid-cols-3 gap-6">
+<h2 class="text-2xl font-bold">
 
-        <div class="recommend-card">
+Recent Scans
 
-            Enable multi-factor authentication for all critical accounts.
+</h2>
 
-        </div>
+<p class="text-muted mt-1">
 
-        <div class="recommend-card">
+Latest scans stored in RakshakAI
 
-            Avoid opening links from unknown email senders.
+</p>
 
-        </div>
+</div>
 
-        <div class="recommend-card">
+<a
+href="{{ url_for('scan_history_page') }}"
+class="text-primary font-semibold whitespace-nowrap hover:underline">
 
-            Regularly monitor suspicious UPI transactions.
+View All →
 
-        </div>
+</a>
 
-    </div>
+</div>
+
+<div class="overflow-x-auto">
+
+<table class="w-full min-w-[950px]">
+
+<thead>
+
+<tr class="border-b border-slate-700">
+
+<th class="text-left py-4">
+
+Scan ID
+
+</th>
+
+<th class="text-left">
+
+Engine
+
+</th>
+
+<th class="text-left">
+
+Prediction
+
+</th>
+
+<th class="text-left">
+
+Risk
+
+</th>
+
+<th class="text-left">
+
+Time
+
+</th>
+
+<th class="text-left">
+
+Status
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody id="recentScans">
+
+<tr>
+
+<td colspan="6" class="text-center py-10 text-slate-500">
+
+No scans available.
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
 
 </section>
+
+<!-- ========================================= -->
+<!-- AI SECURITY RECOMMENDATIONS -->
+<!-- ========================================= -->
+
+<section class="space-y-6">
+
+<div class="glass rounded-3xl p-7">
+
+<div class="mb-6">
+
+<h2 class="text-2xl font-bold">
+
+AI Security Recommendations
+
+</h2>
+
+<p class="text-muted mt-1">
+
+Best security practices based on detected cyber threats
+
+</p>
+
+</div>
+
+<div class="grid lg:grid-cols-3 gap-6">
+
+<div class="glass rounded-2xl p-6 border border-success/20 hover:border-success transition">
+
+<div class="w-14 h-14 rounded-xl bg-success/10 flex items-center justify-center mb-5">
+
+<i data-lucide="shield-check" class="w-7 h-7 text-success"></i>
+
+</div>
+
+<h3 class="text-lg font-bold mb-3">
+
+Enable Multi-Factor Authentication
+
+</h3>
+
+<p class="text-slate-400 leading-7">
+
+Protect all important accounts using MFA to reduce credential theft and phishing attacks.
+
+</p>
+
+</div>
+
+<div class="glass rounded-2xl p-6 border border-warning/20 hover:border-warning transition">
+
+<div class="w-14 h-14 rounded-xl bg-warning/10 flex items-center justify-center mb-5">
+
+<i data-lucide="mail-warning" class="w-7 h-7 text-warning"></i>
+
+</div>
+
+<h3 class="text-lg font-bold mb-3">
+
+Verify Unknown Emails
+
+</h3>
+
+<p class="text-slate-400 leading-7">
+
+Always verify sender identity before clicking links or downloading attachments.
+
+</p>
+
+</div>
+
+<div class="glass rounded-2xl p-6 border border-danger/20 hover:border-danger transition">
+
+<div class="w-14 h-14 rounded-xl bg-danger/10 flex items-center justify-center mb-5">
+
+<i data-lucide="wallet" class="w-7 h-7 text-danger"></i>
+
+</div>
+
+<h3 class="text-lg font-bold mb-3">
+
+Monitor UPI Transactions
+
+</h3>
+
+<p class="text-slate-400 leading-7">
+
+Double-check UPI IDs and payment requests before transferring money.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- FOOTER -->
+<!-- ========================================= -->
+
+<footer class="border-t border-slate-800 mt-12 pt-8 pb-6">
+
+<div class="flex flex-col lg:flex-row justify-between items-center gap-6">
+
+<div>
+
+<h3 class="text-xl font-bold text-primary">
+
+RakshakAI v1.0
+
+</h3>
+
+<p class="text-slate-400 mt-2">
+
+AI Powered Cyber Threat Intelligence Platform
+
+</p>
+
+</div>
+
+<div class="text-center">
+
+<p class="text-slate-500 text-sm mt-2">
+
+© 2026 RakshakAI • All Rights Reserved
+
+</p>
+
+</div>
+
+<div id="liveTime" class="font-mono text-primary text-sm">
+
+Loading...
+
+</div>
+
+</div>
+
+</footer>
 
 </div>
 
@@ -780,134 +1258,243 @@ RakshakAI | Dashboard
 
 <script>
 
-const time = document.getElementById("liveTime");
+function updateClock(){
 
-function updateClock() {
+    const el=document.getElementById("liveTime");
 
-    if (!time) return;
+    if(!el) return;
 
-    const now = new Date();
-
-    time.textContent = now.toLocaleString();
+    el.textContent=new Date().toLocaleString();
 
 }
 
 updateClock();
 
-setInterval(updateClock, 1000);
+setInterval(updateClock,1000);
 
-document.querySelectorAll(".counter").forEach(counter=>{
+async function refreshDashboard(){
 
-const target=+counter.dataset.target;
+    try{
 
-let count=0;
+        const response=await fetch("/api/history");
 
-const speed=target/100;
+        if(!response.ok) return;
 
-const update=()=>{
+        const data=await response.json();
 
-count+=speed;
+        //---------------------------------
+        // Dashboard Counters
+        //---------------------------------
 
-if(count<target){
+        document.getElementById("todayScans").textContent=data.today ?? 0;
 
-counter.innerText=Math.floor(count);
+        document.getElementById("totalScans").textContent=data.total ?? 0;
 
-requestAnimationFrame(update);
+        document.getElementById("threatBlocked").textContent=data.threats ?? 0;
 
-}else{
+        //---------------------------------
+        // Threat Level
+        //---------------------------------
 
-counter.innerText=target.toLocaleString();
+        const level=document.getElementById("currentThreat");
 
-}
+        const threats=data.threats ?? 0;
 
-}
+        if(threats>=10){
 
-update();
+            level.textContent="HIGH";
+            level.className="text-3xl font-bold text-danger mt-1";
 
-});
+        }
+        else if(threats>=3){
 
-const ctx=document.getElementById("threatChart");
+            level.textContent="MEDIUM";
+            level.className="text-3xl font-bold text-warning mt-1";
 
-new Chart(ctx,{
+        }
+        else{
 
-type:"doughnut",
+            level.textContent="LOW";
+            level.className="text-3xl font-bold text-success mt-1";
 
-data:{
+        }
 
-labels:[
+        //---------------------------------
+        // Recent Scans
+        //---------------------------------
 
-"Email",
+        const table=document.getElementById("recentScans");
 
-"URL",
+        if(table){
 
-"SMS",
+            table.innerHTML="";
 
-"WhatsApp",
+            const history=data.history || [];
 
-"UPI"
+            if(history.length===0){
 
-],
-
-datasets:[{
-
-data:[38,27,14,12,9],
-
-backgroundColor:[
-
-"#00E5FF",
-
-"#2563EB",
-
-"#F59E0B",
-
-"#EF4444",
-
-"#10B981"
-
-],
-
-borderWidth:0,
-
-hoverOffset:18
-
-}]
-},
-
-options:{
-
-    responsive:true,
-
-    plugins:{
-
-        legend:{
-
-            position:"bottom",
-
-            labels:{
-
-                color:"#F8FAFC",
-
-                padding:20,
-
-                usePointStyle:true,
-
-                pointStyle:"circle",
-
-                font:{
-                    size:13
-                }
+                table.innerHTML=`
+<tr>
+<td colspan="6" class="text-center py-8 text-slate-500">
+No scans available.
+</td>
+</tr>`;
 
             }
+
+            history.slice(0,5).forEach(scan=>{
+
+                table.innerHTML+=`
+
+<tr class="border-b border-slate-800 hover:bg-white/5">
+
+<td class="py-4 font-mono whitespace-nowrap">
+
+${scan.scan_id || "-"}
+
+</td>
+
+<td class="whitespace-nowrap">
+
+${scan.engine || "-"}
+
+</td>
+
+<td>
+
+${scan.result || scan.prediction || "-"}
+
+</td>
+
+<td>
+
+<span class="${
+(scan.risk==="HIGH"||scan.risk==="CRITICAL")
+?"text-danger"
+:(scan.risk==="MEDIUM")
+?"text-warning"
+:"text-success"
+} font-bold">
+
+${scan.risk || "-"}
+
+</span>
+
+</td>
+
+<td class="whitespace-nowrap">
+
+${scan.saved_at || scan.timestamp || "-"}
+
+</td>
+
+<td>
+
+<span class="px-3 py-1 rounded-full bg-success/20 text-success">
+
+Completed
+
+</span>
+
+</td>
+
+</tr>
+
+`;
+
+            });
+
+        }
+
+        //---------------------------------
+        // Live Threat Feed
+        //---------------------------------
+
+        const feed=document.getElementById("liveThreatFeed");
+
+        if(feed){
+
+            feed.innerHTML="";
+
+            const history=data.history || [];
+
+            if(history.length===0){
+
+                feed.innerHTML=`
+<div class="text-center text-slate-500 py-10">
+Waiting for latest scan...
+</div>`;
+
+            }
+
+            history.slice(0,4).forEach(scan=>{
+
+                const riskClass=
+                (scan.risk==="HIGH"||scan.risk==="CRITICAL")
+                ?"text-danger"
+                :(scan.risk==="MEDIUM")
+                ?"text-warning"
+                :"text-success";
+
+                feed.innerHTML+=`
+
+<div class="glass rounded-2xl p-4 border border-white/10">
+
+<div class="flex justify-between items-center">
+
+<h4 class="font-semibold">
+
+${scan.engine || "-"}
+
+</h4>
+
+<span class="${riskClass} font-bold">
+
+${scan.risk || "-"}
+
+</span>
+
+</div>
+
+<p class="text-slate-400 mt-2">
+
+${scan.result || scan.prediction || "-"}
+
+</p>
+
+<p class="text-xs text-slate-500 mt-3">
+
+${scan.saved_at || scan.timestamp || "-"}
+
+</p>
+
+</div>
+
+`;
+
+            });
+
+        }
+
+        if(window.lucide){
+
+            lucide.createIcons();
 
         }
 
     }
 
+    catch(error){
+
+        console.error(error);
+
+    }
+
 }
 
-});
+refreshDashboard();
 
-lucide.createIcons();
+setInterval(refreshDashboard,3000);
 
 </script>
 
