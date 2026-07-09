@@ -54,7 +54,9 @@
 
 async function loadHistory(){
 
-    const response = await fetch("/api/history");
+    const response = await fetch("/api/history?t=" + Date.now(), {
+        cache: "no-store"
+    });
 
     const data = await response.json();
 
@@ -62,7 +64,7 @@ async function loadHistory(){
 
     table.innerHTML = "";
 
-    data.history
+    [...data.history]
     .reverse()
     .forEach(scan=>{
 
@@ -136,6 +138,9 @@ ${scan.saved_at || scan.timestamp || "-"}
 }
 
 loadHistory();
+
+// Refresh every 3 seconds
+setInterval(loadHistory, 3000);
 
 </script>
 

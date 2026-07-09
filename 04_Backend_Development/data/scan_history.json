@@ -1,5 +1,77 @@
 [
     {
+        "scan_id": "RK-96E69CC5",
+        "engine": "Email Detector",
+        "analyzer": "Email Detector",
+        "prediction": "Phishing Email",
+        "result": "Phishing Email",
+        "risk": "HIGH",
+        "confidence": 93.79,
+        "risk_score": null,
+        "timestamp": "09-07-2026 10:52:40",
+        "saved_at": "2026-07-09 10:52:40"
+    },
+    {
+        "scan_id": "RK-53B8BD10",
+        "engine": "Email Detector",
+        "analyzer": "Email Detector",
+        "prediction": "Phishing Email",
+        "result": "Phishing Email",
+        "risk": "HIGH",
+        "confidence": 93.79,
+        "risk_score": null,
+        "timestamp": "09-07-2026 10:50:05",
+        "saved_at": "2026-07-09 10:50:05"
+    },
+    {
+        "scan_id": "RK-6E59F0A8",
+        "engine": "Email Detector",
+        "analyzer": "Email Detector",
+        "prediction": "Phishing Email",
+        "result": "Phishing Email",
+        "risk": "HIGH",
+        "confidence": 93.79,
+        "risk_score": null,
+        "timestamp": "09-07-2026 10:49:43",
+        "saved_at": "2026-07-09 10:49:43"
+    },
+    {
+        "scan_id": "RK-909F617A",
+        "engine": "Email Detector",
+        "analyzer": "Email Detector",
+        "prediction": "Phishing Email",
+        "result": "Phishing Email",
+        "risk": "HIGH",
+        "confidence": 82.69,
+        "risk_score": null,
+        "timestamp": "09-07-2026 10:35:51",
+        "saved_at": "2026-07-09 10:35:51"
+    },
+    {
+        "scan_id": "RK-C5BB83F5",
+        "engine": "Email Detector",
+        "analyzer": "Email Detector",
+        "prediction": "Phishing Email",
+        "result": "Phishing Email",
+        "risk": "HIGH",
+        "confidence": 86.76,
+        "risk_score": null,
+        "timestamp": "09-07-2026 10:34:32",
+        "saved_at": "2026-07-09 10:34:32"
+    },
+    {
+        "scan_id": "RK-3D057FC8",
+        "engine": "Email Detector",
+        "analyzer": "Email Detector",
+        "prediction": "Phishing Email",
+        "result": "Phishing Email",
+        "risk": "HIGH",
+        "confidence": 93.79,
+        "risk_score": null,
+        "timestamp": "09-07-2026 10:33:24",
+        "saved_at": "2026-07-09 10:33:24"
+    },
+    {
         "scan_id": "RK-20B45275",
         "engine": "Fake Job Detector",
         "analyzer": "Fake Job Detector",
