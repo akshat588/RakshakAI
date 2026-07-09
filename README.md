@@ -434,15 +434,6 @@ The project uses multiple datasets for different cyber threat categories, includ
 
 ---
 
-# 👨‍💻 Developer
-
-**Akshat Yadav**
-
-B.Tech Computer Science (Cybersecurity)
-
-Jaypee University of Information Technology
-
----
 
 # 📄 License
 
