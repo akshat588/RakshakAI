@@ -8,6 +8,7 @@ QR Code Threat Analyzer API
 import joblib
 from core.model_loader import load_model, load_vectorizer
 from utils.response_builder import build_response
+from utils.threat_scoring import calculate_result
 from api.url import analyze_url_ai
 import io
 import re

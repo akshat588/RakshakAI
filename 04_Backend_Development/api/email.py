@@ -1,4 +1,5 @@
 from flask import Blueprint, request, jsonify
+from utils.threat_scoring import calculate_result
 from utils.response_builder import build_response
 from utils.risk_mapper import get_risk
 from utils.history_manager import save_scan
@@ -38,28 +39,21 @@ def analyze_email():
 
         probabilities = model.predict_proba(features)[0]
 
-        confidence = round(max(probabilities) * 100, 2)
-
-        if isinstance(prediction, str):
-
-            result = prediction
-
-            risk = "HIGH" if "phishing" in prediction.lower() else "LOW"
-
-        else:
-
-            prediction = int(prediction)
-
-            result = "Phishing Email" if prediction == 1 else "Safe Email"
-
-            risk = "HIGH" if prediction == 1 else "LOW"
+        result_data = calculate_result(
+            prediction=prediction,
+            probabilities=probabilities,
+            classes=model.classes_,
+            safe_label="Safe Email",
+            phishing_label="Phishing Email",
+        )
 
         response = build_response(
             engine="Email Detector",
-            prediction=prediction,
-            result=result,
-            risk=risk,
-            confidence=confidence,
+            prediction=result_data["prediction"],
+            result=result_data["result"],
+            risk=result_data["risk"],
+            confidence=result_data["confidence"],
+            risk_score=result_data["risk_score"],
         )
 
         save_scan(response)

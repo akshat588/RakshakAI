@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from utils.response_builder import build_response
 from utils.risk_mapper import get_risk
 from utils.history_manager import save_scan
+from utils.threat_scoring import calculate_result
 from core.model_loader import (
     load_model,
     load_vectorizer,
@@ -26,28 +27,28 @@ def analyze_sms():
         features = vectorizer.transform([text])
 
         prediction = model.predict(features)[0]
+
         probabilities = model.predict_proba(features)[0]
+        print("Prediction:", prediction)
+        print("Probabilities:", probabilities)
+        print("Classes:", model.classes_)
+        print("SMS Classes:", model.classes_)
 
-        confidence = round(max(probabilities) * 100, 2)
-
-        if isinstance(prediction, str):
-            result = prediction
-            risk = (
-                "HIGH"
-                if "phishing" in prediction.lower() or "spam" in prediction.lower()
-                else "LOW"
-            )
-        else:
-            prediction = int(prediction)
-            result = "Spam SMS" if prediction == 1 else "Safe SMS"
-            risk = "HIGH" if prediction == 1 else "LOW"
+        result_data = calculate_result(
+            prediction=prediction,
+            probabilities=probabilities,
+            classes=model.classes_,
+            safe_label="legit",
+            phishing_label="scam",
+        )
 
         response = build_response(
             engine="SMS Detector",
-            prediction=prediction,
-            result=result,
-            risk=risk,
-            confidence=confidence,
+            prediction=result_data["prediction"],
+            result="Safe SMS" if result_data["result"] == "legit" else "Scam SMS",
+            risk=result_data["risk"],
+            confidence=result_data["confidence"],
+            risk_score=result_data["risk_score"],
         )
 
         save_scan(response)

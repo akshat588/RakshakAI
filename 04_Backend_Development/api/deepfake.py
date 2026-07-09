@@ -6,6 +6,7 @@ import uuid
 import torch
 import torch.nn as nn
 from utils.history_manager import save_scan
+from utils.threat_scoring import calculate_result
 from PIL import Image
 
 from torchvision import transforms

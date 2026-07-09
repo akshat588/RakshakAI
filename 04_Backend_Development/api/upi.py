@@ -3,6 +3,7 @@ import pandas as pd
 from utils.response_builder import build_response
 from utils.risk_mapper import get_risk
 from utils.history_manager import save_scan
+from utils.threat_scoring import calculate_result
 
 from core.model_loader import (
     load_model,

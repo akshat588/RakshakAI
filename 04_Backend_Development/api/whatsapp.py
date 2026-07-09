@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from utils.response_builder import build_response
 from utils.risk_mapper import get_risk
 from utils.history_manager import save_scan
+from utils.threat_scoring import calculate_result
 
 from core.model_loader import (
     load_model,
@@ -30,19 +31,27 @@ def analyze_whatsapp():
         features = vectorizer.transform([text])
 
         prediction = model.predict(features)[0]
+
         probabilities = model.predict_proba(features)[0]
+
+        print("WhatsApp Classes:", model.classes_)
+
         confidence = round(max(probabilities) * 100, 2)
-        if isinstance(prediction, str):
-            result = prediction
-            risk = (
-                "HIGH"
-                if "phishing" in prediction.lower() or "spam" in prediction.lower()
-                else "LOW"
-            )
+
+        prediction = str(prediction)
+
+        result = prediction
+
+        risk_score = confidence
+
+        if confidence >= 85:
+            risk = "CRITICAL"
+        elif confidence >= 65:
+            risk = "HIGH"
+        elif confidence >= 50:
+            risk = "MEDIUM"
         else:
-            prediction = int(prediction)
-            result = "Scam Message" if prediction == 1 else "Safe Message"
-            risk = "HIGH" if prediction == 1 else "LOW"
+            risk = "LOW"
 
         response = build_response(
             engine="WhatsApp Detector",
@@ -50,8 +59,8 @@ def analyze_whatsapp():
             result=result,
             risk=risk,
             confidence=confidence,
+            risk_score=risk_score,
         )
-
         save_scan(response)
 
         return jsonify(response)

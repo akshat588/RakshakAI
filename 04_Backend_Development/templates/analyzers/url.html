@@ -275,6 +275,12 @@ RakshakAI | URL Analyzer
 
 {% block extra_js %}
 
+<script src="{{ url_for('static', filename='js/result_renderer.js') }}"></script>
+
+<script src="{{ url_for('static', filename='js/ai_explanation.js') }}"></script>
+
+<script src="{{ url_for('static', filename='js/ai_assistant.js') }}"></script>
+
 <script>
 
 const urlInput=document.getElementById("urlInput");
@@ -431,38 +437,35 @@ Render Result
 
 function renderResult(data){
 
-let score=15;
-let badge="bg-success/20 text-success";
-let recommendation="The submitted URL appears to be safe. Continue to exercise normal browsing precautions.";
+const score = RESULT_ENGINE.getThreatScore(data);
+
+const badge = RESULT_ENGINE.getBadge(data.risk);
+
+const confidence = RESULT_ENGINE.getConfidence(data);
+
+let recommendation =
+"The submitted URL appears safe.";
 
 if(data.risk==="MEDIUM"){
 
-score=60;
-badge="bg-warning/20 text-warning";
-
-recommendation="This URL contains suspicious characteristics. Verify the domain before visiting.";
+recommendation =
+"This URL contains suspicious characteristics. Verify the domain before visiting.";
 
 }
 
-if(data.risk==="HIGH"){
+else if(data.risk==="HIGH"){
 
-score=90;
-badge="bg-danger/20 text-danger";
-
-recommendation="High-risk URL detected. Do not open the website or enter any credentials.";
+recommendation =
+"High-risk URL detected. Do not open the website or enter any credentials.";
 
 }
 
-if(data.risk==="CRITICAL"){
+else if(data.risk==="CRITICAL"){
 
-score=100;
-badge="bg-danger text-white";
-
-recommendation="Critical phishing URL detected. Block this URL immediately and report it.";
+recommendation =
+"Critical phishing URL detected. Block this URL immediately.";
 
 }
-
-const confidence=data.confidence ?? "Unavailable";
 
 resultContainer.innerHTML=`
 
@@ -657,7 +660,7 @@ Explainable AI
 <span class="text-primary text-xl">➜</span>
 
 <span>
-Email classified as <strong>${data.result}</strong>.
+URL classified as <strong>${data.result}</strong>.
 </span>
 
 </div>

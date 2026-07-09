@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from utils.response_builder import build_response
 from utils.risk_mapper import get_risk
 from utils.history_manager import save_scan
+from utils.threat_scoring import calculate_result
 from core.model_loader import (
     load_model,
     load_vectorizer,
@@ -29,29 +30,27 @@ def analyze_social():
         features = vectorizer.transform([text])
 
         prediction = model.predict(features)[0]
+
         probabilities = model.predict_proba(features)[0]
 
-        confidence = round(max(probabilities) * 100, 2)
-        if isinstance(prediction, str):
-            result = prediction
-            risk = (
-                "HIGH"
-                if "social" in prediction.lower() or "phishing" in prediction.lower()
-                else "LOW"
-            )
-        else:
-            prediction = int(prediction)
-            result = "Social Engineering Attack" if prediction == 1 else "Safe"
-            risk = "HIGH" if prediction == 1 else "LOW"
+        print("Social Classes:", model.classes_)
+
+        result_data = calculate_result(
+            prediction=prediction,
+            probabilities=probabilities,
+            classes=model.classes_,
+            safe_label=model.classes_[1],
+            phishing_label=model.classes_[0],
+        )
 
         response = build_response(
             engine="Social Engineering Detector",
-            prediction=prediction,
-            result=result,
-            risk=risk,
-            confidence=confidence,
+            prediction=result_data["prediction"],
+            result=result_data["result"],
+            risk=result_data["risk"],
+            confidence=result_data["confidence"],
+            risk_score=result_data["risk_score"],
         )
-
         save_scan(response)
 
         return jsonify(response)

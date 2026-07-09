@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from utils.response_builder import build_response
 from utils.risk_mapper import get_risk
 from utils.history_manager import save_scan
+from utils.threat_scoring import calculate_result
 from core.model_loader import (
     load_model,
     load_vectorizer,
@@ -28,26 +29,30 @@ def analyze_fake_job():
 
         features = vectorizer.transform([text])
 
-        prediction = model.predict(features)[0]
-        probabilities = model.predict_proba(features)[0]
+        prediction = int(model.predict(features)[0])
 
-        confidence = round(max(probabilities) * 100, 2)
-        if isinstance(prediction, str):
-            result = prediction
-            risk = "HIGH" if "fake" in prediction.lower() else "LOW"
-        else:
-            prediction = int(prediction)
-            result = "Fake Job" if prediction == 1 else "Legitimate Job"
-            risk = "HIGH" if prediction == 1 else "LOW"
+        probabilities = model.predict_proba(features)[0]
+        print("Prediction:", prediction)
+        print("Probabilities:", probabilities)
+        print("Classes:", model.classes_)
+        print("Fake Job Classes:", model.classes_)
+
+        result_data = calculate_result(
+            prediction=prediction,
+            probabilities=probabilities,
+            classes=model.classes_,
+            safe_label=0,
+            phishing_label=1,
+        )
 
         response = build_response(
             engine="Fake Job Detector",
-            prediction=prediction,
-            result=result,
-            risk=risk,
-            confidence=confidence,
+            prediction=result_data["prediction"],
+            result="Legitimate Job" if result_data["result"] == 0 else "Fake Job",
+            risk=result_data["risk"],
+            confidence=result_data["confidence"],
+            risk_score=result_data["risk_score"],
         )
-
         save_scan(response)
 
         return jsonify(response)

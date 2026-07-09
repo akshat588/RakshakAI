@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify
 from utils.history_manager import get_history
+from utils.threat_scoring import calculate_result
 from datetime import datetime
 
 history_bp = Blueprint("history", __name__)

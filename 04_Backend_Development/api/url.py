@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from utils.response_builder import build_response
 from utils.history_manager import save_scan
+from utils.threat_scoring import calculate_result
 from core.model_loader import (
     load_model,
     load_vectorizer,
@@ -18,12 +19,22 @@ def analyze_url_ai(url: str):
 
     prediction = int(model.predict(features)[0])
 
-    risk = "HIGH" if prediction == 1 else "LOW"
+    probabilities = model.predict_proba(features)[0]
+
+    result_data = calculate_result(
+        prediction=prediction,
+        probabilities=probabilities,
+        classes=model.classes_,
+        safe_label=1,
+        phishing_label=0,
+    )
 
     return {
-        "prediction": prediction,
-        "result": "Phishing URL" if prediction == 1 else "Safe URL",
-        "risk": risk,
+        "prediction": result_data["prediction"],
+        "result": "Safe URL" if result_data["result"] == 1 else "Phishing URL",
+        "risk": result_data["risk"],
+        "confidence": result_data["confidence"],
+        "risk_score": result_data["risk_score"],
     }
 
 
@@ -43,18 +54,25 @@ def analyze_url():
 
         probabilities = model.predict_proba(features)[0]
 
-        confidence = round(max(probabilities) * 100, 2)
+        print("Prediction:", prediction)
+        print("Probabilities:", probabilities)
+        print("Classes:", model.classes_)
 
-        result = "Phishing URL" if prediction == 1 else "Safe URL"
-
-        risk = "HIGH" if prediction == 1 else "LOW"
+        result_data = calculate_result(
+            prediction=prediction,
+            probabilities=probabilities,
+            classes=model.classes_,
+            safe_label=1,
+            phishing_label=0,
+        )
 
         response = build_response(
             engine="URL Detector",
-            prediction=prediction,
-            result=result,
-            risk=risk,
-            confidence=confidence,
+            prediction=result_data["prediction"],
+            result="Safe URL" if result_data["result"] == 1 else "Phishing URL",
+            risk=result_data["risk"],
+            confidence=result_data["confidence"],
+            risk_score=result_data["risk_score"],
         )
 
         save_scan(response)
@@ -66,4 +84,13 @@ def analyze_url():
 
         traceback.print_exc()
 
-        return jsonify({"success": False, "error": str(e)}), 500
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "error": str(e),
+                    "traceback": traceback.format_exc(),
+                }
+            ),
+            500,
+        )

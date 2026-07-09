@@ -273,6 +273,8 @@ RakshakAI | Email Analyzer
 
 {% block extra_js %}
 
+<script src="{{ url_for('static', filename='js/result_renderer.js') }}"></script>
+
 <script>
 
 const textarea=document.getElementById("emailText");
@@ -444,41 +446,32 @@ Render Result
 
 function renderResult(data){
 
-let score=15;
-let badge="bg-success/20 text-success";
-let recommendation="No major phishing indicators detected.";
+const score = RESULT_ENGINE.getThreatScore(data);
+
+const badge = RESULT_ENGINE.getBadge(data.risk);
+
+const confidence = RESULT_ENGINE.getConfidence(data);
+
+let recommendation = "No major phishing indicators detected.";
 
 if(data.risk==="MEDIUM"){
 
-score=60;
-
-badge="bg-warning/20 text-warning";
-
-recommendation="Exercise caution before interacting with this email.";
+    recommendation =
+    "Exercise caution before interacting with this email.";
 
 }
+else if(data.risk==="HIGH"){
 
-if(data.risk==="HIGH"){
-
-score=90;
-
-badge="bg-danger/20 text-danger";
-
-recommendation="This email appears malicious. Avoid clicking links, downloading attachments, or replying.";
+    recommendation =
+    "This email appears malicious. Avoid clicking links, downloading attachments, or replying.";
 
 }
+else if(data.risk==="CRITICAL"){
 
-if(data.risk==="CRITICAL"){
-
-score=100;
-
-badge="bg-danger text-white";
-
-recommendation="Critical phishing attack detected. Delete this email immediately and report it to your security team.";
+    recommendation =
+    "Critical phishing attack detected. Delete this email immediately and report it.";
 
 }
-
-const confidence=data.confidence ?? "Unavailable";
 
 resultContainer.innerHTML=`
 
