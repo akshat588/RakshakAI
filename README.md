@@ -10,7 +10,7 @@ Detect • Analyze • Protect
 ![Flask](https://img.shields.io/badge/Flask-Web%20Framework-black?logo=flask)
 ![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-ML-orange?logo=scikitlearn)
 ![OpenCV](https://img.shields.io/badge/OpenCV-Computer%20Vision-green?logo=opencv)
-![License](https://img.shields.io/badge/License-MIT-success)
+
 
 An AI-powered cybersecurity platform that detects phishing attacks, malicious URLs, QR code scams, fake jobs, social engineering attacks, UPI fraud, SMS scams, WhatsApp scams and deepfake images using Machine Learning and Deep Learning.
 
@@ -261,7 +261,7 @@ pip install -r requirements.txt
 Run Flask
 
 ```bash
-python app.py
+python 04_Backend_Development/app.py
 ```
 
 Open
