@@ -1,6 +1,9 @@
 Flask
 Flask-Cors
-joblib
 numpy
 pandas
-scikit-learn
+numpy==2.4.4
+scikit-learn==1.8.0
+scipy==1.17.1
+opencv-python==4.13.0.92
+joblib==1.5.3
