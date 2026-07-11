@@ -1,0 +1,124 @@
+# ==========================================================
+# RakshakAI v2.0
+# Git Ignore
+# ==========================================================
+
+# -------------------------
+# Python
+# -------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+
+# -------------------------
+# Virtual Environments
+# -------------------------
+.venv/
+venv/
+env/
+ENV/
+
+# -------------------------
+# Environment Variables
+# -------------------------
+.env
+.env.*
+!.env.example
+
+# -------------------------
+# IDE
+# -------------------------
+.vscode/
+.idea/
+*.code-workspace
+
+# -------------------------
+# OS Files
+# -------------------------
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# -------------------------
+# Logs
+# -------------------------
+*.log
+logs/
+
+# -------------------------
+# Python Test
+# -------------------------
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# -------------------------
+# Type Checking
+# -------------------------
+.mypy_cache/
+
+# -------------------------
+# Ruff
+# -------------------------
+.ruff_cache/
+
+# -------------------------
+# Pyre
+# -------------------------
+.pyre/
+
+# -------------------------
+# Jupyter
+# -------------------------
+.ipynb_checkpoints/
+
+# -------------------------
+# Build
+# -------------------------
+build/
+dist/
+*.egg-info/
+
+# -------------------------
+# Playwright
+# -------------------------
+playwright-report/
+test-results/
+blob-report/
+
+# Traces & Videos
+playwright/traces/
+playwright/videos/
+playwright/screenshots/
+
+# -------------------------
+# Node
+# -------------------------
+node_modules/
+
+# -------------------------
+# Temporary Files
+# -------------------------
+*.tmp
+*.temp
+*.bak
+*.swp
+
+# -------------------------
+# Runtime Data
+# -------------------------
+04_Backend_Development/data/*.db
+04_Backend_Development/data/*.sqlite
+04_Backend_Development/data/*.sqlite3
+
+# ==========================================================
+# Keep These Tracked
+# ==========================================================
+
+!README.md
+!LICENSE
+!requirements.txt
+!*.md
