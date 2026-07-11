@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rakshakai"
+version = "2.0.0"
+description = "AI Powered Cyber Fraud Detection & Digital Trust Intelligence Platform"
+requires-python = ">=3.12"
+
+[tool.black]
+line-length = 100
+target-version = ["py312"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "F",
+    "W",
+    "I",
+    "UP",
+    "B"
+]
+
+ignore = [
+    "E501"
+]
+
+[tool.isort]
+profile = "black"
+
+[tool.pytest.ini_options]
+python_files = [
+    "test_*.py",
+]
+
+testpaths = [
+    "06_Testing"
+]
+
+addopts = "-ra"
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+warn_return_any = true
+warn_unused_configs = true
