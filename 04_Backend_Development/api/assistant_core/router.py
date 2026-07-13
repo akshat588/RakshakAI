@@ -1,31 +1,32 @@
 """
 Universal Router
 RakshakAI v2
-
-Routes detected input types to the appropriate analyzer.
 """
 
 from __future__ import annotations
 
 from api.assistant_core.detector import InputType
 
+# Import reusable AI engines
+from api.email import analyze_email_ai
+from api.url import analyze_url_ai
+from api.sms import analyze_sms_ai
+
 
 class UniversalRouter:
 
     ROUTES = {
-        InputType.EMAIL: "email",
-        InputType.URL: "url",
-        InputType.SMS: "sms",
-        InputType.WHATSAPP: "whatsapp",
-        InputType.UPI: "upi",
-        InputType.FAKE_JOB: "fake_job",
-        InputType.SOCIAL_ENGINEERING: "social_engineering",
-        InputType.QR: "qr",
-        InputType.DEEPFAKE: "deepfake",
-        InputType.VOICE: "voice",
+        InputType.EMAIL: analyze_email_ai,
+        InputType.URL: analyze_url_ai,
+        InputType.SMS: analyze_sms_ai,
     }
 
     @classmethod
-    def get_route(cls, input_type: str):
+    def analyze(cls, input_type: str, content: str):
 
-        return cls.ROUTES.get(input_type)
+        analyzer = cls.ROUTES.get(input_type)
+
+        if analyzer is None:
+            raise ValueError(f"No analyzer registered for '{input_type}'")
+
+        return analyzer(content)
