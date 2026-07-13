@@ -24,6 +24,7 @@ from api.social_engineering import social_bp
 from api.qr import qr_bp
 from api.deepfake import deepfake_bp
 from api.history import history_bp
+from api.assistant import assistant_bp
 
 # ==========================
 # Flask App
@@ -47,6 +48,7 @@ app.register_blueprint(social_bp)
 app.register_blueprint(qr_bp)
 app.register_blueprint(deepfake_bp)
 app.register_blueprint(history_bp)
+app.register_blueprint(assistant_bp)
 
 # ==========================
 # Home Route

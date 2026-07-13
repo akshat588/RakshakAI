@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RakshakAI AI Assistant</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='assistant/css/assistant.css') }}">
+
+</head>
+
+<body>
+
+<div class="assistant-page">
+
+    <!-- Header -->
+
+    <header class="assistant-header">
+
+        <div>
+
+            <h1>RakshakAI AI Assistant</h1>
+
+            <p>
+                AI Powered Cyber Fraud Detection &
+                Digital Trust Intelligence Platform
+            </p>
+
+        </div>
+
+    </header>
+
+    <!-- Chat -->
+
+    <main class="chat-container">
+
+        <div id="chatMessages" class="chat-messages">
+
+            <div class="assistant-message">
+
+                <div class="avatar">
+
+                    🛡️
+
+                </div>
+
+                <div class="message">
+
+                    <h3>Hello 👋</h3>
+
+                    <p>
+
+                        I am RakshakAI.
+
+                    </p>
+
+                    <p>
+
+                        Paste or upload anything.
+
+                    </p>
+
+                    <ul>
+
+                        <li>Email</li>
+
+                        <li>URL</li>
+
+                        <li>SMS</li>
+
+                        <li>WhatsApp</li>
+
+                        <li>UPI</li>
+
+                        <li>QR</li>
+
+                        <li>Image</li>
+
+                        <li>Audio</li>
+
+                        <li>Video</li>
+
+                        <li>PDF</li>
+
+                        <li>DOCX</li>
+
+                    </ul>
+
+                    <p>
+
+                        I will automatically detect
+                        the content type and analyze it.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Upload -->
+
+    <section class="upload-section">
+
+        <div id="dropZone" class="drop-zone">
+
+            <p>
+
+                Drag & Drop Files Here
+
+            </p>
+
+            <button id="uploadBtn">
+
+                📎 Upload File
+
+            </button>
+
+            <input
+                id="fileInput"
+                type="file"
+                hidden
+                multiple>
+
+        </div>
+
+    </section>
+
+    <!-- Input -->
+
+    <section class="input-section">
+
+        <textarea
+
+                id="userInput"
+
+                rows="4"
+
+                placeholder="Paste an email, SMS, WhatsApp message, URL or anything you want to analyze...">
+
+        </textarea>
+
+        <div class="action-bar">
+
+            <button id="voiceBtn">
+
+                🎤 Voice
+
+            </button>
+
+            <button id="sendBtn">
+
+                Analyze →
+
+            </button>
+
+        </div>
+
+    </section>
+
+</div>
+
+<script src="{{ url_for('static', filename='assistant/js/assistant.js') }}"></script>
+
+</body>
+
+</html>
