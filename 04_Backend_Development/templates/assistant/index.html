@@ -1,11 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>RakshakAI AI Assistant</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>RakshakAI AI Security Assistant</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
 
     <link rel="stylesheet"
           href="{{ url_for('static', filename='assistant/css/assistant.css') }}">
@@ -14,87 +27,37 @@
 
 <body>
 
-<div class="assistant-page">
+<div class="assistant-wrapper">
 
+    <!-- ========================= -->
     <!-- Header -->
+    <!-- ========================= -->
 
     <header class="assistant-header">
 
-        <div>
+        <div class="header-left">
 
-            <h1>RakshakAI AI Assistant</h1>
+            <div class="logo">
 
-            <p>
-                AI Powered Cyber Fraud Detection &
-                Digital Trust Intelligence Platform
-            </p>
+                <div class="logo-icon">
 
-        </div>
-
-    </header>
-
-    <!-- Chat -->
-
-    <main class="chat-container">
-
-        <div id="chatMessages" class="chat-messages">
-
-            <div class="assistant-message">
-
-                <div class="avatar">
-
-                    🛡️
+                    🛡
 
                 </div>
 
-                <div class="message">
+                <div>
 
-                    <h3>Hello 👋</h3>
+                    <h1>
 
-                    <p>
+                        RakshakAI
 
-                        I am RakshakAI.
+                    </h1>
 
-                    </p>
+                    <span>
 
-                    <p>
+                        Universal AI Security Assistant
 
-                        Paste or upload anything.
-
-                    </p>
-
-                    <ul>
-
-                        <li>Email</li>
-
-                        <li>URL</li>
-
-                        <li>SMS</li>
-
-                        <li>WhatsApp</li>
-
-                        <li>UPI</li>
-
-                        <li>QR</li>
-
-                        <li>Image</li>
-
-                        <li>Audio</li>
-
-                        <li>Video</li>
-
-                        <li>PDF</li>
-
-                        <li>DOCX</li>
-
-                    </ul>
-
-                    <p>
-
-                        I will automatically detect
-                        the content type and analyze it.
-
-                    </p>
+                    </span>
 
                 </div>
 
@@ -102,71 +65,871 @@
 
         </div>
 
-    </main>
+        <div class="header-right">
 
-    <!-- Upload -->
+            <div class="status">
 
-    <section class="upload-section">
+                <span class="status-indicator"></span>
 
-        <div id="dropZone" class="drop-zone">
+                AI Online
 
-            <p>
-
-                Drag & Drop Files Here
-
-            </p>
-
-            <button id="uploadBtn">
-
-                📎 Upload File
-
-            </button>
-
-            <input
-                id="fileInput"
-                type="file"
-                hidden
-                multiple>
+            </div>
 
         </div>
 
-    </section>
+    </header>
 
-    <!-- Input -->
+    <!-- ========================= -->
+    <!-- Main Workspace -->
+    <!-- ========================= -->
 
-    <section class="input-section">
+    <div class="workspace">
 
-        <textarea
+        <!-- ========================= -->
+        <!-- Sidebar -->
+        <!-- ========================= -->
 
-                id="userInput"
+        <aside class="sidebar">
 
-                rows="4"
+            <div class="sidebar-title">
 
-                placeholder="Paste an email, SMS, WhatsApp message, URL or anything you want to analyze...">
+                Investigation Tools
 
-        </textarea>
+            </div>
 
-        <div class="action-bar">
+            <button class="tool-btn">
 
-            <button id="voiceBtn">
+                📧 Email
+
+            </button>
+
+            <button class="tool-btn">
+
+                🔗 URL
+
+            </button>
+
+            <button class="tool-btn">
+
+                💬 SMS
+
+            </button>
+
+            <button class="tool-btn">
+
+                🟢 WhatsApp
+
+            </button>
+
+            <button class="tool-btn">
+
+                💳 UPI
+
+            </button>
+
+            <button class="tool-btn">
+
+                🧾 Fake Job
+
+            </button>
+
+            <button class="tool-btn">
+
+                🎭 Social Engineering
+
+            </button>
+
+            <button class="tool-btn">
+
+                📷 QR
+
+            </button>
+
+            <button class="tool-btn">
+
+                🖼 Deepfake
+
+            </button>
+
+            <button class="tool-btn">
 
                 🎤 Voice
 
             </button>
 
-            <button id="sendBtn">
+            <div class="sidebar-divider"></div>
 
-                Analyze →
+            <div class="sidebar-title">
 
-            </button>
+                Recent Investigations
+
+            </div>
+
+            <div id="recentInvestigations">
+
+            </div>
+
+        </aside>
+
+        <!-- ========================= -->
+        <!-- Chat Area -->
+        <!-- ========================= -->
+
+        <main class="chat-area">
+
+            <div id="chatMessages"
+                 class="chat-messages">
+
+        <!-- ========================= -->
+        <!-- Welcome Card -->
+        <!-- ========================= -->
+
+        <div class="assistant-message welcome-message">
+
+            <div class="avatar">
+
+                🛡
+
+            </div>
+
+            <div class="message-card">
+
+                <h2>
+
+                    Welcome to RakshakAI
+
+                </h2>
+
+                <p>
+
+                    I can automatically investigate digital fraud attempts.
+
+                </p>
+
+                <div class="capability-grid">
+
+                    <div class="capability-card">
+                        📧
+                        <span>Email Analysis</span>
+                    </div>
+
+                    <div class="capability-card">
+                        🔗
+                        <span>URL Detection</span>
+                    </div>
+
+                    <div class="capability-card">
+                        💬
+                        <span>SMS Scam</span>
+                    </div>
+
+                    <div class="capability-card">
+                        🟢
+                        <span>WhatsApp</span>
+                    </div>
+
+                    <div class="capability-card">
+                        💳
+                        <span>UPI Fraud</span>
+                    </div>
+
+                    <div class="capability-card">
+                        📷
+                        <span>QR Scan</span>
+                    </div>
+
+                    <div class="capability-card">
+                        🖼
+                        <span>Deepfake</span>
+                    </div>
+
+                    <div class="capability-card">
+                        🎤
+                        <span>Voice Scam</span>
+                    </div>
+
+                </div>
+
+                <div class="supported-inputs">
+
+                    <h4>
+
+                        Supported Inputs
+
+                    </h4>
+
+                    <ul>
+
+                        <li>Email Content</li>
+
+                        <li>SMS Messages</li>
+
+                        <li>WhatsApp Chats</li>
+
+                        <li>URLs</li>
+
+                        <li>UPI IDs</li>
+
+                        <li>QR Images</li>
+
+                        <li>Screenshots</li>
+
+                        <li>Audio Files</li>
+
+                        <li>PDF Documents</li>
+
+                        <li>EML Files</li>
+
+                    </ul>
+
+                </div>
+
+            </div>
 
         </div>
 
-    </section>
+        <!-- Dynamic conversation starts here -->
 
-</div>
+    </div>
 
-<script src="{{ url_for('static', filename='assistant/js/assistant.js') }}"></script>
+    <!-- Typing Indicator -->
+
+    <div id="typingIndicator"
+        class="typing-indicator hidden">
+
+        <div class="typing-avatar">
+
+            🛡
+
+        </div>
+
+        <div class="typing-box">
+
+            <span></span>
+
+            <span></span>
+
+            <span></span>
+
+        </div>
+
+    </div>
+
+            <!-- ========================= -->
+            <!-- Upload Toolbar -->
+            <!-- ========================= -->
+
+            <section class="upload-toolbar">
+
+                <button id="uploadBtn"
+                        class="toolbar-btn">
+
+                    📎 Upload
+
+                </button>
+
+                <button id="imageBtn"
+                        class="toolbar-btn">
+
+                    🖼 Image
+
+                </button>
+
+                <button id="emailBtn"
+                        class="toolbar-btn">
+
+                    📧 EML
+
+                </button>
+
+                <button id="audioBtn"
+                        class="toolbar-btn">
+
+                    🎤 Audio
+
+                </button>
+
+                <button id="qrBtn"
+                        class="toolbar-btn">
+
+                    📷 QR
+
+                </button>
+
+                <button id="cameraBtn"
+                        class="toolbar-btn">
+
+                    📱 Screenshot
+
+                </button>
+
+                <input
+                        type="file"
+                        id="fileInput"
+                        hidden
+                        multiple>
+
+            </section>
+
+
+            <!-- ========================= -->
+            <!-- Attachment Preview -->
+            <!-- ========================= -->
+
+            <section id="attachmentPreview"
+                     class="attachment-preview">
+
+            </section>
+
+
+            <!-- ========================= -->
+            <!-- Composer -->
+            <!-- ========================= -->
+
+            <section class="composer">
+
+                <textarea
+                        id="userInput"
+                        placeholder="Paste email, SMS, WhatsApp, URL, UPI, or any suspicious content..."
+                        rows="5"></textarea>
+
+                <div class="composer-footer">
+
+                    <div class="composer-left">
+
+                        <span id="charCounter">
+
+                            0 Characters
+
+                        </span>
+
+                    </div>
+
+                    <div class="composer-right">
+
+                        <button id="clearBtn"
+                                class="secondary-btn">
+
+                            Clear
+
+                        </button>
+
+                        <button id="voiceBtn"
+                                class="secondary-btn">
+
+                            🎤 Voice
+
+                        </button>
+
+                        <button id="sendBtn"
+                                class="primary-btn">
+
+                            Analyze →
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+        <!-- ========================= -->
+        <!-- Investigation Panel -->
+        <!-- ========================= -->
+
+        <aside class="investigation-panel">
+
+            <div class="panel-header">
+
+                <h2>
+
+                    Investigation Report
+
+                </h2>
+
+            </div>
+
+            <div id="reportPlaceholder"
+                 class="report-placeholder">
+
+                <div class="placeholder-icon">
+
+                    🛡
+
+                </div>
+
+                <h3>
+
+                    No Investigation Yet
+
+                </h3>
+
+                <p>
+
+                    Submit suspicious content to generate a complete
+                    cybersecurity investigation report.
+
+                </p>
+
+            </div>
+
+            <div id="reportContainer"
+                 class="report-container hidden">
+
+                <!-- Executive Summary -->
+
+                <section class="report-card">
+
+                    <h3>
+
+                        Executive Summary
+
+                    </h3>
+
+                    <div id="summaryContent">
+
+                    </div>
+
+                </section>
+
+                <!-- Threat Score -->
+
+                <section class="report-card">
+
+                    <h3>
+
+                        Threat Score
+
+                    </h3>
+
+                    <div id="threatScore">
+
+                    </div>
+
+                </section>
+
+                <!-- Confidence -->
+
+                <section class="report-card">
+
+                    <h3>
+
+                        Confidence
+
+                    </h3>
+
+                    <div id="confidenceBar">
+
+                    </div>
+
+                </section>
+
+                <!-- Evidence -->
+
+                <section class="report-card">
+
+                    <h3>
+
+                        Evidence
+
+                    </h3>
+
+                    <div id="evidenceList">
+
+                    </div>
+
+                </section>
+
+                <!-- Indicators -->
+
+                <section class="report-card">
+
+                    <h3>
+
+                        Indicators of Compromise
+
+                    </h3>
+
+                    <div id="iocList">
+
+                    </div>
+
+                </section>
+
+                <!-- Recommendations -->
+
+                <section class="report-card">
+
+                    <h3>
+
+                        Recommendations
+
+                    </h3>
+
+                    <div id="recommendationList">
+
+                    </div>
+
+                </section>
+
+                <!-- Timeline -->
+
+                <section class="report-card">
+
+                    <h3>
+
+                        Investigation Timeline
+
+                    </h3>
+
+                    <div id="timelineContainer">
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </aside>
+
+    </div>
+        
+
+            <!-- ========================= -->
+    <!-- Floating Action Buttons -->
+    <!-- ========================= -->
+
+    <div class="floating-actions">
+
+        <button id="scrollBottomBtn"
+                class="floating-btn"
+                title="Scroll to Bottom">
+
+            ⬇
+
+        </button>
+
+        <button id="newChatBtn"
+                class="floating-btn"
+                title="New Investigation">
+
+            ＋
+
+        </button>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- Loading Overlay -->
+    <!-- ========================= -->
+
+    <div id="loadingOverlay"
+         class="loading-overlay hidden">
+
+        <div class="loading-card">
+
+            <div class="loader"></div>
+
+            <h3>
+
+                RakshakAI Investigation Running
+
+            </h3>
+
+            <p id="loadingStatus">
+
+                Initializing AI Engine...
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- Drag & Drop Overlay -->
+    <!-- ========================= -->
+
+    <div id="dragOverlay"
+         class="drag-overlay hidden">
+
+        <div class="drag-content">
+
+            <h2>
+
+                Drop Files Here
+
+            </h2>
+
+            <p>
+
+                Email • Images • QR • Audio • PDF • DOCX
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- Toast Notifications -->
+    <!-- ========================= -->
+
+    <div id="toastContainer"
+         class="toast-container">
+
+    </div>
+
+        <!-- ========================= -->
+    <!-- Export Report Modal -->
+    <!-- ========================= -->
+
+    <div id="exportModal"
+         class="modal hidden">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2>
+
+                    Export Investigation
+
+                </h2>
+
+                <button class="close-modal"
+                        data-close="exportModal">
+
+                    ✕
+
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <button class="export-btn"
+                        id="exportPdf">
+
+                    📄 Export PDF
+
+                </button>
+
+                <button class="export-btn"
+                        id="exportJson">
+
+                    🧾 Export JSON
+
+                </button>
+
+                <button class="export-btn"
+                        id="copyReport">
+
+                    📋 Copy Report
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- Settings Modal -->
+    <!-- ========================= -->
+
+    <div id="settingsModal"
+         class="modal hidden">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2>
+
+                    Assistant Settings
+
+                </h2>
+
+                <button class="close-modal"
+                        data-close="settingsModal">
+
+                    ✕
+
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <div class="setting-item">
+
+                    <label>
+
+                        Theme
+
+                    </label>
+
+                    <select id="themeSelect">
+
+                        <option value="dark">
+
+                            Dark
+
+                        </option>
+
+                        <option value="light">
+
+                            Light
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="setting-item">
+
+                    <label>
+
+                        Animations
+
+                    </label>
+
+                    <input type="checkbox"
+                           id="animationToggle"
+                           checked>
+
+                </div>
+
+                <div class="setting-item">
+
+                    <label>
+
+                        Auto Scroll
+
+                    </label>
+
+                    <input type="checkbox"
+                           id="autoScrollToggle"
+                           checked>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+        <!-- ========================= -->
+    <!-- Hidden Message Templates -->
+    <!-- ========================= -->
+
+    <template id="userMessageTemplate">
+
+        <div class="chat-row user-row">
+
+            <div class="message user-message">
+
+                <div class="message-content"></div>
+
+                <div class="message-time"></div>
+
+            </div>
+
+        </div>
+
+    </template>
+
+
+    <template id="assistantMessageTemplate">
+
+        <div class="chat-row assistant-row">
+
+            <div class="assistant-avatar">
+
+                🛡
+
+            </div>
+
+            <div class="message assistant-message">
+
+                <div class="message-content"></div>
+
+                <div class="message-time"></div>
+
+            </div>
+
+        </div>
+
+    </template>
+
+
+    <template id="timelineItemTemplate">
+
+        <div class="timeline-item">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-text"></div>
+
+        </div>
+
+    </template>
+
+
+    <template id="evidenceItemTemplate">
+
+        <div class="evidence-chip">
+
+            <span class="chip-title"></span>
+
+        </div>
+
+    </template>
+
+
+    <template id="recommendationTemplate">
+
+        <div class="recommendation-item">
+
+            <span class="recommendation-icon">
+
+                ✔
+
+            </span>
+
+            <span class="recommendation-text"></span>
+
+        </div>
+
+    </template>
+
+
+    <template id="iocTemplate">
+
+        <div class="ioc-chip">
+
+            <span class="ioc-value"></span>
+
+        </div>
+
+    </template>
+
+
+    <!-- ========================= -->
+    <!-- Scripts -->
+    <!-- ========================= -->
+
+    <script src="{{ url_for('static', filename='assistant/js/ai_assistant.js') }}"></script>
+
+    </div>
 
 </body>
 
