@@ -24,7 +24,7 @@ from api.social_engineering import social_bp
 from api.qr import qr_bp
 from api.deepfake import deepfake_bp
 from api.history import history_bp
-from api.assistant import assistant_bp
+from api.assistant_core.routes import assistant_bp
 
 # ==========================
 # Flask App

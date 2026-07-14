@@ -42,7 +42,6 @@ orchestrator.register("url", analyze_url_ai)
 orchestrator.register("sms", analyze_sms_ai)
 
 orchestrator.register("whatsapp", analyze_whatsapp_ai)
-
 orchestrator.register("upi", analyze_upi_ai)
 
 orchestrator.register("fake_job", analyze_fake_job_ai)

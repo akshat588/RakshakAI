@@ -1,5 +1,17 @@
 [
     {
+        "scan_id": "RK-06FE9B22",
+        "engine": "Email Detector",
+        "analyzer": "Email Detector",
+        "prediction": "Phishing Email",
+        "result": "Phishing Email",
+        "risk": "CRITICAL",
+        "confidence": 93.79,
+        "risk_score": 93.79,
+        "timestamp": "14-07-2026 21:20:44",
+        "saved_at": "2026-07-14 21:20:44"
+    },
+    {
         "scan_id": "RK-FF4143F8",
         "engine": "Email Detector",
         "analyzer": "Email Detector",
