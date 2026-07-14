@@ -12,6 +12,7 @@ from typing import List
 from typing import Any
 
 from api.assistant_core.detector import UniversalInputDetector
+from api.assistant_core.intelligence import intelligence
 
 
 class InvestigationOrchestrator:
@@ -263,15 +264,15 @@ class InvestigationOrchestrator:
         evidence_count = len(report["evidence"])
 
         return (
-            f"RakshakAI executed "
-            f"{engine_count} analyzer(s), "
-            f"identified "
-            f"{evidence_count} evidence item(s), "
-            f"calculated an overall "
-            f"risk level of "
-            f"{report['overall_risk']} "
-            f"with a threat score of "
-            f"{report['overall_score']}."
+            f"RakshakAI investigated the submitted content "
+            f"using {engine_count} analyzer(s). "
+            f"{evidence_count} evidence item(s) and "
+            f"{len(report['iocs'])} indicator(s) of compromise "
+            f"were identified. "
+            f"The investigation concluded with a "
+            f"{report['overall_risk']} risk level "
+            f"and an overall threat score of "
+            f"{report['overall_score']}/100."
         )
 
         # =====================================================
@@ -451,6 +452,8 @@ class InvestigationOrchestrator:
         report = self.add_timestamp(report)
 
         report = self.add_processing_info(report)
+
+        report = intelligence.enrich(report)
 
         report["success"] = True
 
