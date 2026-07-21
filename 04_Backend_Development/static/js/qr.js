@@ -3,6 +3,8 @@ const fileInput = document.getElementById("qrImage");
 const preview = document.getElementById("preview");
 const form = document.getElementById("qrForm");
 const scanButton = document.getElementById("scanButton");
+const clearBtn = document.getElementById("clearBtn");
+
 
 let selectedFile = null;
 
@@ -87,6 +89,86 @@ function showPreview(file) {
 }
 
 // -----------------------------------------------------
+// Clear Workspace
+// -----------------------------------------------------
+
+function clearWorkspace() {
+
+    selectedFile = null;
+
+    fileInput.value = "";
+
+    preview.src = "";
+
+    preview.classList.add("hidden");
+
+}
+
+clearBtn.addEventListener("click", () => {
+
+    clearWorkspace();
+
+});
+
+// -----------------------------------------------------
+// AI Loading Animation
+// -----------------------------------------------------
+
+const loadingSteps = [
+
+    "Reading QR Image...",
+
+    "Decoding QR Pattern...",
+
+    "Extracting Embedded Content...",
+
+    "Running AI Detection Models...",
+
+    "Checking URL Reputation...",
+
+    "Analyzing Threat Indicators...",
+
+    "Generating Investigation Report..."
+
+];
+
+let loadingInterval = null;
+
+function startLoading() {
+
+    let index = 0;
+
+    scanButton.disabled = true;
+
+    scanButton.innerHTML = loadingSteps[0];
+
+    loadingInterval = setInterval(() => {
+
+        index++;
+
+        if (index >= loadingSteps.length) {
+
+            index = loadingSteps.length - 1;
+
+        }
+
+        scanButton.innerHTML = loadingSteps[index];
+
+    }, 700);
+
+}
+
+function stopLoading() {
+
+    clearInterval(loadingInterval);
+
+    scanButton.disabled = false;
+
+    scanButton.innerHTML = "Analyze QR";
+
+}
+
+// -----------------------------------------------------
 // Upload
 // -----------------------------------------------------
 
@@ -102,34 +184,7 @@ form.addEventListener("submit", async function (e) {
 
     }
 
-    scanButton.disabled = true;
-
-    scanButton.innerHTML = `
-        <svg class="animate-spin h-5 w-5 inline mr-2"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24">
-
-            <circle
-                class="opacity-25"
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="currentColor"
-                stroke-width="4">
-            </circle>
-
-            <path
-                class="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8v8H4z">
-            </path>
-
-        </svg>
-
-        Scanning...
-    `;
-
+    startLoading();
     const formData = new FormData();
 
     formData.append("file", selectedFile);
@@ -150,7 +205,7 @@ form.addEventListener("submit", async function (e) {
 
             alert(result.message || "Analysis failed.");
 
-            resetButton();
+            stopLoading();
 
             return;
 
@@ -171,11 +226,13 @@ form.addEventListener("submit", async function (e) {
 
         alert("Server connection failed.");
 
+        stopLoading();
+
     }
 
     finally {
 
-        resetButton();
+        stopLoading();
 
     }
 

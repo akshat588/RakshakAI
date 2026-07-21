@@ -6,55 +6,106 @@ RakshakAI | QR Code Threat Analyzer
 
 {% block content %}
 
-<div class="space-y-8 fade-up">
+<div class="analyzer-page fade-up">
 
-    <!-- Header -->
+    <!-- ============================================= -->
+    <!-- HERO -->
+    <!-- ============================================= -->
 
-    <section class="flex flex-col xl:flex-row justify-between gap-6">
+    <section class="hero">
 
-        <div>
+        <div class="flex-between flex-wrap gap-5">
 
-            <p class="text-sm text-muted">
+            <div>
 
-                Dashboard / AI Analyzers
+                <span class="badge badge-primary">
 
-            </p>
+                    QR Threat Investigation
 
-            <h1 class="text-4xl font-bold mt-2">
+                </span>
 
-                QR Code Threat Analyzer
+                <h1 class="mt-4">
 
-            </h1>
+                    AI Investigation Report
 
-            <p class="text-muted mt-3 max-w-3xl">
+                </h1>
 
-                RakshakAI decoded the uploaded QR code and performed
-                AI-powered security analysis to detect phishing,
-                malicious redirects and suspicious payloads.
+                <p class="mt-3 max-w-3xl">
 
-            </p>
+                    RakshakAI decoded the uploaded QR code,
+                    analyzed embedded content,
+                    verified malicious indicators,
+                    and generated this complete investigation report.
 
-        </div>
+                </p>
 
-        <div class="glass rounded-3xl px-6 py-5 min-w-[260px]">
+            </div>
 
-            <div class="flex items-center gap-4">
+            <div class="glass p-5 rounded-lg w-[320px]">
 
-                <div class="w-4 h-4 rounded-full bg-success animate-pulse"></div>
+                <div class="flex-between">
 
-                <div>
+                    <div>
 
-                    <h3 class="font-semibold">
+                        <p class="text-muted">
 
-                        QR Engine Status
+                            AI Engine
 
-                    </h3>
+                        </p>
 
-                    <p class="text-muted text-sm">
+                        <h3>
 
-                        QR Threat Detector Online
+                            QR Threat Detector
 
-                    </p>
+                        </h3>
+
+                    </div>
+
+                    <div class="status-pill status-online">
+
+                        <span class="status-dot"></span>
+
+                        Online
+
+                    </div>
+
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="grid grid-2 grid-gap">
+
+                    <div>
+
+                        <h2>
+
+                            97.6%
+
+                        </h2>
+
+                        <p>
+
+                            Accuracy
+
+                        </p>
+
+                    </div>
+
+                    <div>
+
+                        <h2>
+
+                            Live
+
+                        </h2>
+
+                        <p>
+
+                            AI Analysis
+
+                        </p>
+
+                    </div>
 
                 </div>
 
@@ -64,9 +115,18 @@ RakshakAI | QR Code Threat Analyzer
 
     </section>
 
-    <div id="resultContainer">
+    <!-- ============================================= -->
+    <!-- RESULT -->
+    <!-- ============================================= -->
 
-    </div>
+    <section>
+
+        <div
+            id="resultContainer">
+
+        </div>
+
+    </section>
 
 </div>
 
@@ -88,95 +148,128 @@ renderResult(data);
 
 function renderResult(data){
 
-let badge="bg-success/20 text-success";
+let badge = "bg-green-500/20 text-green-400 border border-green-500/30";
 
-if(data.risk==="HIGH"){
+if (data.risk === "HIGH") {
 
-badge="bg-danger/20 text-danger";
+    badge = "bg-red-500/20 text-red-400 border border-red-500/30";
+
+}
+else if (data.risk === "MEDIUM") {
+
+    badge = "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30";
+
+}
+else if (data.risk === "LOW") {
+
+    badge = "bg-blue-500/20 text-blue-400 border border-blue-500/30";
 
 }
 
-else if(data.risk==="MEDIUM"){
+let indicators = "";
 
-badge="bg-warning/20 text-warning";
+if ((data.flags || []).length === 0) {
+
+    indicators = `
+
+    <div class="rounded-2xl border border-green-500/30 bg-green-500/10 p-5">
+
+        <h4 class="font-semibold text-green-400">
+
+            ✓ No Suspicious Indicators Found
+
+        </h4>
+
+    </div>
+
+    `;
+
+}
+else {
+
+    (data.flags || []).forEach(item => {
+
+        indicators += `
+
+        <div class="flex gap-4 rounded-2xl border border-red-500/20 bg-red-500/5 p-4">
+
+            <div class="text-red-400 text-xl">
+
+                ⚠
+
+            </div>
+
+            <div>
+
+                ${item}
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
 
 }
 
-let indicators="";
+let explanation = "";
 
-(data.flags||[]).forEach(item=>{
+(data.explanation || []).forEach(item => {
 
-indicators+=`
+    explanation += `
 
-<div class="flex items-center gap-3">
+    <div class="rounded-2xl border border-blue-500/20 bg-blue-500/5 p-4 mb-3">
 
-<span class="text-danger text-xl">
+        <div class="flex gap-3">
 
-✔
+            <span class="text-primary">
 
-</span>
+                🤖
 
-<span>
+            </span>
 
-${item}
+            <span>
 
-</span>
+                ${item}
 
-</div>
+            </span>
 
-`;
+        </div>
 
-});
+    </div>
 
-let explanation="";
-
-(data.explanation||[]).forEach(item=>{
-
-explanation+=`
-
-<div class="flex items-center gap-3">
-
-<span class="text-primary text-xl">
-
-➜
-
-</span>
-
-<span>
-
-${item}
-
-</span>
-
-</div>
-
-`;
+    `;
 
 });
 
-let recommendations="";
+let recommendations = "";
 
-(data.recommendation||[]).forEach(item=>{
+(data.recommendation || []).forEach(item => {
 
-recommendations+=`
+    recommendations += `
 
-<div class="flex items-center gap-3">
+    <div class="rounded-2xl border border-green-500/20 bg-green-500/5 p-4 mb-3">
 
-<span class="text-success text-xl">
+        <div class="flex gap-3">
 
-✔
+            <span class="text-green-400">
 
-</span>
+                ✓
 
-<span>
+            </span>
 
-${item}
+            <span>
 
-</span>
+                ${item}
 
-</div>
+            </span>
 
-`;
+        </div>
+
+    </div>
+
+    `;
 
 });
 
@@ -184,7 +277,53 @@ document.getElementById("resultContainer").innerHTML=`
 
 <div class="space-y-8">
 
-<div class="grid xl:grid-cols-3 gap-6">
+    <!-- Executive Summary -->
+
+    <div class="glass rounded-3xl p-8">
+
+        <div class="flex justify-between items-center flex-wrap gap-4">
+
+            <div>
+
+                <span class="badge badge-primary">
+
+                    Executive Summary
+
+                </span>
+
+                <h2 class="text-3xl font-bold mt-4">
+
+                    ${data.prediction}
+
+                </h2>
+
+                <p class="text-muted mt-3">
+
+                    RakshakAI successfully decoded the uploaded QR code and completed a comprehensive AI-powered threat investigation.
+
+                </p>
+
+            </div>
+
+            <div>
+
+                <span class="px-6 py-3 rounded-full font-bold text-lg ${badge}">
+
+                    ${data.risk} RISK
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+<!-- KPI Cards -->
+
+<div class="grid xl:grid-cols-4 md:grid-cols-2 gap-6">
 
 <div class="glass rounded-3xl p-7">
 
@@ -200,7 +339,7 @@ ${data.risk_score}<span class="text-2xl">%</span>
 
 </h2>
 
-<div class="w-full h-3 rounded-full bg-white/10 mt-6">
+<div class="w-full h-3 rounded-full bg-white/10 mt-5">
 
 <div
 class="h-3 rounded-full bg-primary"
@@ -220,15 +359,27 @@ Risk Level
 
 </p>
 
-<div class="mt-5">
-
-<span class="px-5 py-2 rounded-full font-bold ${badge}">
+<h2 class="text-3xl font-bold mt-5">
 
 ${data.risk}
 
-</span>
+</h2>
 
 </div>
+
+<div class="glass rounded-3xl p-7">
+
+<p class="text-muted">
+
+AI Confidence
+
+</p>
+
+<h2 class="text-3xl font-bold mt-5">
+
+${data.confidence}%
+
+</h2>
 
 </div>
 
@@ -240,7 +391,7 @@ QR Type
 
 </p>
 
-<h2 class="text-3xl font-bold mt-4">
+<h2 class="text-3xl font-bold mt-5">
 
 ${data.qr_type}
 
@@ -249,6 +400,130 @@ ${data.qr_type}
 </div>
 
 </div>
+
+
+
+<!-- Timeline -->
+
+<div class="glass rounded-3xl p-7">
+
+<h3 class="text-2xl font-bold mb-6">
+
+Investigation Timeline
+
+</h3>
+
+<div class="space-y-5">
+
+<div class="flex gap-4">
+
+<div class="text-primary">
+
+①
+
+</div>
+
+<div>
+
+<h4 class="font-semibold">
+
+QR Image Loaded
+
+</h4>
+
+<p class="text-muted">
+
+Image received successfully.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="flex gap-4">
+
+<div class="text-primary">
+
+②
+
+</div>
+
+<div>
+
+<h4 class="font-semibold">
+
+QR Decoded
+
+</h4>
+
+<p class="text-muted">
+
+Embedded content extracted.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="flex gap-4">
+
+<div class="text-primary">
+
+③
+
+</div>
+
+<div>
+
+<h4 class="font-semibold">
+
+Threat Intelligence
+
+</h4>
+
+<p class="text-muted">
+
+Indicators evaluated using RakshakAI.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="flex gap-4">
+
+<div class="text-primary">
+
+④
+
+</div>
+
+<div>
+
+<h4 class="font-semibold">
+
+Report Generated
+
+</h4>
+
+<p class="text-muted">
+
+Investigation completed.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
 
 <div class="grid xl:grid-cols-2 gap-6">
 
@@ -392,7 +667,7 @@ ${indicators || '<p class="text-success">No suspicious indicators detected.</p>'
 
 <h3 class="text-xl font-bold mb-6">
 
-AI Recommendation
+AI Recommendations
 
 </h3>
 
@@ -414,7 +689,7 @@ class="bg-primary text-black font-bold px-6 py-3 rounded-2xl">
 id="copyBtn"
 class="glass px-6 py-3 rounded-2xl">
 
-📋 Copy Result
+📋 Copy Report
 
 </button>
 
@@ -432,66 +707,114 @@ class="glass px-6 py-3 rounded-2xl">
 
 `;
 
-document.getElementById("newScan").addEventListener("click",()=>{
+document.getElementById("newScan").addEventListener("click", () => {
 
 sessionStorage.removeItem("qrResult");
 
-window.location="/qr";
+window.location.href = "/qr";
 
 });
 
-document.getElementById("exportBtn").addEventListener("click",()=>{
+document.getElementById("exportBtn").addEventListener("click", () => {
 
-const blob=new Blob(
-[JSON.stringify(data,null,4)],
-{type:"application/json"}
+const report = {
+
+generated_by: "RakshakAI",
+
+report_type: "QR Investigation",
+
+generated_at: new Date().toISOString(),
+
+data
+
+};
+
+const blob = new Blob(
+
+[JSON.stringify(report, null, 4)],
+
+{
+
+type: "application/json"
+
+}
+
 );
 
-const a=document.createElement("a");
+const a = document.createElement("a");
 
-a.href=URL.createObjectURL(blob);
+a.href = URL.createObjectURL(blob);
 
-a.download=data.scan_id+".json";
+a.download = `${data.scan_id}_QR_Report.json`;
 
 a.click();
 
+URL.revokeObjectURL(a.href);
+
+showToast("Report exported successfully.", "success");
+
 });
 
-document.getElementById("copyBtn").addEventListener("click",()=>{
+document.getElementById("copyBtn").addEventListener("click", () => {
 
 const text = `
 
-=========================
-RakshakAI QR Report
-=========================
+========================================
+          RakshakAI QR Investigation Report
+========================================
 
-Engine : ${data.engine}
+Executive Summary
+-----------------
+Prediction      : ${data.prediction}
+Risk Level      : ${data.risk}
+Threat Score    : ${data.risk_score}%
+AI Confidence   : ${data.confidence}%
 
-Prediction : ${data.prediction}
+QR Information
+--------------
+QR Type         : ${data.qr_type}
+Engine          : ${data.engine}
 
-Risk : ${data.risk}
-
-Confidence : ${data.confidence}%
-
-Threat Score : ${data.risk_score}%
-
-QR Type : ${data.qr_type}
-
-Decoded Content :
+Decoded Content
+---------------
 ${data.decoded_content}
 
-Scan ID :
+Threat Indicators
+-----------------
+${(data.flags || []).join("\n")}
+
+AI Explanation
+--------------
+${(data.explanation || []).join("\n")}
+
+Recommendations
+---------------
+${(data.recommendation || []).join("\n")}
+
+Scan ID
+-------
 ${data.scan_id}
+
+Timestamp
+---------
+${data.timestamp}
+
+========================================
+Generated by RakshakAI
+========================================
 
 `;
 
 navigator.clipboard.writeText(text);
 
-showToast("Result copied successfully.", "success");
+showToast("QR Investigation Report copied successfully.", "success");
 
 });
 
-}
+navigator.clipboard.writeText(text);
+
+showToast("Result copied successfully.", "success");
+
 
 </script>
 

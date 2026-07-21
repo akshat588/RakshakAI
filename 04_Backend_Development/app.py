@@ -25,6 +25,10 @@ from api.qr import qr_bp
 from api.deepfake import deepfake_bp
 from api.history import history_bp
 from api.assistant_core.routes import assistant_bp
+from dotenv import load_dotenv
+
+load_dotenv()
+from api.whatsapp_bot.webhook import whatsapp_webhook
 
 # ==========================
 # Flask App
@@ -49,6 +53,7 @@ app.register_blueprint(qr_bp)
 app.register_blueprint(deepfake_bp)
 app.register_blueprint(history_bp)
 app.register_blueprint(assistant_bp)
+app.register_blueprint(whatsapp_webhook, url_prefix="/whatsapp")
 
 # ==========================
 # Home Route
@@ -140,4 +145,5 @@ def scan_history_page():
 # ==========================
 
 if __name__ == "__main__":
-    app.run(host=config.HOST, port=config.PORT, debug=config.DEBUG)
+
+    app.run(debug=True)

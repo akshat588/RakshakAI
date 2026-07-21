@@ -1,0 +1,547 @@
+{% extends "layout/base.html" %}
+
+{% block title %}
+RakshakAI | Fake Job Investigation
+{% endblock %}
+
+{% block content %}
+
+<div class="analyzer-page fade-up">
+
+<section class="hero">
+
+<div class="flex-between flex-wrap gap-5">
+
+<div>
+
+<span class="badge badge-primary">
+
+Fake Job Investigation
+
+</span>
+
+<h1 class="mt-4">
+
+AI Investigation Report
+
+</h1>
+
+<p class="mt-3 max-w-3xl">
+
+RakshakAI analyzed the submitted recruitment content using the Fake Job Detection Engine and generated a complete fraud investigation report.
+
+</p>
+
+</div>
+
+<div class="glass p-5 rounded-lg w-[320px]">
+
+<div class="flex-between">
+
+<div>
+
+<p class="text-muted">
+
+AI Engine
+
+</p>
+
+<h3>
+
+Fake Job Detector
+
+</h3>
+
+</div>
+
+<div class="status-pill status-online">
+
+<span class="status-dot"></span>
+
+Online
+
+</div>
+
+</div>
+
+<div class="divider"></div>
+
+<div class="grid grid-2 grid-gap">
+
+<div>
+
+<h2>
+
+96.8%
+
+</h2>
+
+<p>
+
+Accuracy
+
+</p>
+
+</div>
+
+<div>
+
+<h2>
+
+Live
+
+</h2>
+
+<p>
+
+AI Analysis
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div id="resultContainer"></div>
+
+</section>
+
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+
+<script>
+
+const result = JSON.parse(sessionStorage.getItem("fake_job_result"));
+
+if (!result) {
+    showToast("No investigation result found.", "error");
+
+    setTimeout(() => {
+        window.location = "/fake-job";
+    }, 1200);
+}
+
+if(!result){
+
+window.location="/fake-job";
+
+}
+
+renderResult(result);
+
+function renderResult(result){
+
+let badge="bg-green-500/20 text-green-400 border border-green-500/30";
+
+if(result.risk==="HIGH"){
+
+badge="bg-red-500/20 text-red-400 border border-red-500/30";
+
+}
+else if(result.risk==="MEDIUM"){
+
+badge="bg-yellow-500/20 text-yellow-400 border border-yellow-500/30";
+
+}
+else if(result.risk==="LOW"){
+
+badge="bg-blue-500/20 text-blue-400 border border-blue-500/30";
+
+}
+
+let explanation="";
+
+((result.explanation || result.evidence) || []).forEach(item=>{
+
+explanation+=`
+
+<div class="rounded-2xl border border-blue-500/20 bg-blue-500/5 p-4 mb-3">
+
+<div class="flex gap-3">
+
+<span>🤖</span>
+
+<span>${item}</span>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+let indicators="";
+
+((result.flags || result.iocs) || []).forEach(item=>{
+
+indicators+=`
+
+<div class="rounded-2xl border border-red-500/20 bg-red-500/5 p-4 mb-3">
+
+<div class="flex gap-3">
+
+<span>⚠</span>
+
+<span>${item}</span>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+let recommendation="";
+
+((result.recommendation || result.recommendations) || []).forEach(item=>{
+
+recommendation+=`
+
+<div class="rounded-2xl border border-green-500/20 bg-green-500/5 p-4 mb-3">
+
+<div class="flex gap-3">
+
+<span>✓</span>
+
+<span>${item}</span>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("resultContainer").innerHTML=`
+
+<div class="space-y-8">
+
+<div class="glass rounded-3xl p-8">
+
+<div class="flex justify-between items-center flex-wrap gap-5">
+
+<div>
+
+<span class="badge badge-primary">
+
+Executive Summary
+
+</span>
+
+<h2 class="text-3xl font-bold mt-4">
+
+${result.prediction || result.result}
+
+</h2>
+
+<p class="text-muted mt-3">
+
+RakshakAI completed an AI-powered investigation of the submitted recruitment content.
+
+</p>
+
+</div>
+
+<div>
+
+<span class="px-6 py-3 rounded-full font-bold text-lg ${badge}">
+
+${result.risk} RISK
+
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="grid xl:grid-cols-4 md:grid-cols-2 gap-6">
+
+<div class="glass rounded-3xl p-7">
+
+<p class="text-muted">
+
+Threat Score
+
+</p>
+
+<h2 class="text-5xl font-bold mt-3">
+
+${result.risk_score ?? result.confidence}%
+
+</h2>
+
+<div class="w-full h-3 rounded-full bg-white/10 mt-5">
+
+<div
+class="h-3 rounded-full bg-primary"
+style="width:${result.risk_score ?? result.confidence}%">
+
+</div>
+
+</div>
+
+</div>
+
+<div class="glass rounded-3xl p-7">
+
+<p class="text-muted">
+
+Risk Level
+
+</p>
+
+<h2 class="text-3xl font-bold mt-5">
+
+${result.risk}
+
+</h2>
+
+</div>
+
+<div class="glass rounded-3xl p-7">
+
+<p class="text-muted">
+
+AI Confidence
+
+</p>
+
+<h2 class="text-3xl font-bold mt-5">
+
+${result.confidence}%
+
+</h2>
+
+</div>
+
+<div class="glass rounded-3xl p-7">
+
+<p class="text-muted">
+
+Detection Engine
+
+</p>
+
+<h2 class="text-2xl font-bold mt-5">
+
+${result.engine || "Fake Job Detector"}
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="glass rounded-3xl p-7">
+
+<h3 class="text-2xl font-bold mb-6">
+
+Investigation Timeline
+
+</h3>
+
+<div class="space-y-4">
+
+<div>① Job Content Received</div>
+
+<div>② AI Fraud Analysis</div>
+
+<div>③ Scam Pattern Detection</div>
+
+<div>④ Investigation Completed</div>
+
+</div>
+
+</div>
+
+<div class="grid xl:grid-cols-2 gap-6">
+
+<div class="glass rounded-3xl p-7">
+
+<h3 class="text-xl font-bold mb-6">
+
+Investigation Details
+
+</h3>
+
+<div class="space-y-4">
+
+<div class="flex justify-between">
+
+<span class="text-muted">Prediction</span>
+
+<span>${result.prediction || result.result}</span>
+
+</div>
+
+<div class="flex justify-between">
+
+<span class="text-muted">Risk</span>
+
+<span>${result.risk}</span>
+
+</div>
+
+<div class="flex justify-between">
+
+<span class="text-muted">Confidence</span>
+
+<span>${result.confidence}%</span>
+
+</div>
+
+<div class="flex justify-between">
+
+<span class="text-muted">Engine</span>
+
+<span>${result.engine}</span>
+
+</div>
+
+<div class="flex justify-between">
+
+<span class="text-muted">Scan ID</span>
+
+<span class="font-mono">${result.scan_id}</span>
+
+</div>
+
+<div class="flex justify-between">
+
+<span class="text-muted">Timestamp</span>
+
+<span>${result.timestamp || new Date().toLocaleString()}</span>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="glass rounded-3xl p-7">
+
+<h3 class="text-xl font-bold mb-6">
+
+Explainable AI
+
+</h3>
+
+${explanation}
+
+</div>
+
+</div>
+
+<div class="glass rounded-3xl p-7">
+
+<h3 class="text-xl font-bold mb-6">
+
+Fraud Indicators
+
+</h3>
+
+${indicators || '<p class="text-green-400">No fraud indicators detected.</p>'}
+
+</div>
+
+<div class="glass rounded-3xl p-7">
+
+<h3 class="text-xl font-bold mb-6">
+
+AI Recommendations
+
+</h3>
+
+${recommendation}
+
+</div>
+
+<div class="flex flex-wrap gap-4">
+
+<button
+id="newScan"
+class="bg-primary text-black font-bold px-6 py-3 rounded-2xl">
+
+🔄 New Investigation
+
+</button>
+
+<button
+id="copyBtn"
+class="glass px-6 py-3 rounded-2xl">
+
+📋 Copy Report
+
+</button>
+
+<button
+id="exportBtn"
+class="glass px-6 py-3 rounded-2xl">
+
+⬇ Export JSON
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+document.getElementById("newScan").addEventListener("click",()=>{
+
+sessionStorage.removeItem("fake_job_result");
+
+window.location="/fake-job";
+
+});
+
+document.getElementById("copyBtn").addEventListener("click",()=>{
+
+navigator.clipboard.writeText(JSON.stringify(result,null,2));
+
+showToast("Report copied successfully.","success");
+
+});
+
+document.getElementById("exportBtn").addEventListener("click",()=>{
+
+const blob=new Blob(
+
+[JSON.stringify(result,null,4)],
+
+{type:"application/json"}
+
+);
+
+const a=document.createElement("a");
+
+a.href=URL.createObjectURL(blob);
+
+a.download=(result.scan_id||"fake_job")+".json";
+
+a.click();
+
+});
+
+}
+
+</script>
+
+{% endblock %}

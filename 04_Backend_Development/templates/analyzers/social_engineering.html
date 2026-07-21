@@ -10,47 +10,105 @@ RakshakAI | Social Engineering Analyzer
 
     <!-- HEADER -->
 
-    <section class="flex flex-col xl:flex-row justify-between gap-6">
+    <section class="hero">
 
-        <div>
+<div class="flex-between flex-wrap gap-5">
 
-            <p class="text-sm text-muted">
-                Dashboard / AI Analyzers
-            </p>
+<div>
 
-            <h1 class="text-4xl font-bold mt-2">
-                Social Engineering Analyzer
-            </h1>
+<span class="badge badge-primary">
 
-            <p class="text-muted mt-3 max-w-3xl">
-                Detect manipulation attempts, impersonation, urgency tactics, authority abuse, emotional manipulation and other social engineering attacks using RakshakAI AI.
-            </p>
+Social Engineering Investigation
 
-        </div>
+</span>
 
-        <div class="glass rounded-3xl px-6 py-5 min-w-[260px]">
+<h1 class="mt-4">
 
-            <div class="flex items-center gap-4">
+AI Social Engineering Analyzer
 
-                <div class="w-4 h-4 rounded-full bg-success animate-pulse"></div>
+</h1>
 
-                <div>
+<p class="mt-3 max-w-3xl">
 
-                    <h3 class="font-semibold">
-                        AI Engine Status
-                    </h3>
+Analyze suspicious conversations for impersonation, urgency tactics, authority abuse, credential harvesting, emotional manipulation and other social engineering attacks using RakshakAI AI.
 
-                    <p class="text-muted text-sm">
-                        Social Engineering Detector Online
-                    </p>
+</p>
 
-                </div>
+</div>
 
-            </div>
+<div class="glass p-5 rounded-lg w-[320px]">
 
-        </div>
+<div class="flex-between">
 
-    </section>
+<div>
+
+<p class="text-muted">
+
+AI Engine
+
+</p>
+
+<h3>
+
+Social Engineering Detector
+
+</h3>
+
+</div>
+
+<div class="status-pill status-online">
+
+<span class="status-dot"></span>
+
+Online
+
+</div>
+
+</div>
+
+<div class="divider"></div>
+
+<div class="grid grid-2 grid-gap">
+
+<div>
+
+<h2>
+
+97.1%
+
+</h2>
+
+<p>
+
+Detection Accuracy
+
+</p>
+
+</div>
+
+<div>
+
+<h2>
+
+Live
+
+</h2>
+
+<p>
+
+AI Analysis
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
 
     <!-- MAIN -->
 
@@ -61,7 +119,7 @@ RakshakAI | Social Engineering Analyzer
             <div class="flex justify-between items-center mb-6">
 
                 <h2 class="text-2xl font-bold">
-                    Message / Conversation
+                    Conversation Investigation Workspace
                 </h2>
 
                 <span id="charCount" class="font-mono text-muted">
@@ -76,7 +134,7 @@ RakshakAI | Social Engineering Analyzer
 
                 rows="16"
 
-                placeholder="Paste suspicious conversation..."
+                placeholder="Paste the complete conversation, email, WhatsApp chat, SMS or message that you want RakshakAI to investigate..."
 
                 class="w-full rounded-2xl bg-background border border-white/10 p-6 resize-none outline-none focus:border-primary transition"
 
@@ -117,7 +175,7 @@ RakshakAI | Social Engineering Analyzer
             <div class="glass rounded-3xl p-6">
 
                 <h3 class="text-xl font-bold mb-5">
-                    Detection
+                    Detection Capabilities
                 </h3>
 
                 <div class="space-y-4">
@@ -154,7 +212,7 @@ RakshakAI | Social Engineering Analyzer
             <div class="glass rounded-3xl p-6">
 
                 <h3 class="text-xl font-bold mb-5">
-                    Safety Tips
+                    Security Checklist
                 </h3>
 
                 <ul class="space-y-3 text-muted">
@@ -184,11 +242,11 @@ RakshakAI | Social Engineering Analyzer
             <div>
 
                 <h2 class="text-2xl font-bold">
-                    AI Analysis Running
+                    AI Investigation Running
                 </h2>
 
                 <p class="text-muted mt-2">
-                    RakshakAI is analyzing the conversation...
+                    RakshakAI AI is investigating the conversation for manipulation techniques, fraud patterns and social engineering indicators...
                 </p>
 
             </div>
@@ -274,7 +332,10 @@ const text=socialText.value.trim();
 
 if(text===""){
 
-alert("Please paste a conversation.");
+showToast(
+    "Please paste a conversation.",
+    "warning"
+);
 
 return;
 
@@ -282,7 +343,7 @@ return;
 
 scanBtn.disabled=true;
 
-scanBtn.innerHTML="Analyzing...";
+scanBtn.innerHTML="Investigating...";
 
 loadingCard.classList.remove("hidden");
 
@@ -290,7 +351,7 @@ resultContainer.classList.add("hidden");
 
 try{
 
-const response=await fetch("/api/social-engineering",{
+const response=await fetch("/social-engineering/api/social-engineering",{
 
 method:"POST",
 
@@ -351,6 +412,7 @@ finally{
 scanBtn.disabled=false;
 
 scanBtn.innerHTML="Analyze Conversation";
+loadingCard.classList.add("hidden");
 
 }
 
@@ -362,397 +424,12 @@ Render Result
 
 function renderResult(data){
 
-let score=15;
-let badge="bg-success/20 text-success";
-let recommendation="No strong social engineering indicators detected.";
-
-if(data.risk==="MEDIUM"){
-
-score=60;
-
-badge="bg-warning/20 text-warning";
-
-recommendation="Exercise caution. Verify the sender's identity before responding.";
-
-}
-
-if(data.risk==="HIGH"){
-
-score=90;
-
-badge="bg-danger/20 text-danger";
-
-recommendation="Likely social engineering attempt. Do not share credentials, OTPs, or sensitive information.";
-
-}
-
-if(data.risk==="CRITICAL"){
-
-score=100;
-
-badge="bg-danger text-white";
-
-recommendation="Critical social engineering attack detected. End communication immediately and report the incident.";
-
-}
-
-const confidence=data.confidence ?? "Unavailable";
-
-resultContainer.innerHTML=`
-
-<div class="space-y-8">
-
-<div class="grid xl:grid-cols-3 gap-6">
-
-<div class="glass rounded-3xl p-7">
-
-<p class="text-muted">
-
-Threat Score
-
-</p>
-
-<h2 class="text-5xl font-bold mt-3">
-
-${score}<span class="text-2xl">%</span>
-
-</h2>
-
-<div class="w-full h-3 rounded-full bg-white/10 mt-6">
-
-<div
-class="h-3 rounded-full bg-primary"
-style="width:${score}%">
-
-</div>
-
-</div>
-
-</div>
-
-<div class="glass rounded-3xl p-7">
-
-<p class="text-muted">
-
-Risk Level
-
-</p>
-
-<div class="mt-5">
-
-<span class="px-5 py-2 rounded-full font-bold ${badge}">
-
-${data.risk}
-
-</span>
-
-</div>
-
-</div>
-
-<div class="glass rounded-3xl p-7">
-
-<p class="text-muted">
-
-Prediction
-
-</p>
-
-<h2 class="text-3xl font-bold mt-4">
-
-${data.result}
-
-</h2>
-
-</div>
-
-</div>
-
-<div class="grid xl:grid-cols-2 gap-6">
-
-    <!-- Scan Information -->
-
-    <div class="glass rounded-3xl p-7">
-
-        <h3 class="text-xl font-bold mb-6">
-
-            Scan Information
-
-        </h3>
-
-        <div class="space-y-5">
-
-            <div class="flex justify-between">
-
-                <span class="text-muted">
-
-                    AI Engine
-
-                </span>
-
-                <span>
-
-                    ${data.engine}
-
-                </span>
-
-            </div>
-
-            <div class="flex justify-between">
-
-                <span class="text-muted">
-
-                    Confidence
-
-                </span>
-
-                <span>
-
-                    ${confidence}
-
-                </span>
-
-            </div>
-
-            <div class="flex justify-between">
-
-                <span class="text-muted">
-
-                    Scan ID
-
-                </span>
-
-                <span class="font-mono">
-
-                    ${data.scan_id}
-
-                </span>
-
-            </div>
-
-            <div class="flex justify-between">
-
-                <span class="text-muted">
-
-                    Timestamp
-
-                </span>
-
-                <span>
-
-                    ${data.timestamp}
-
-                </span>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- AI Recommendation -->
-
-    <div class="glass rounded-3xl p-7">
-
-        <h3 class="text-xl font-bold mb-6">
-
-            AI Recommendation
-
-        </h3>
-
-        <div class="rounded-2xl border border-primary/20 bg-primary/5 p-5">
-
-            <p class="leading-8 text-slate-300">
-
-                ${recommendation}
-
-            </p>
-
-        </div>
-
-    </div>
-
-</div>
-
-<div class="glass rounded-3xl p-7">
-
-<h3 class="text-xl font-bold mb-6">
-
-Explainable AI
-
-</h3>
-
-<div class="space-y-4">
-
-<div class="flex items-center gap-3">
-
-<span class="text-primary text-xl">➜</span>
-
-<span>
-Social classified as <strong>${data.result}</strong>.
-</span>
-
-</div>
-
-<div class="flex items-center gap-3">
-
-<span class="text-primary text-xl">➜</span>
-
-<span>
-Risk level detected as <strong>${data.risk}</strong>.
-</span>
-
-</div>
-
-<div class="flex items-center gap-3">
-
-<span class="text-primary text-xl">➜</span>
-
-<span>
-AI confidence: <strong>${confidence}</strong>.
-</span>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="glass rounded-3xl p-7">
-
-<h3 class="text-xl font-bold mb-6">
-
-Threat Indicators
-
-</h3>
-
-<div class="space-y-4">
-
-<div class="flex items-center gap-3">
-
-<span class="text-danger text-xl">✔</span>
-
-<span>
-
-Prediction: ${data.result}
-
-</span>
-
-</div>
-
-<div class="flex items-center gap-3">
-
-<span class="text-danger text-xl">✔</span>
-
-<span>
-
-Risk Level: ${data.risk}
-
-</span>
-
-</div>
-
-<div class="flex items-center gap-3">
-
-<span class="text-danger text-xl">✔</span>
-
-<span>
-
-Engine: ${data.engine}
-
-</span>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- Action Buttons -->
-
-<div class="flex flex-wrap gap-4">
-
-<button
-id="newScan"
-class="bg-primary text-black font-bold px-6 py-3 rounded-2xl">
-
-🔄 New Scan
-
-</button>
-
-<button
-id="copyResult"
-class="glass px-6 py-3 rounded-2xl">
-
-📋 Copy Result
-
-</button>
-
-<button
-id="exportBtn"
-class="glass px-6 py-3 rounded-2xl">
-
-⬇ Export JSON
-
-</button>
-
-</div>
-</div>
-
-</div>
-
-`;
-
-document.getElementById("copyResult").addEventListener("click",()=>{
-
-const text=`
-Result : ${data.result}
-Risk : ${data.risk}
-Engine : ${data.engine}
-Scan ID : ${data.scan_id}
-Timestamp : ${data.timestamp}
-`;
-
-navigator.clipboard.writeText(text);
-
-showToast("Result copied successfully.", "success");
-
-});
-
-document.getElementById("exportBtn").addEventListener("click",()=>{
-
-const blob=new Blob(
-[JSON.stringify(data,null,4)],
-{type:"application/json"}
-);
-
-const a=document.createElement("a");
-
-a.href=URL.createObjectURL(blob);
-
-a.download=data.scan_id+".json";
-
-a.click();
-
-});
-
-document.getElementById("newScan").addEventListener("click",()=>{
-
-socialText.value="";
-
-counter.textContent="0 Characters";
-
-resultContainer.classList.add("hidden");
-
-window.scrollTo({
-
-top:0,
-
-behavior:"smooth"
-
-});
-
-});
+    sessionStorage.setItem(
+        "social_engineering_result",
+        JSON.stringify(data)
+    );
+
+    window.location="/social-engineering/result";
 
 }
 

@@ -11,6 +11,11 @@ from api.assistant_core.detector import InputType
 from api.email import analyze_email_ai
 from api.url import analyze_url_ai
 from api.sms import analyze_sms_ai
+from api.whatsapp import analyze_whatsapp_ai
+from api.upi import analyze_upi_ai
+from api.qr import analyze_qr_ai
+from api.fake_job import analyze_fake_job_ai
+from api.social_engineering import analyze_social_engineering_ai
 
 
 class UniversalRouter:

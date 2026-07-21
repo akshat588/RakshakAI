@@ -31,14 +31,20 @@ class UniversalEntityExtractor:
         return match.group(0) if match else ""
 
     def extract_amount(self, text: str):
-
         match = self.amount_pattern.search(text)
 
         if not match:
-
             return 0.0
 
-        return float(match.group(1).replace(",", ""))
+        amount = (match.group(1) or "").replace(",", "").strip()
+
+        if not amount:
+            return 0.0
+
+        try:
+            return float(amount)
+        except ValueError:
+            return 0.0
 
     def extract_bank(self, text: str):
 
