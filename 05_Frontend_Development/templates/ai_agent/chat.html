@@ -1,0 +1,63 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}AI Investigation Agent{% endblock %}
+
+{% block content %}
+
+<div class="container mx-auto px-6 py-8">
+
+    <div class="max-w-6xl mx-auto">
+
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold">
+                AI Investigation Agent
+            </h1>
+
+            <p class="mt-2 text-gray-400">
+                Ask security-related questions or investigate threats using RakshakAI's knowledge base.
+            </p>
+        </div>
+
+        <div class="card">
+
+            <form id="agentForm">
+
+                <div class="mb-6">
+
+                    <label class="block mb-2">
+                        Investigation Query
+                    </label>
+
+                    <textarea
+                        id="query"
+                        class="w-full"
+                        rows="6"
+                        placeholder="Ask a cybersecurity or fraud investigation question..."
+                        required
+                    ></textarea>
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+                    Investigate
+                </button>
+
+            </form>
+
+        </div>
+
+        <div
+            id="agentResult"
+            class="hidden mt-8"
+        ></div>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/ai_agent.js') }}"></script>
+
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}User Profile{% endblock %}
+
+{% block content %}
+
+<div class="container mx-auto px-6 py-8">
+
+    <div class="max-w-5xl mx-auto">
+
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold">
+                User Profile
+            </h1>
+
+            <p class="mt-2 text-gray-400">
+                Manage your profile, preferences, API keys and account settings.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+            <div class="card">
+
+                <h2 class="text-xl font-semibold mb-4">
+                    Profile Information
+                </h2>
+
+                <div id="profileInfo">
+                    Loading profile...
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <h2 class="text-xl font-semibold mb-4">
+                    Preferences
+                </h2>
+
+                <div id="preferencesInfo">
+                    Loading preferences...
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="card mt-6">
+
+            <h2 class="text-xl font-semibold mb-4">
+                API Keys
+            </h2>
+
+            <div id="apiKeys">
+                Loading API Keys...
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+
+{% endblock %}

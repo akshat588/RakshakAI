@@ -1,0 +1,30 @@
+{
+  "name": "rakshakai",
+  "version": "1.0.0",
+  "description": "<div align=\"center\">",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "playwright test --config=06_Testing/playwright/e2e/playwright.config.ts",
+    "test:headed": "playwright test --headed --config=06_Testing/playwright/e2e/playwright.config.ts",
+    "test:debug": "playwright test --debug --config=06_Testing/playwright/e2e/playwright.config.ts",
+    "test:report": "playwright show-report 06_Testing/playwright/reports"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akshat588/RakshakAI.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/akshat588/RakshakAI/issues"
+  },
+  "homepage": "https://github.com/akshat588/RakshakAI#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.61.1"
+  }
+}

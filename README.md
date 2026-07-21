@@ -1,450 +1,238 @@
-<div align="center">
+# 🛡️ RakshakAI v2
 
-# 🛡️ RakshakAI
+> **AI-Powered Cyber Fraud Detection & Digital Trust Intelligence
+> Platform**
 
-### AI Powered Cyber Threat Intelligence Platform
+RakshakAI v2 is a comprehensive AI-powered cybersecurity platform that
+helps users detect, investigate, explain, and report modern cyber
+threats through a single unified investigation engine.
 
-Detect • Analyze • Protect
+------------------------------------------------------------------------
 
-![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)
-![Flask](https://img.shields.io/badge/Flask-Web%20Framework-black?logo=flask)
-![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-ML-orange?logo=scikitlearn)
-![OpenCV](https://img.shields.io/badge/OpenCV-Computer%20Vision-green?logo=opencv)
+# 🚀 Highlights
 
+-   Universal Investigation Engine
+-   AI Investigation Agent (RAG)
+-   Threat Intelligence Platform
+-   Email, URL, SMS, WhatsApp, UPI, QR, Fake Job, Social Engineering,
+    Voice & Deepfake Analysis
+-   Explainable AI
+-   IOC Correlation
+-   MITRE ATT&CK Mapping
+-   Reputation Engine
+-   Threat Intelligence Dashboard
+-   Case Management
+-   PDF & JSON Reports
+-   Android APIs
+-   WhatsApp Bot
+-   Tailwind CSS + Flask Architecture
 
-An AI-powered cybersecurity platform that detects phishing attacks, malicious URLs, QR code scams, fake jobs, social engineering attacks, UPI fraud, SMS scams, WhatsApp scams and deepfake images using Machine Learning and Deep Learning.
+------------------------------------------------------------------------
 
-</div>
+# 🏗️ Architecture
 
----
-
-# 📖 Overview
-
-RakshakAI is a comprehensive AI-based cyber threat intelligence platform designed to identify and analyze modern cyber threats before users become victims.
-
-Instead of focusing on only one attack vector, RakshakAI combines multiple AI-powered security engines into a single platform, providing a unified dashboard for cyber threat analysis.
-
-The platform leverages Machine Learning, Natural Language Processing (NLP), Computer Vision, Explainable AI, and Threat Intelligence techniques to detect suspicious digital content.
-
----
-
-# ✨ Features
-
-✅ Email Phishing Detection
-
-✅ URL Phishing Detection
-
-✅ SMS Scam Detection
-
-✅ WhatsApp Scam Detection
-
-✅ Fake Job Detection
-
-✅ Social Engineering Detection
-
-✅ UPI Fraud Detection
-
-✅ QR Code Threat Detection
-
-✅ Deepfake Image Detection
-
-✅ Explainable AI Results
-
-✅ Threat Risk Scoring
-
-✅ Live Dashboard
-
-✅ Scan History
-
----
-
-# 🏗️ System Architecture
-
-```text
-                    USER
-                      │
-                      ▼
-              Web Dashboard
-      (HTML + Tailwind + JavaScript)
-                      │
-                      ▼
-                Flask Routes
-                      │
-                      ▼
-             Analyzer APIs
-───────────────────────────────────────
- Email Analyzer
- URL Analyzer
- SMS Analyzer
- WhatsApp Analyzer
- Fake Job Analyzer
- Social Engineering Analyzer
- UPI Analyzer
- QR Analyzer
- Deepfake Analyzer
-───────────────────────────────────────
-                      │
-                      ▼
-                AI Models
-───────────────────────────────────────
- Logistic Regression
- Linear SVM
- Naive Bayes
- CNN (Deepfake Detection)
-───────────────────────────────────────
-                      │
-                      ▼
-               Threat Engine
-───────────────────────────────────────
- Risk Score
- Confidence
- Severity
- Threat Explanation
- Recommendations
-───────────────────────────────────────
-                      │
-                      ▼
-              Scan History
-                      │
-                      ▼
-            Dashboard Results
+``` text
+                 User
+                   │
+                   ▼
+        Universal Investigation UI
+                   │
+                   ▼
+             Flask Backend APIs
+                   │
+        ┌──────────┴──────────┐
+        ▼                     ▼
+ Universal Engine      AI Investigation Agent
+        │                     │
+        └──────────┬──────────┘
+                   ▼
+        Multi-Analyzer Execution Engine
+                   │
+ ┌──────────────────────────────────────────────┐
+ │ Email │ URL │ SMS │ WhatsApp │ UPI │ QR      │
+ │ Fake Job │ Social Engineering │ Voice │ Deepfake │
+ └──────────────────────────────────────────────┘
+                   │
+                   ▼
+      Threat Intelligence & Reputation Engine
+                   │
+                   ▼
+    IOC Correlation • MITRE Mapping • Reports
+                   │
+                   ▼
+ Dashboard • Android APIs • WhatsApp Bot
 ```
 
----
+------------------------------------------------------------------------
 
-# 🧠 AI Models Used
+# 📦 Major Features
 
-| Module | Algorithm |
-|---------|-----------|
-| Email Detection | Logistic Regression |
-| URL Detection | Linear SVM / Logistic Regression |
-| SMS Detection | Multinomial Naive Bayes |
-| WhatsApp Detection | Logistic Regression |
-| Fake Job Detection | Logistic Regression |
-| Social Engineering Detection | Logistic Regression |
-| UPI Fraud Detection | Rule-Based + Machine Learning |
-| QR Detection | URL Detection + Threat Analysis |
-| Deepfake Detection | Convolutional Neural Network (CNN) |
+## Universal Investigation
 
----
+Analyze any supported cyber threat through one interface.
 
-# ⚙️ Machine Learning Pipeline
+## Detection Modules
 
-```text
-Dataset
-      │
-      ▼
-Data Cleaning
-      │
-      ▼
-Text Preprocessing
-      │
-      ▼
-TF-IDF Vectorization
-      │
-      ▼
-Train/Test Split
-      │
-      ▼
-Model Training
-      │
-      ▼
-Evaluation
-      │
-      ▼
-Best Model Selection
-      │
-      ▼
-Joblib Serialization
-      │
-      ▼
-Flask Integration
-      │
-      ▼
-Real-Time Prediction
-```
+-   Email Phishing
+-   URL Phishing
+-   SMS Scam
+-   WhatsApp Scam
+-   UPI Fraud
+-   QR Code Threat
+-   Fake Job Detection
+-   Social Engineering Detection
+-   Voice Scam Detection
+-   Deepfake Image Detection
 
----
+## AI Investigation Agent (RAG)
+
+-   Knowledge Retrieval
+-   Context-aware Investigation
+-   Explainable AI
+-   Investigation Reasoning
+-   Executive Summaries
+
+## Threat Intelligence
+
+-   IOC Correlation
+-   Reputation Checking
+-   Threat Campaign Mapping
+-   MITRE ATT&CK Mapping
+-   Threat Timeline
+
+## Reports
+
+-   PDF
+-   JSON
+-   Executive Summary
+-   Technical Findings
+-   Recommendations
+
+------------------------------------------------------------------------
+
+# 🧠 AI Models
+
+  Module               Model
+  -------------------- ----------------------------------
+  Email                Logistic Regression
+  URL                  Linear SVM / Logistic Regression
+  SMS                  Multinomial Naive Bayes
+  WhatsApp             Logistic Regression
+  Fake Job             Logistic Regression
+  Social Engineering   Logistic Regression
+  QR                   ML + Threat Analysis
+  Voice                Speech + ML Pipeline
+  Deepfake             CNN
+
+------------------------------------------------------------------------
 
 # 🛠️ Technology Stack
 
-### Backend
+**Backend** - Python - Flask - REST APIs
 
-- Python
-- Flask
-- REST APIs
-- Jinja2
+**Frontend** - Tailwind CSS - Jinja2 - Vanilla JavaScript
 
-### Frontend
+**Machine Learning** - Scikit-learn - PyTorch - OpenCV - Pandas -
+NumPy - Joblib
 
-- HTML5
-- Tailwind CSS
-- Vanilla JavaScript
-
-### Machine Learning
-
-- Scikit-learn
-- Pandas
-- NumPy
-- Joblib
-
-### Computer Vision
-
-- OpenCV
-- CNN
-
----
+------------------------------------------------------------------------
 
 # 📂 Project Structure
 
-```
+``` text
 RakshakAI/
-
-│
-├── 01_Project_Planning_Research/
-├── 02_Dataset_Design_Collection/
+├── 01_Dataset_Generation/
+├── 02_Data_Preprocessing/
 ├── 03_AI_Model_Development/
 ├── 04_Backend_Development/
-├── 05_Frontend_Development/
-│
-├── Assets/
-│
+├── 05_Frontend/
+├── 06_Testing/
 ├── docs/
-│
-├── README.md
-├── requirements.txt
-└── LICENSE
+├── reports/
+├── uploads/
+├── app.py
+└── README.md
 ```
 
----
+------------------------------------------------------------------------
 
-# 🚀 Installation
+# ⚙️ Installation
 
-Clone the repository
-
-```bash
+``` bash
 git clone https://github.com/akshat588/RakshakAI.git
-```
-
-Go inside the project
-
-```bash
 cd RakshakAI
-```
-
-Create Virtual Environment
-
-```bash
 python -m venv venv
 ```
 
-Activate Environment
-
 Windows
 
-```bash
+``` bash
 venv\Scripts\activate
 ```
 
-Linux / Mac
+Linux
 
-```bash
+``` bash
 source venv/bin/activate
 ```
 
-Install dependencies
+Install:
 
-```bash
+``` bash
 pip install -r requirements.txt
+npm install
+npm run build
 ```
 
-Run Flask
+Run:
 
-```bash
-python 04_Backend_Development/app.py
+``` bash
+python app.py
 ```
 
-Open
+------------------------------------------------------------------------
 
-```
-http://127.0.0.1:5000
-```
+# 🧪 Testing
 
----
-
-# 📊 Threat Analysis Workflow
-
-```text
-User Input
-
-↓
-
-Flask Route
-
-↓
-
-Analyzer API
-
-↓
-
-Data Preprocessing
-
-↓
-
-AI Model Prediction
-
-↓
-
-Threat Engine
-
-↓
-
-Risk Calculation
-
-↓
-
-Explainable AI
-
-↓
-
-Dashboard
+``` bash
+python -m unittest discover 06_Testing
 ```
 
----
-
-# 🎯 Explainable AI
-
-RakshakAI does not simply classify data as Safe or Malicious.
-
-Each prediction includes:
-
-- Threat Category
-- Confidence Score
-- Risk Level
-- Risk Score
-- AI Explanation
-- Security Recommendations
-
-This helps users understand *why* a prediction was made.
-
----
-
-# 📈 Risk Levels
-
-| Risk Score | Level |
-|------------|-------|
-| 0 – 25 | Low |
-| 26 – 50 | Medium |
-| 51 – 75 | High |
-| 76 – 100 | Critical |
-
----
+------------------------------------------------------------------------
 
 # 📸 Screenshots
 
-## Dashboard
+Add screenshots for:
 
-```
-Assets/screenshots/dashboard.png
-```
+-   Dashboard
+-   Universal Investigation
+-   Email Analyzer
+-   URL Analyzer
+-   QR Analyzer
+-   Voice Analyzer
+-   Deepfake Analyzer
+-   AI Investigation Agent
 
-## Email Analyzer
+------------------------------------------------------------------------
 
-```
-Assets/screenshots/email.png
-```
+# 🗺️ Roadmap
 
-## URL Analyzer
+-   Browser Extension
+-   Cloud Deployment
+-   SIEM Integration
+-   SOC Dashboard
+-   Threat Feed Automation
 
-```
-Assets/screenshots/url.png
-```
-
-## QR Analyzer
-
-```
-Assets/screenshots/qr.png
-```
-
-## UPI Analyzer
-
-```
-Assets/screenshots/upi.png
-```
-
-## Deepfake Detection
-
-```
-Assets/screenshots/deepfake.png
-```
-
-*(Add screenshots here after uploading them to the repository.)*
-
----
-
-# 📚 Datasets
-
-The project uses multiple datasets for different cyber threat categories, including:
-
-- Email Phishing
-- Malicious URLs
-- SMS Scams
-- WhatsApp Scams
-- Fake Job Postings
-- Social Engineering Messages
-- UPI Fraud
-- QR Threat Detection
-- Deepfake Images
-
----
-
-# 🔮 Future Enhancements
-
-- Voice Scam Detection
-- Browser Extension
-- Email Integration
-- WhatsApp Integration
-- Mobile Application
-- Cloud Deployment
-- Real-Time Threat Intelligence
-- SIEM Integration
-- AI Security Assistant
-- Multilingual Support
-
----
-
-# 📌 Advantages
-
-- Modular Architecture
-- Multiple Detection Engines
-- Fast Predictions
-- Explainable AI
-- User-Friendly Dashboard
-- Easy to Extend
-- AI-Based Threat Analysis
-
----
-
-# ⚠️ Limitations
-
-- Performance depends on dataset quality.
-- Models require periodic retraining.
-- Deepfake detection depends on image quality.
-- Voice scam detection is planned for future versions due to the lack of a sufficiently large multilingual dataset.
-
----
-
+------------------------------------------------------------------------
 
 # 📄 License
 
-This project is licensed under the MIT License.
+MIT License.
 
----
+------------------------------------------------------------------------
 
-<div align="center">
+::: {align="center"}
+### ⭐ If you like this project, consider giving it a Star!
 
-### ⭐ If you found this project useful, consider giving it a Star ⭐
-
-Made with ❤️ for Cybersecurity & AI
-
-</div>
+Made with ❤️ for Cybersecurity, AI & Digital Trust.
+:::

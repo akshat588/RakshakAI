@@ -1,0 +1,12 @@
+# ============================================
+# RakshakAI v2.0 Development Dependencies
+# ============================================
+
+pytest
+playwright
+ruff
+black
+isort
+mypy
+bandit
+pre-commit

@@ -1,0 +1,90 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Report Center{% endblock %}
+
+{% block content %}
+
+<div class="container mx-auto px-6 py-8">
+
+    <div class="max-w-7xl mx-auto">
+
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold">
+                Investigation Report Center
+            </h1>
+
+            <p class="mt-2 text-gray-400">
+                Generate, download and manage investigation reports.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+            <div class="card">
+
+                <h2 class="text-xl font-semibold mb-4">
+                    Generate Report
+                </h2>
+
+                <form id="reportForm">
+
+                    <div class="mb-4">
+                        <label class="block mb-2">Case ID</label>
+
+                        <input
+                            id="caseId"
+                            type="text"
+                            class="w-full"
+                            placeholder="Enter Investigation ID"
+                            required
+                        >
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="block mb-2">Report Format</label>
+
+                        <select
+                            id="reportFormat"
+                            class="w-full"
+                        >
+                            <option value="pdf">PDF</option>
+                            <option value="json">JSON</option>
+                        </select>
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                    >
+                        Generate Report
+                    </button>
+
+                </form>
+
+            </div>
+
+            <div class="lg:col-span-2">
+
+                <div class="card">
+
+                    <h2 class="text-xl font-semibold mb-4">
+                        Report Status
+                    </h2>
+
+                    <div id="reportResult">
+                        No report generated yet.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/report_center.js') }}"></script>
+
+{% endblock %}

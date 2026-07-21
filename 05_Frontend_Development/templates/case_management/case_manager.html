@@ -1,0 +1,72 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Case Management{% endblock %}
+
+{% block content %}
+
+<div class="container mx-auto px-6 py-8">
+
+    <div class="max-w-7xl mx-auto">
+
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold">
+                Case Management
+            </h1>
+
+            <p class="mt-2 text-gray-400">
+                View, search, filter and manage investigation cases.
+            </p>
+        </div>
+
+        <div class="card mb-6">
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+                <input
+                    id="searchBox"
+                    type="text"
+                    placeholder="Search cases..."
+                    class="w-full"
+                >
+
+                <select
+                    id="riskFilter"
+                    class="w-full"
+                >
+                    <option value="">All Risk Levels</option>
+                    <option value="LOW">LOW</option>
+                    <option value="MEDIUM">MEDIUM</option>
+                    <option value="HIGH">HIGH</option>
+                    <option value="CRITICAL">CRITICAL</option>
+                </select>
+
+                <button
+                    id="searchButton"
+                    class="btn btn-primary"
+                >
+                    Search
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <h2 class="text-xl font-semibold mb-4">
+                Investigation Cases
+            </h2>
+
+            <div id="caseList">
+                Loading...
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/case_manager.js') }}"></script>
+
+{% endblock %}
