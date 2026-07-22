@@ -1,442 +1,269 @@
 {% extends "layout/base.html" %}
 
 {% block title %}
-RakshakAI | SMS Threat Intelligence
+RakshakAI | SMS Analyzer
 {% endblock %}
 
 {% block content %}
 
-<div class="analyzer-page fade-up">
+<div class="space-y-8 fade-up">
 
-    <!-- =============================================== -->
-    <!-- HERO -->
-    <!-- =============================================== -->
+    <!-- ========================= -->
+    <!-- HEADER -->
+    <!-- ========================= -->
 
-    <section class="hero">
+    <section class="flex flex-col xl:flex-row justify-between gap-6">
 
-        <div class="flex-between flex-wrap gap-5">
+        <div>
 
-            <div>
+            <p class="text-sm text-muted">
 
-                <span class="badge badge-primary">
+                Dashboard / AI Analyzers
 
-                    SMS Threat Intelligence
+            </p>
 
-                </span>
+            <h1 class="text-4xl font-bold mt-2">
 
-                <h1 class="mt-4">
+                SMS Threat Analyzer
 
-                    AI Powered SMS Investigation
+            </h1>
 
-                </h1>
+            <p class="text-muted mt-3 max-w-3xl">
 
-                <p class="mt-3 max-w-3xl">
-
-                    Detect phishing SMS, banking scams,
-                    OTP fraud, fake offers, lottery scams,
-                    malicious links and social engineering
-                    messages using RakshakAI AI.
-
-                </p>
-
-            </div>
-
-            <div class="glass p-5 rounded-lg w-[320px]">
-
-                <div class="flex-between">
-
-                    <div>
-
-                        <p class="text-muted">
-
-                            AI Engine
-
-                        </p>
-
-                        <h3>
-
-                            SMS Detector
-
-                        </h3>
-
-                    </div>
-
-                    <div class="status-pill status-online">
-
-                        <span class="status-dot"></span>
-
-                        Online
-
-                    </div>
-
-                </div>
-
-                <div class="divider"></div>
-
-                <div class="grid grid-2 grid-gap">
-
-                    <div>
-
-                        <h2>
-
-                            97.2%
-
-                        </h2>
-
-                        <p>
-
-                            Accuracy
-
-                        </p>
-
-                    </div>
-
-                    <div>
-
-                        <h2>
-
-                            5
-
-                        </h2>
-
-                        <p>
-
-                            Threat Types
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- =============================================== -->
-    <!-- SMS WORKSPACE -->
-    <!-- =============================================== -->
-
-    <section class="card">
-
-        <div class="card-header">
-
-            <div>
-
-                <h2>
-
-                    SMS Investigation Workspace
-
-                </h2>
-
-                <small>
-
-                    Paste the suspicious SMS message for analysis.
-
-                </small>
-
-            </div>
-
-            <div
-                id="charCount"
-                class="badge badge-primary">
-
-                0 Characters
-
-            </div>
-
-        </div>
-
-        <textarea
-
-            id="smsText"
-
-            rows="14"
-
-            placeholder="Paste suspicious SMS here..."
-
-        ></textarea>
-
-        <div class="flex gap-4 flex-wrap mt-6">
-
-            <button
-                id="scanBtn"
-                class="btn btn-primary">
-
-                Analyze SMS
-
-            </button>
-
-            <button
-                id="sampleBtn"
-                class="btn btn-outline">
-
-                Load Sample
-
-            </button>
-
-            <button
-                id="clearBtn"
-                class="btn btn-outline">
-
-                Reset
-
-            </button>
-
-        </div>
-
-    </section>
-
-    <!-- =============================================== -->
-    <!-- INFORMATION -->
-    <!-- =============================================== -->
-
-    <section class="dashboard-grid mt-6">
-
-        <div class="card">
-
-            <div class="card-header">
-
-                <h3>
-
-                    Detection Capabilities
-
-                </h3>
-
-            </div>
-
-            <div class="timeline">
-
-                <div class="timeline-item">
-
-                    <div class="timeline-marker"></div>
-
-                    <div class="timeline-content">
-
-                        <h4>
-
-                            Spam SMS
-
-                        </h4>
-
-                        <p>
-
-                            Unwanted promotional and scam messages.
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <div class="timeline-item">
-
-                    <div class="timeline-marker"></div>
-
-                    <div class="timeline-content">
-
-                        <h4>
-
-                            OTP Fraud
-
-                        </h4>
-
-                        <p>
-
-                            OTP stealing attempts.
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <div class="timeline-item">
-
-                    <div class="timeline-marker"></div>
-
-                    <div class="timeline-content">
-
-                        <h4>
-
-                            Banking Scams
-
-                        </h4>
-
-                        <p>
-
-                            Financial fraud detection.
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <div class="timeline-item">
-
-                    <div class="timeline-marker"></div>
-
-                    <div class="timeline-content">
-
-                        <h4>
-
-                            Fake Offers
-
-                        </h4>
-
-                        <p>
-
-                            Lottery and promotional scams.
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <div class="timeline-item">
-
-                    <div class="timeline-marker"></div>
-
-                    <div class="timeline-content">
-
-                        <h4>
-
-                            Malicious Links
-
-                        </h4>
-
-                        <p>
-
-                            Embedded phishing URLs.
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="card">
-
-            <div class="card-header">
-
-                <h3>
-
-                    Security Checklist
-
-                </h3>
-
-            </div>
-
-            <div class="recommendation-list">
-
-                <div class="recommendation-item">
-
-                    <i data-lucide="shield-check"></i>
-
-                    <span>
-
-                        Never share OTPs.
-
-                    </span>
-
-                </div>
-
-                <div class="recommendation-item">
-
-                    <i data-lucide="shield-check"></i>
-
-                    <span>
-
-                        Ignore suspicious prize messages.
-
-                    </span>
-
-                </div>
-
-                <div class="recommendation-item">
-
-                    <i data-lucide="shield-check"></i>
-
-                    <span>
-
-                        Verify banking alerts directly.
-
-                    </span>
-
-                </div>
-
-                <div class="recommendation-item">
-
-                    <i data-lucide="shield-check"></i>
-
-                    <span>
-
-                        Do not click unknown links.
-
-                    </span>
-
-                </div>
-
-                <div class="recommendation-item">
-
-                    <i data-lucide="shield-check"></i>
-
-                    <span>
-
-                        Report spam immediately.
-
-                    </span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- =============================================== -->
-    <!-- LOADING -->
-    <!-- =============================================== -->
-
-    <section
-        id="loadingCard"
-        class="card hidden">
-
-        <div class="loading-card">
-
-            <div class="loading-spinner"></div>
-
-            <h2>
-
-                AI Investigation Running
-
-            </h2>
-
-            <p>
-
-                Initializing SMS Intelligence Engine...
+                Detect spam messages, phishing SMS, OTP fraud, banking scams and malicious text messages using RakshakAI AI.
 
             </p>
 
         </div>
 
+        <div class="glass rounded-3xl px-6 py-5 min-w-[260px]">
+
+            <div class="flex items-center gap-4">
+
+                <div class="w-4 h-4 rounded-full bg-success animate-pulse"></div>
+
+                <div>
+
+                    <h3 class="font-semibold">
+
+                        AI Engine Status
+
+                    </h3>
+
+                    <p class="text-muted text-sm">
+
+                        SMS Detector Online
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </section>
 
-    <!-- =============================================== -->
-    <!-- RESULT -->
-    <!-- =============================================== -->
+    <!-- ========================= -->
+    <!-- MAIN -->
+    <!-- ========================= -->
+
+    <section class="grid xl:grid-cols-3 gap-6">
+
+        <!-- LEFT -->
+
+        <div class="xl:col-span-2 glass rounded-3xl p-8">
+
+            <div class="flex justify-between items-center mb-6">
+
+                <h2 class="text-2xl font-bold">
+
+                    SMS Content
+
+                </h2>
+
+                <span
+                    id="charCount"
+                    class="font-mono text-muted">
+
+                    0 Characters
+
+                </span>
+
+            </div>
+
+            <textarea
+
+                id="smsText"
+
+                rows="16"
+
+                placeholder="Paste suspicious SMS here..."
+
+                class="w-full rounded-2xl bg-background border border-white/10 p-6 resize-none outline-none focus:border-primary transition"
+
+            ></textarea>
+
+            <div class="flex flex-wrap gap-4 mt-6">
+
+                <button
+
+                    id="sampleBtn"
+
+                    class="glass px-6 py-3 rounded-2xl">
+
+                    Load Sample
+
+                </button>
+
+                <button
+
+                    id="clearBtn"
+
+                    class="glass px-6 py-3 rounded-2xl">
+
+                    Clear
+
+                </button>
+
+                <button
+
+                    id="scanBtn"
+
+                    class="bg-primary text-black font-bold px-8 py-3 rounded-2xl">
+
+                    Analyze SMS
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- RIGHT -->
+
+        <div class="space-y-6">
+
+            <div class="glass rounded-3xl p-6">
+
+                <h3 class="text-xl font-bold mb-5">
+
+                    Detection
+
+                </h3>
+
+                <div class="space-y-4">
+
+                    <div class="flex justify-between">
+
+                        <span>Spam SMS</span>
+
+                        <span class="text-success">✓</span>
+
+                    </div>
+
+                    <div class="flex justify-between">
+
+                        <span>OTP Scam</span>
+
+                        <span class="text-success">✓</span>
+
+                    </div>
+
+                    <div class="flex justify-between">
+
+                        <span>Banking Fraud</span>
+
+                        <span class="text-success">✓</span>
+
+                    </div>
+
+                    <div class="flex justify-between">
+
+                        <span>Prize Scam</span>
+
+                        <span class="text-success">✓</span>
+
+                    </div>
+
+                    <div class="flex justify-between">
+
+                        <span>Fake Offers</span>
+
+                        <span class="text-success">✓</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="glass rounded-3xl p-6">
+
+                <h3 class="text-xl font-bold mb-5">
+
+                    Safety Tips
+
+                </h3>
+
+                <ul class="space-y-3 text-muted">
+
+                    <li>• Never share OTP.</li>
+
+                    <li>• Ignore prize messages.</li>
+
+                    <li>• Verify banking alerts.</li>
+
+                    <li>• Block unknown senders.</li>
+
+                    <li>• Report spam immediately.</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Loading -->
 
     <section
+        id="loadingCard"
+        class="hidden glass rounded-3xl p-8">
+
+        <div class="flex items-center gap-6">
+
+            <div class="w-12 h-12 rounded-full border-4 border-primary border-t-transparent animate-spin">
+
+            </div>
+
+            <div>
+
+                <h2 class="text-2xl font-bold">
+
+                    AI Analysis Running
+
+                </h2>
+
+                <p class="text-muted mt-2">
+
+                    RakshakAI is analyzing the SMS...
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Result -->
+
+    <section
+
         id="resultContainer"
+
         class="hidden">
 
     </section>
@@ -447,56 +274,51 @@ RakshakAI | SMS Threat Intelligence
 
 {% block extra_js %}
 
-<script src="{{ url_for('static', filename='js/result_renderer.js') }}"></script>
-
 <script>
 
-/* ==========================================================
-DOM ELEMENTS
-========================================================== */
+const smsText=document.getElementById("smsText");
+const counter=document.getElementById("charCount");
 
-const smsText =
-document.getElementById("smsText");
+const sampleBtn=document.getElementById("sampleBtn");
+const clearBtn=document.getElementById("clearBtn");
+const scanBtn=document.getElementById("scanBtn");
 
-const counter =
-document.getElementById("charCount");
+const loadingCard=document.getElementById("loadingCard");
+const resultContainer=document.getElementById("resultContainer");
 
-const sampleBtn =
-document.getElementById("sampleBtn");
+/* ===========================
+Character Counter
+=========================== */
 
-const clearBtn =
-document.getElementById("clearBtn");
+smsText.addEventListener("input",()=>{
 
-const scanBtn =
-document.getElementById("scanBtn");
+    counter.textContent=`${smsText.value.length} Characters`;
 
-const loadingCard =
-document.getElementById("loadingCard");
+});
 
-const resultContainer =
-document.getElementById("resultContainer");
+/* ===========================
+Clear
+=========================== */
 
-/* ==========================================================
-CHARACTER COUNTER
-========================================================== */
+clearBtn.addEventListener("click",()=>{
 
-function updateCounter(){
+    smsText.value="";
 
-    counter.textContent =
-    `${smsText.value.length} Characters`;
+    counter.textContent="0 Characters";
 
-}
+    loadingCard.classList.add("hidden");
 
-smsText.addEventListener(
-    "input",
-    updateCounter
-);
+    resultContainer.classList.add("hidden");
 
-/* ==========================================================
-SAMPLE SMS
-========================================================== */
+});
 
-const SAMPLE_SMS = `Congratulations!
+/* ===========================
+Sample SMS
+=========================== */
+
+sampleBtn.addEventListener("click",()=>{
+
+smsText.value=`Congratulations!
 
 You have won ₹25,00,000 in our lucky draw.
 
@@ -506,463 +328,169 @@ https://claim-your-prize-now.com
 
 Offer expires today.`;
 
-/* ==========================================================
-LOAD SAMPLE
-========================================================== */
+counter.textContent=`${smsText.value.length} Characters`;
 
-function loadSample(){
+});
 
-    smsText.value = SAMPLE_SMS;
+/* ===========================
+Analyze SMS
+=========================== */
 
-    updateCounter();
+scanBtn.addEventListener("click",async()=>{
 
-    smsText.focus();
+const text=smsText.value.trim();
 
-}
+if(text===""){
 
-sampleBtn.addEventListener(
-    "click",
-    loadSample
-);
+alert("Please paste an SMS first.");
 
-/* ==========================================================
-CLEAR
-========================================================== */
-
-function clearWorkspace(){
-
-    smsText.value="";
-
-    updateCounter();
-
-    loadingCard.classList.add("hidden");
-
-    resultContainer.classList.add("hidden");
-
-    window.scrollTo({
-
-        top:0,
-
-        behavior:"smooth"
-
-    });
+return;
 
 }
 
-clearBtn.addEventListener(
-    "click",
-    clearWorkspace
-);
+scanBtn.disabled=true;
 
-/* ==========================================================
-LOADING
-========================================================== */
+scanBtn.innerHTML="Analyzing...";
 
-const loadingSteps=[
+loadingCard.classList.remove("hidden");
 
-"Initializing SMS Intelligence Engine...",
+resultContainer.classList.add("hidden");
 
-"Extracting SMS Features...",
+try{
 
-"Detecting Scam Patterns...",
+const response=await fetch("/api/sms",{
 
-"Analyzing Embedded Links...",
+method:"POST",
 
-"Running AI Detection Models...",
+headers:{
 
-"Calculating Threat Score...",
+"Content-Type":"application/json"
 
-"Generating Investigation Report..."
+},
 
-];
+body:JSON.stringify({
 
-let loadingInterval=null;
+text:text
 
-function startLoading(){
+})
 
-    loadingCard.classList.remove("hidden");
+});
 
-    resultContainer.classList.add("hidden");
+const data=await response.json();
 
-    const text =
-    loadingCard.querySelector("p");
+loadingCard.classList.add("hidden");
 
-    let index=0;
+resultContainer.classList.remove("hidden");
 
-    text.textContent=loadingSteps[0];
-
-    loadingInterval=setInterval(()=>{
-
-        index++;
-
-        if(index>=loadingSteps.length){
-
-            index=loadingSteps.length-1;
-
-        }
-
-        text.textContent=
-        loadingSteps[index];
-
-    },700);
+renderResult(data);
 
 }
 
-function stopLoading(){
+catch(error){
 
-    clearInterval(loadingInterval);
+loadingCard.classList.add("hidden");
 
-    loadingCard.classList.add("hidden");
+resultContainer.classList.remove("hidden");
 
-}
+resultContainer.innerHTML=`
 
-/* ==========================================================
-BUTTON STATE
-========================================================== */
+<div class="glass rounded-3xl p-8 border border-red-500/30">
 
-function setButtons(state){
-
-    scanBtn.disabled=state;
-
-    scanBtn.innerHTML=
-
-        state ?
-
-        "Analyzing..."
-
-        :
-
-        "Analyze SMS";
-
-}
-
-/* ==========================================================
-SCAN SMS
-========================================================== */
-
-async function scanSMS(){
-
-    const text = smsText.value.trim();
-
-    if(text===""){
-
-        showToast(
-
-            "Please enter an SMS.",
-
-            "warning"
-
-        );
-
-        return;
-
-    }
-
-    setButtons(true);
-
-    startLoading();
-
-    try{
-
-        const response = await fetch(
-
-            "/api/sms",
-
-            {
-
-                method:"POST",
-
-                headers:{
-
-                    "Content-Type":"application/json"
-
-                },
-
-                body:JSON.stringify({
-
-                    text:text
-
-                })
-
-            }
-
-        );
-
-        const data = await response.json();
-
-        if(!data.success){
-
-            throw new Error(
-
-                data.error ||
-
-                "Analysis Failed"
-
-            );
-
-        }
-
-        stopLoading();
-
-        resultContainer.classList.remove("hidden");
-
-        renderResult(data);
-
-        resultContainer.scrollIntoView({
-
-            behavior:"smooth",
-
-            block:"start"
-
-        });
-
-    }
-
-    catch(error){
-
-        stopLoading();
-
-        resultContainer.classList.remove("hidden");
-
-        resultContainer.innerHTML=`
-
-<div class="alert alert-danger">
-
-<div>
-
-<h3>
+<h2 class="text-2xl font-bold text-danger">
 
 Analysis Failed
 
-</h3>
+</h2>
 
-<p class="mt-3">
+<p class="text-muted mt-4">
 
-${error.message}
+Unable to connect to RakshakAI backend.
 
 </p>
-
-</div>
 
 </div>
 
 `;
 
-    }
+}
 
-    finally{
+finally{
 
-        setButtons(false);
+scanBtn.disabled=false;
 
-    }
+scanBtn.innerHTML="Analyze SMS";
 
 }
 
-scanBtn.addEventListener(
+});
 
-    "click",
-
-    scanSMS
-
-);
-
-/* ==========================================================
-RESULT RENDERING
-========================================================== */
+/* ===========================
+Render Result
+=========================== */
 
 function renderResult(data){
 
-    const score = RESULT_ENGINE.getThreatScore(data);
+let score=15;
+let badge="bg-success/20 text-success";
+let recommendation="The SMS appears to be safe.";
 
-    const badge = RESULT_ENGINE.getBadge(data.risk);
+if(data.risk==="MEDIUM"){
 
-    const confidence = RESULT_ENGINE.getConfidence(data);
+score=60;
 
-    let recommendation =
-        "No major phishing indicators were detected.";
+badge="bg-warning/20 text-warning";
 
-    if(data.risk==="MEDIUM"){
+recommendation="Exercise caution before responding to this SMS.";
 
-        recommendation =
-        "Exercise caution before interacting with this sms.";
+}
 
-    }
+if(data.risk==="HIGH"){
 
-    else if(data.risk==="HIGH"){
+score=90;
 
-        recommendation =
-        "This sms appears malicious. Avoid clicking links, downloading attachments, or replying.";
+badge="bg-danger/20 text-danger";
 
-    }
+recommendation="Potential spam or phishing SMS detected. Do not click any links or share personal information.";
 
-    else if(data.risk==="CRITICAL"){
+}
 
-        recommendation =
-        "Critical phishing attack detected. Delete the sms immediately and report it to your security team.";
+if(data.risk==="CRITICAL"){
 
-    }
+score=100;
 
-    resultContainer.innerHTML = `
+badge="bg-danger text-white";
 
-<div class="dashboard-section">
+recommendation="Critical malicious SMS detected. Delete the message immediately and block the sender.";
 
-<div class="kpi-grid">
+}
 
-<div class="kpi-card">
+const confidence=data.confidence ?? "Unavailable";
 
-<div class="kpi-icon">
+resultContainer.innerHTML=`
 
-<i data-lucide="shield-alert"></i>
+<div class="space-y-8">
 
-</div>
+<div class="grid xl:grid-cols-3 gap-6">
 
-<span>Threat Score</span>
+<div class="glass rounded-3xl p-7">
 
-<h2>${score}%</h2>
+<p class="text-muted">
 
-<div class="progress mt-4">
-
-<div class="progress-bar" style="width:${score}%"></div>
-
-</div>
-
-</div>
-
-<div class="kpi-card">
-
-<div class="kpi-icon">
-
-<i data-lucide="triangle-alert"></i>
-
-</div>
-
-<span>Risk Level</span>
-
-<h2>${data.risk}</h2>
-
-<div class="badge ${badge} mt-3">
-
-${data.result}
-
-</div>
-
-</div>
-
-<div class="kpi-card">
-
-<div class="kpi-icon">
-
-<i data-lucide="brain"></i>
-
-</div>
-
-<span>AI Confidence</span>
-
-<h2>${confidence}</h2>
-
-<p class="mt-2">
-
-${data.engine}
+Threat Score
 
 </p>
 
-</div>
+<h2 class="text-5xl font-bold mt-3">
 
-</div>
+${score}<span class="text-2xl">%</span>
 
-<div class="dashboard-grid mt-5">
+</h2>
 
-<div class="card">
+<div class="w-full h-3 rounded-full bg-white/10 mt-6">
 
-<div class="card-header">
-
-<h3>
-
-Executive Summary
-
-</h3>
-
-</div>
-
-<div class="alert alert-primary">
-
-<div>
-
-<p>
-
-${recommendation}
-
-</p>
-
-</div>
-
-</div>
-
-<div class="divider"></div>
-
-<div class="result-grid">
-
-<div class="result-box">
-
-<h4>
-
-Prediction
-
-</h4>
-
-<p>
-
-${data.result}
-
-</p>
-
-</div>
-
-<div class="result-box">
-
-<h4>
-
-Risk
-
-</h4>
-
-<p>
-
-${data.risk}
-
-</p>
-
-</div>
-
-<div class="result-box">
-
-<h4>
-
-Confidence
-
-</h4>
-
-<p>
-
-${confidence}
-
-</p>
-
-</div>
-
-<div class="result-box">
-
-<h4>
-
-Scan ID
-
-</h4>
-
-<p class="font-mono">
-
-${data.scan_id}
-
-</p>
+<div
+class="h-3 rounded-full bg-primary"
+style="width:${score}%">
 
 </div>
 
@@ -970,177 +498,187 @@ ${data.scan_id}
 
 </div>
 
-<div class="card">
+<div class="glass rounded-3xl p-7">
 
-<div class="card-header">
-
-<h3>
-
-Investigation Details
-
-</h3>
-
-</div>
-
-<div class="timeline">
-
-<div class="timeline-item">
-
-<div class="timeline-marker"></div>
-
-<div class="timeline-content">
-
-<h4>
-
-Threat Classification
-
-</h4>
-
-<p>
-
-${data.result}
-
-</p>
-
-</div>
-
-</div>
-
-<div class="timeline-item">
-
-<div class="timeline-marker"></div>
-
-<div class="timeline-content">
-
-<h4>
+<p class="text-muted">
 
 Risk Level
 
-</h4>
+</p>
 
-<p>
+<div class="mt-5">
+
+<span class="px-5 py-2 rounded-full font-bold ${badge}">
 
 ${data.risk}
 
-</p>
+</span>
 
 </div>
 
 </div>
 
-<div class="timeline-item">
+<div class="glass rounded-3xl p-7">
 
-<div class="timeline-marker"></div>
+<p class="text-muted">
 
-<div class="timeline-content">
-
-<h4>
-
-Detection Engine
-
-</h4>
-
-<p>
-
-${data.engine}
+Prediction
 
 </p>
 
-</div>
+<h2 class="text-3xl font-bold mt-4">
 
-</div>
+${data.result}
 
-<div class="timeline-item">
-
-<div class="timeline-marker"></div>
-
-<div class="timeline-content">
-
-<h4>
-
-Timestamp
-
-</h4>
-
-<p>
-
-${data.timestamp}
-
-</p>
+</h2>
 
 </div>
 
 </div>
 
-</div>
+<div class="grid xl:grid-cols-2 gap-6">
+
+    <!-- Scan Information -->
+
+    <div class="glass rounded-3xl p-7">
+
+        <h3 class="text-xl font-bold mb-6">
+
+            Scan Information
+
+        </h3>
+
+        <div class="space-y-5">
+
+            <div class="flex justify-between">
+
+                <span class="text-muted">
+
+                    AI Engine
+
+                </span>
+
+                <span>
+
+                    ${data.engine}
+
+                </span>
+
+            </div>
+
+            <div class="flex justify-between">
+
+                <span class="text-muted">
+
+                    Confidence
+
+                </span>
+
+                <span>
+
+                    ${confidence}
+
+                </span>
+
+            </div>
+
+            <div class="flex justify-between">
+
+                <span class="text-muted">
+
+                    Scan ID
+
+                </span>
+
+                <span class="font-mono">
+
+                    ${data.scan_id}
+
+                </span>
+
+            </div>
+
+            <div class="flex justify-between">
+
+                <span class="text-muted">
+
+                    Timestamp
+
+                </span>
+
+                <span>
+
+                    ${data.timestamp}
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- AI Recommendation -->
+
+    <div class="glass rounded-3xl p-7">
+
+        <h3 class="text-xl font-bold mb-6">
+
+            AI Recommendation
+
+        </h3>
+
+        <div class="rounded-2xl border border-primary/20 bg-primary/5 p-5">
+
+            <p class="leading-8 text-slate-300">
+
+                ${recommendation}
+
+            </p>
+
+        </div>
+
+    </div>
 
 </div>
 
-</div>
+<div class="glass rounded-3xl p-7">
 
-<div class="card mt-5">
-
-<div class="card-header">
-
-<h3>
+<h3 class="text-xl font-bold mb-6">
 
 Explainable AI
 
 </h3>
 
-</div>
+<div class="space-y-4">
 
-<div class="evidence-list">
+<div class="flex items-center gap-3">
 
-<div class="evidence-item">
+<span class="text-primary text-xl">➜</span>
 
-<i data-lucide="check-circle"></i>
-
-<div>
-
-<strong>Classification</strong>
-
-<p>
-
-Sms classified as <b>${data.result}</b>.
-
-</p>
+<span>
+SMS classified as <strong>${data.result}</strong>.
+</span>
 
 </div>
 
-</div>
+<div class="flex items-center gap-3">
 
-<div class="evidence-item">
+<span class="text-primary text-xl">➜</span>
 
-<i data-lucide="check-circle"></i>
-
-<div>
-
-<strong>Risk Assessment</strong>
-
-<p>
-
-Threat level detected as <b>${data.risk}</b>.
-
-</p>
+<span>
+Risk level detected as <strong>${data.risk}</strong>.
+</span>
 
 </div>
 
-</div>
+<div class="flex items-center gap-3">
 
-<div class="evidence-item">
+<span class="text-primary text-xl">➜</span>
 
-<i data-lucide="check-circle"></i>
-
-<div>
-
-<strong>Confidence</strong>
-
-<p>
-
-Prediction confidence is <b>${confidence}</b>.
-
-</p>
+<span>
+AI confidence: <strong>${confidence}</strong>.
+</span>
 
 </div>
 
@@ -1148,99 +686,47 @@ Prediction confidence is <b>${confidence}</b>.
 
 </div>
 
-</div>
+<div class="glass rounded-3xl p-7">
 
-<div class="card mt-5">
-
-<div class="card-header">
-
-<h3>
+<h3 class="text-xl font-bold mb-6">
 
 Threat Indicators
 
 </h3>
 
-</div>
+<div class="space-y-4">
 
-<div class="ioc-container">
+<div class="flex items-center gap-3">
 
-<div class="ioc-tag">
-
-Prediction :
-${data.result}
-
-</div>
-
-<div class="ioc-tag">
-
-Risk :
-${data.risk}
-
-</div>
-
-<div class="ioc-tag">
-
-Engine :
-${data.engine}
-
-</div>
-
-<div class="ioc-tag">
-
-Score :
-${score}%
-
-</div>
-
-</div>
-
-</div>
-
-<div class="card mt-5">
-
-<div class="card-header">
-
-<h3>
-
-Recommended Actions
-
-</h3>
-
-</div>
-
-<div class="recommendation-list">
-
-<div class="recommendation-item">
-
-<i data-lucide="shield-check"></i>
+<span class="text-danger text-xl">✔</span>
 
 <span>
 
-${recommendation}
+Prediction: ${data.result}
 
 </span>
 
 </div>
 
-<div class="recommendation-item">
+<div class="flex items-center gap-3">
 
-<i data-lucide="mail-warning"></i>
+<span class="text-danger text-xl">✔</span>
 
 <span>
 
-Do not click suspicious links or download unknown attachments.
+Risk Level: ${data.risk}
 
 </span>
 
 </div>
 
-<div class="recommendation-item">
+<div class="flex items-center gap-3">
 
-<i data-lucide="lock"></i>
+<span class="text-danger text-xl">✔</span>
 
 <span>
 
-Verify the sender independently before responding.
+Engine: ${data.engine}
 
 </span>
 
@@ -1250,31 +736,35 @@ Verify the sender independently before responding.
 
 </div>
 
-<div class="flex flex-wrap gap-4 mt-5">
+<!-- Action Buttons -->
+
+<div class="flex flex-wrap gap-4">
 
 <button
 id="newScan"
-class="btn btn-primary">
+class="bg-primary text-black font-bold px-6 py-3 rounded-2xl">
 
-New Investigation
+🔄 New Scan
 
 </button>
 
 <button
 id="copyResult"
-class="btn btn-outline">
+class="glass px-6 py-3 rounded-2xl">
 
-Copy Report
+📋 Copy Result
 
 </button>
 
 <button
 id="exportBtn"
-class="btn btn-outline">
+class="glass px-6 py-3 rounded-2xl">
 
-Export JSON
+⬇ Export JSON
 
 </button>
+
+</div>
 
 </div>
 
@@ -1282,69 +772,57 @@ Export JSON
 
 `;
 
-    lucide.createIcons();
+document.getElementById("copyResult").addEventListener("click",()=>{
 
-    document.getElementById("copyResult")
-    .addEventListener("click",()=>{
-
-        navigator.clipboard.writeText(
-
-`Prediction : ${data.result}
+const text=`
+Result : ${data.result}
 Risk : ${data.risk}
-Confidence : ${confidence}
 Engine : ${data.engine}
 Scan ID : ${data.scan_id}
-Timestamp : ${data.timestamp}`
+Timestamp : ${data.timestamp}
+`;
 
-        );
+navigator.clipboard.writeText(text);
 
-        showToast(
+showToast("Result copied successfully.", "success");
 
-            "Investigation copied.",
+});
 
-            "success"
+document.getElementById("exportBtn").addEventListener("click",()=>{
 
-        );
+const blob=new Blob(
+[JSON.stringify(data,null,4)],
+{type:"application/json"}
+);
 
-    });
+const a=document.createElement("a");
 
-    document.getElementById("exportBtn")
-    .addEventListener("click",()=>{
+a.href=URL.createObjectURL(blob);
 
-        const blob = new Blob(
+a.download=data.scan_id+".json";
 
-            [JSON.stringify(data,null,4)],
+a.click();
 
-            {
+});
+document.getElementById("newScan").addEventListener("click",()=>{
 
-                type:"application/json"
+smsText.value="";
 
-            }
+counter.textContent="0 Characters";
 
-        );
+resultContainer.classList.add("hidden");
 
-        const a = document.createElement("a");
+window.scrollTo({
 
-        a.href = URL.createObjectURL(blob);
+top:0,
 
-        a.download =
+behavior:"smooth"
 
-            data.scan_id + ".json";
+});
 
-        a.click();
-
-    });
-
-    document.getElementById("newScan")
-    .addEventListener("click",()=>{
-
-        clearWorkspace();
-
-    });
+});
 
 }
-
-lucide.createIcons();
 
 </script>
 

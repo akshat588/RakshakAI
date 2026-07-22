@@ -10,93 +10,49 @@ RakshakAI | Deepfake AI Analyzer
 
     <!-- Header -->
 
-    <section class="hero">
-
-    <div class="flex-between flex-wrap gap-5">
+    <section class="flex flex-col xl:flex-row justify-between gap-6">
 
         <div>
 
-            <span class="badge badge-primary">
+            <p class="text-sm text-muted">
 
-                Deepfake Investigation
+                Dashboard / AI Analyzers
 
-            </span>
+            </p>
 
-            <h1 class="mt-4">
+            <h1 class="text-4xl font-bold mt-2">
 
-                AI Investigation Report
+                Deepfake AI Analyzer
 
             </h1>
 
-            <p class="mt-3 max-w-3xl">
+            <p class="text-muted mt-3 max-w-3xl">
 
-                RakshakAI Vision Engine analyzed the uploaded image for AI-generated facial manipulation, synthetic content, and deepfake artifacts.
+                RakshakAI analyzed the uploaded media using the trained
+                Deepfake Detection Engine to identify manipulated,
+                AI-generated or authentic content.
 
             </p>
 
         </div>
 
-        <div class="glass p-5 rounded-lg w-[320px]">
+        <div class="glass rounded-3xl px-6 py-5 min-w-[260px]">
 
-            <div class="flex-between">
+            <div class="flex items-center gap-4">
+
+                <div class="w-4 h-4 rounded-full bg-success animate-pulse"></div>
 
                 <div>
 
-                    <p class="text-muted">
+                    <h3 class="font-semibold">
 
-                        AI Engine
-
-                    </p>
-
-                    <h3>
-
-                        Vision Deepfake Detector
+                        Deepfake Engine Status
 
                     </h3>
 
-                </div>
+                    <p class="text-muted text-sm">
 
-                <div class="status-pill status-online">
-
-                    <span class="status-dot"></span>
-
-                    Online
-
-                </div>
-
-            </div>
-
-            <div class="divider"></div>
-
-            <div class="grid grid-2 grid-gap">
-
-                <div>
-
-                    <h2>
-
-                        97.6%
-
-                    </h2>
-
-                    <p>
-
-                        Accuracy
-
-                    </p>
-
-                </div>
-
-                <div>
-
-                    <h2>
-
-                        CNN
-
-                    </h2>
-
-                    <p>
-
-                        AI Model
+                        Deepfake Detector Online
 
                     </p>
 
@@ -106,9 +62,7 @@ RakshakAI | Deepfake AI Analyzer
 
         </div>
 
-    </div>
-
-</section>
+    </section>
 
     <div id="resultContainer"></div>
 
@@ -132,123 +86,103 @@ renderResult(result);
 
 function renderResult(result){
 
-let badge = "bg-green-500/20 text-green-400 border border-green-500/30";
+let badge="bg-success/20 text-success";
 
-if (result.risk === "HIGH") {
+if(result.risk==="HIGH"){
 
-    badge = "bg-red-500/20 text-red-400 border border-red-500/30";
-
-}
-else if (result.risk === "MEDIUM") {
-
-    badge = "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30";
-
-}
-else if (result.risk === "LOW") {
-
-    badge = "bg-blue-500/20 text-blue-400 border border-blue-500/30";
+badge="bg-danger/20 text-danger";
 
 }
 
-let explanation = "";
+else if(result.risk==="MEDIUM"){
 
-(result.explanation || []).forEach(item => {
+badge="bg-warning/20 text-warning";
 
-    explanation += `
+}
 
-    <div class="rounded-2xl border border-blue-500/20 bg-blue-500/5 p-4 mb-3">
+let explanation="";
 
-        <div class="flex gap-3">
+(result.explanation||[]).forEach(item=>{
 
-            <span class="text-primary">
+explanation+=`
 
-                🤖
+<div class="flex items-center gap-3">
 
-            </span>
+<span class="text-primary text-xl">
 
-            <span>
-
-                ${item}
-
-            </span>
-
-        </div>
-
-    </div>
-
-    `;
-
-});
-
-let recommendation = "";
-
-(result.recommendation || []).forEach(item => {
-
-    recommendation += `
-
-    <div class="rounded-2xl border border-green-500/20 bg-green-500/5 p-4 mb-3">
-
-        <div class="flex gap-3">
-
-            <span class="text-green-400">
-
-                ✓
-
-            </span>
-
-            <span>
-
-                ${item}
-
-            </span>
-
-        </div>
-
-    </div>
-
-    `;
-
-});
-
-let indicators = `
-
-<div class="rounded-2xl border border-red-500/20 bg-red-500/5 p-4 mb-4">
-
-<div class="flex gap-3">
-
-<span class="text-red-400">
-
-⚠
+➜
 
 </span>
 
 <span>
 
-Prediction classified as <strong>${result.prediction}</strong>
+${item}
 
 </span>
 
 </div>
 
-</div>
+`;
 
-<div class="rounded-2xl border border-yellow-500/20 bg-yellow-500/5 p-4">
+});
 
-<div class="flex gap-3">
+let recommendation="";
 
-<span class="text-yellow-400">
+(result.recommendation||[]).forEach(item=>{
 
-📊
+recommendation+=`
+
+<div class="flex items-center gap-3">
+
+<span class="text-success text-xl">
+
+✔
 
 </span>
 
 <span>
 
-AI Confidence : <strong>${result.confidence}%</strong>
+${item}
 
 </span>
 
 </div>
+
+`;
+
+});
+
+let indicators=`
+
+<div class="flex items-center gap-3">
+
+<span class="text-danger text-xl">
+
+✔
+
+</span>
+
+<span>
+
+Prediction classified as ${result.prediction}
+
+</span>
+
+</div>
+
+<div class="flex items-center gap-3 mt-3">
+
+<span class="text-danger text-xl">
+
+✔
+
+</span>
+
+<span>
+
+AI Confidence ${result.confidence}%
+
+</span>
 
 </div>
 
@@ -258,47 +192,7 @@ document.getElementById("resultContainer").innerHTML=`
 
 <div class="space-y-8">
 
-<div class="glass rounded-3xl p-8">
-
-<div class="flex justify-between items-center flex-wrap gap-5">
-
-<div>
-
-<span class="badge badge-primary">
-
-Executive Summary
-
-</span>
-
-<h2 class="text-3xl font-bold mt-4">
-
-${result.prediction}
-
-</h2>
-
-<p class="text-muted mt-3">
-
-RakshakAI Vision Engine completed a full AI-powered deepfake investigation on the uploaded image.
-
-</p>
-
-</div>
-
-<div>
-
-<span class="px-6 py-3 rounded-full font-bold text-lg ${badge}">
-
-${result.risk} RISK
-
-</span>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="grid xl:grid-cols-4 md:grid-cols-2 gap-6">
+<div class="grid xl:grid-cols-3 gap-6">
 
 <div class="glass rounded-3xl p-7">
 
@@ -310,14 +204,16 @@ Threat Score
 
 <h2 class="text-5xl font-bold mt-3">
 
-${result.risk_score ?? result.confidence}%
+${result.risk_score ?? result.confidence}<span class="text-2xl">%</span>
 
 </h2>
 
-<div class="w-full h-3 rounded-full bg-white/10 mt-5">
+<div class="w-full h-3 rounded-full bg-white/10 mt-6">
 
 <div
+
 class="h-3 rounded-full bg-primary"
+
 style="width:${result.risk_score ?? result.confidence}%">
 
 </div>
@@ -334,27 +230,15 @@ Risk Level
 
 </p>
 
-<h2 class="text-3xl font-bold mt-5">
+<div class="mt-5">
+
+<span class="px-5 py-2 rounded-full font-bold ${badge}">
 
 ${result.risk}
 
-</h2>
+</span>
 
 </div>
-
-<div class="glass rounded-3xl p-7">
-
-<p class="text-muted">
-
-AI Confidence
-
-</p>
-
-<h2 class="text-3xl font-bold mt-5">
-
-${result.confidence}%
-
-</h2>
 
 </div>
 
@@ -366,7 +250,7 @@ Media Type
 
 </p>
 
-<h2 class="text-3xl font-bold mt-5">
+<h2 class="text-3xl font-bold mt-4">
 
 ${result.media_type || "Image"}
 
@@ -376,109 +260,7 @@ ${result.media_type || "Image"}
 
 </div>
 
-<div class="glass rounded-3xl p-7">
-
-<h3 class="text-2xl font-bold mb-6">
-
-Investigation Timeline
-
-</h3>
-
-<div class="space-y-5">
-
-<div class="flex gap-4">
-
-<div class="text-primary">①</div>
-
-<div>
-
-<h4 class="font-semibold">
-
-Image Uploaded
-
-</h4>
-
-<p class="text-muted">
-
-Image received successfully.
-
-</p>
-
-</div>
-
-</div>
-
-<div class="flex gap-4">
-
-<div class="text-primary">②</div>
-
-<div>
-
-<h4 class="font-semibold">
-
-Vision AI Processing
-
-</h4>
-
-<p class="text-muted">
-
-Deepfake detection model executed.
-
-</p>
-
-</div>
-
-</div>
-
-<div class="flex gap-4">
-
-<div class="text-primary">③</div>
-
-<div>
-
-<h4 class="font-semibold">
-
-Threat Classification
-
-</h4>
-
-<p class="text-muted">
-
-Manipulation indicators analyzed.
-
-</p>
-
-</div>
-
-</div>
-
-<div class="flex gap-4">
-
-<div class="text-primary">④</div>
-
-<div>
-
-<h4 class="font-semibold">
-
-Report Generated
-
-</h4>
-
-<p class="text-muted">
-
-Investigation completed.
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="grid xl:grid-cols-2 gap-6">
+<div class="grid grid-cols-1 gap-6">
 
 <div class="glass rounded-3xl p-7">
 
@@ -492,41 +274,83 @@ Scan Information
 
 <div class="flex justify-between">
 
-<span class="text-muted">Engine</span>
+<span class="text-muted">
 
-<span>${result.engine}</span>
+Engine
 
-</div>
+</span>
 
-<div class="flex justify-between">
+<span>
 
-<span class="text-muted">Prediction</span>
+${result.engine}
 
-<span>${result.prediction}</span>
-
-</div>
-
-<div class="flex justify-between">
-
-<span class="text-muted">Confidence</span>
-
-<span>${result.confidence}%</span>
+</span>
 
 </div>
 
 <div class="flex justify-between">
 
-<span class="text-muted">Scan ID</span>
+<span class="text-muted">
 
-<span class="font-mono">${result.scan_id}</span>
+Prediction
+
+</span>
+
+<span>
+
+${result.prediction}
+
+</span>
 
 </div>
 
 <div class="flex justify-between">
 
-<span class="text-muted">Threat Score</span>
+<span class="text-muted">
 
-<span>${result.risk_score ?? result.confidence}%</span>
+Confidence
+
+</span>
+
+<span>
+
+${result.confidence}%
+
+</span>
+
+</div>
+
+<div class="flex justify-between">
+
+<span class="text-muted">
+
+Scan ID
+
+</span>
+
+<span class="font-mono">
+
+${result.scan_id}
+
+</span>
+
+</div>
+
+<div class="flex justify-between">
+
+<span class="text-muted">
+
+Threat Score
+
+</span>
+
+<span>
+
+${result.risk_score ?? result.confidence}%
+
+</span>
+
+</div>
 
 </div>
 
@@ -538,7 +362,7 @@ Scan Information
 
 <h3 class="text-xl font-bold mb-6">
 
-AI Summary
+Explainable AI
 
 </h3>
 
@@ -562,7 +386,7 @@ ${indicators}
 
 <h3 class="text-xl font-bold mb-6">
 
-Recommendations
+AI Recommendation
 
 </h3>
 
@@ -572,21 +396,30 @@ ${recommendation}
 
 <div class="flex flex-wrap gap-4">
 
-<button id="newScan"
+<button
+
+id="newScan"
+
 class="bg-primary text-black font-bold px-6 py-3 rounded-2xl">
 
 🔄 New Scan
 
 </button>
 
-<button id="copyBtn"
+<button
+
+id="copyBtn"
+
 class="glass px-6 py-3 rounded-2xl">
 
-📋 Copy Report
+📋 Copy Result
 
 </button>
 
-<button id="exportBtn"
+<button
+
+id="exportBtn"
+
 class="glass px-6 py-3 rounded-2xl">
 
 ⬇ Export JSON
@@ -599,91 +432,63 @@ class="glass px-6 py-3 rounded-2xl">
 
 `;
 
-document.getElementById("newScan").addEventListener(() => {
+document.getElementById("newScan").addEventListener("click",()=>{
 
 sessionStorage.removeItem("deepfake_result");
 
-window.location.href = "/deepfake";
+window.location="/deepfake";
 
 });
 
-document.getElementById("exportBtn").addEventListener(() => {
+document.getElementById("exportBtn").addEventListener("click",()=>{
 
-const report = {
+const blob=new Blob(
 
-generated_by: "RakshakAI",
+[JSON.stringify(result,null,4)],
 
-report_type: "Deepfake Investigation",
-
-generated_at: new Date().toISOString(),
-
-result
-
-};
-
-const blob = new Blob(
-
-[JSON.stringify(report, null, 4)],
-
-{ type: "application/json" }
+{type:"application/json"}
 
 );
 
-const a = document.createElement("a");
+const a=document.createElement("a");
 
-a.href = URL.createObjectURL(blob);
+a.href=URL.createObjectURL(blob);
 
-a.download = `${result.scan_id}_Deepfake_Report.json`;
+a.download=result.scan_id+".json";
 
 a.click();
 
-URL.revokeObjectURL(a.href);
-
-showToast("Report exported successfully.", "success");
-
 });
 
-document.getElementById("copyBtn").addEventListener(() => {
+document.getElementById("copyBtn").addEventListener("click",()=>{
 
-const text = `
+const text=`
 
-========================================
-      RakshakAI Deepfake Investigation Report
-========================================
+=========================
 
-Executive Summary
------------------
-Prediction      : ${result.prediction}
-Risk Level      : ${result.risk}
-Threat Score    : ${result.risk_score ?? result.confidence}%
-AI Confidence   : ${result.confidence}%
+RakshakAI Deepfake Report
 
-Media Information
------------------
-Media Type      : ${result.media_type || "Image"}
-Engine          : ${result.engine}
+=========================
 
-AI Explanation
---------------
-${(result.explanation || []).join("\n")}
+Engine : ${result.engine}
 
-Recommendations
----------------
-${(result.recommendation || []).join("\n")}
+Prediction : ${result.prediction}
 
-Scan ID
--------
-${result.scan_id}
+Risk : ${result.risk}
 
-========================================
-Generated by RakshakAI
-========================================
+Confidence : ${result.confidence}%
+
+Threat Score : ${result.risk_score ?? result.confidence}%
+
+Media Type : ${result.media_type || "Image"}
+
+Scan ID : ${result.scan_id}
 
 `;
 
 navigator.clipboard.writeText(text);
 
-showToast("Deepfake report copied successfully.", "success");
+showToast("Result copied successfully.", "success");
 
 });
 

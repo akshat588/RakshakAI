@@ -1,113 +1,60 @@
 {% extends "layout/base.html" %}
 
 {% block title %}
-RakshakAI | URL Threat Intelligence
+RakshakAI | URL Analyzer
 {% endblock %}
 
 {% block content %}
 
-<div class="analyzer-page fade-up">
+<div class="space-y-8 fade-up">
 
-    <!-- ================================================= -->
-    <!-- HERO -->
-    <!-- ================================================= -->
+    <!-- ===================================== -->
+    <!-- PAGE HEADER -->
+    <!-- ===================================== -->
 
-    <section class="hero">
+    <section class="flex flex-col xl:flex-row justify-between gap-6">
 
-        <div class="flex-between flex-wrap gap-5">
+        <div>
 
-            <div>
+            <p class="text-sm text-muted">
 
-                <span class="badge badge-primary">
+                Dashboard / AI Analyzers
 
-                    URL Threat Intelligence
+            </p>
 
-                </span>
+            <h1 class="text-4xl font-bold mt-2">
 
-                <h1 class="mt-4">
+                URL Threat Analyzer
 
-                    AI Powered URL Investigation
+            </h1>
 
-                </h1>
+            <p class="text-muted mt-3 max-w-3xl">
 
-                <p class="mt-3 max-w-3xl">
+                Detect phishing websites, malicious URLs, fake login pages and suspicious web links using RakshakAI's AI-powered URL detection engine.
 
-                    Investigate suspicious URLs using RakshakAI's
-                    AI powered URL Intelligence Engine.
-                    Detect phishing websites, malicious domains,
-                    fake login pages, shortened links,
-                    credential theft portals and unsafe websites.
+            </p>
 
-                </p>
+        </div>
 
-            </div>
+        <div class="glass rounded-3xl px-6 py-5 min-w-[260px]">
 
-            <div class="glass p-5 rounded-lg w-[320px]">
+            <div class="flex items-center gap-4">
 
-                <div class="flex-between">
+                <div class="w-4 h-4 rounded-full bg-success animate-pulse"></div>
 
-                    <div>
+                <div>
 
-                        <p class="text-muted">
+                    <h3 class="font-semibold">
 
-                            AI Engine
+                        AI Engine Status
 
-                        </p>
+                    </h3>
 
-                        <h3>
+                    <p class="text-muted text-sm">
 
-                            URL Detector
+                        URL Detector Online
 
-                        </h3>
-
-                    </div>
-
-                    <div
-                        class="status-pill status-online">
-
-                        <span class="status-dot"></span>
-
-                        Online
-
-                    </div>
-
-                </div>
-
-                <div class="divider"></div>
-
-                <div class="grid grid-2 grid-gap">
-
-                    <div>
-
-                        <h2>
-
-                            98.1%
-
-                        </h2>
-
-                        <p>
-
-                            Accuracy
-
-                        </p>
-
-                    </div>
-
-                    <div>
-
-                        <h2>
-
-                            5
-
-                        </h2>
-
-                        <p>
-
-                            Threat Types
-
-                        </p>
-
-                    </div>
+                    </p>
 
                 </div>
 
@@ -117,41 +64,31 @@ RakshakAI | URL Threat Intelligence
 
     </section>
 
-    <!-- ================================================= -->
+    <!-- ===================================== -->
     <!-- MAIN GRID -->
-    <!-- ================================================= -->
+    <!-- ===================================== -->
 
-    <section class="dashboard-grid">
+    <section class="grid xl:grid-cols-3 gap-6">
 
         <!-- LEFT -->
 
-        <div class="card">
+        <div class="xl:col-span-2 glass rounded-3xl p-8">
 
-            <div class="card-header">
+            <div class="flex justify-between items-center mb-6">
 
-                <div>
+                <h2 class="text-2xl font-bold">
 
-                    <h3>
+                    Website URL
 
-                        URL Investigation Workspace
+                </h2>
 
-                    </h3>
-
-                    <small>
-
-                        Paste the complete website URL.
-
-                    </small>
-
-                </div>
-
-                <div
+                <span
                     id="urlStatus"
-                    class="badge badge-primary">
+                    class="font-mono text-muted">
 
                     Ready
 
-                </div>
+                </span>
 
             </div>
 
@@ -163,36 +100,41 @@ RakshakAI | URL Threat Intelligence
 
                 placeholder="https://example.com"
 
+                class="w-full rounded-2xl bg-background border border-white/10 p-5 outline-none focus:border-primary transition"
+
             >
 
-            <div class="divider"></div>
-
-            <div class="flex gap-4 mt-6 flex-wrap">
+            <div class="flex flex-wrap gap-4 mt-6">
 
                 <button
-                    id="scanBtn"
-                    class="btn btn-primary">
 
-                    Analyze URL
-
-                </button>
-
-                <button
                     id="sampleBtn"
-                    class="btn btn-outline">
+
+                    class="glass px-6 py-3 rounded-2xl hover:border-primary border border-transparent transition">
 
                     Load Sample
 
                 </button>
 
                 <button
+
                     id="clearBtn"
-                    class="btn btn-outline">
+
+                    class="glass px-6 py-3 rounded-2xl hover:border-danger border border-transparent transition">
 
                     Clear
 
                 </button>
-                
+
+                <button
+
+                    id="scanBtn"
+
+                    class="bg-primary text-black font-bold px-8 py-3 rounded-2xl hover:scale-105 transition">
+
+                    Analyze URL
+
+                </button>
 
             </div>
 
@@ -200,107 +142,55 @@ RakshakAI | URL Threat Intelligence
 
         <!-- RIGHT -->
 
-        <div class="flex-column gap-5">
+        <div class="space-y-6">
 
-            <div class="card">
+            <div class="glass rounded-3xl p-6">
 
-                <div class="card-header">
+                <h3 class="text-xl font-bold mb-5">
 
-                    <h3>
+                    Detection Capabilities
 
-                        Detection Capabilities
+                </h3>
 
-                    </h3>
+                <div class="space-y-4">
 
-                </div>
+                    <div class="flex justify-between">
 
-                <div class="timeline">
+                        <span>Phishing URLs</span>
 
-                    <div class="timeline-item">
-
-                        <div class="timeline-marker"></div>
-
-                        <div class="timeline-content">
-
-                            <h4>
-
-                                Phishing Websites
-
-                            </h4>
-
-                            <p>
-
-                                Credential harvesting portals
-
-                            </p>
-
-                        </div>
+                        <span class="text-success">✓</span>
 
                     </div>
 
-                    <div class="timeline-item">
+                    <div class="flex justify-between">
 
-                        <div class="timeline-marker"></div>
+                        <span>Fake Login Pages</span>
 
-                        <div class="timeline-content">
-
-                            <h4>
-
-                                Fake Login Pages
-
-                            </h4>
-
-                            <p>
-
-                                Account impersonation attacks
-
-                            </p>
-
-                        </div>
+                        <span class="text-success">✓</span>
 
                     </div>
 
-                    <div class="timeline-item">
+                    <div class="flex justify-between">
 
-                        <div class="timeline-marker"></div>
+                        <span>Malicious Domains</span>
 
-                        <div class="timeline-content">
-
-                            <h4>
-
-                                Malicious Domains
-
-                            </h4>
-
-                            <p>
-
-                                Unsafe domain detection
-
-                            </p>
-
-                        </div>
+                        <span class="text-success">✓</span>
 
                     </div>
 
-                    <div class="timeline-item">
+                    <div class="flex justify-between">
 
-                        <div class="timeline-marker"></div>
+                        <span>Suspicious Links</span>
 
-                        <div class="timeline-content">
+                        <span class="text-success">✓</span>
 
-                            <h4>
+                    </div>
 
-                                URL Obfuscation
+                    <div class="flex justify-between">
 
-                            </h4>
+                        <span>Unsafe Websites</span>
 
-                            <p>
-
-                                Suspicious URL patterns
-
-                            </p>
-
-                        </div>
+                        <span class="text-success">✓</span>
 
                     </div>
 
@@ -308,69 +198,27 @@ RakshakAI | URL Threat Intelligence
 
             </div>
 
-            <div class="card">
+            <div class="glass rounded-3xl p-6">
 
-                <div class="card-header">
+                <h3 class="text-xl font-bold mb-5">
 
-                    <h3>
+                    Security Tips
 
-                        Security Checklist
+                </h3>
 
-                    </h3>
+                <ul class="space-y-3 text-muted">
 
-                </div>
+                    <li>• Always verify website domains.</li>
 
-                <div class="recommendation-list">
+                    <li>• Avoid shortened URLs.</li>
 
-                    <div class="recommendation-item">
+                    <li>• Check HTTPS certificates.</li>
 
-                        <i data-lucide="shield-check"></i>
+                    <li>• Never enter credentials on suspicious sites.</li>
 
-                        <span>
+                    <li>• Bookmark trusted websites.</li>
 
-                            Verify the domain before visiting.
-
-                        </span>
-
-                    </div>
-
-                    <div class="recommendation-item">
-
-                        <i data-lucide="shield-check"></i>
-
-                        <span>
-
-                            Avoid shortened URLs.
-
-                        </span>
-
-                    </div>
-
-                    <div class="recommendation-item">
-
-                        <i data-lucide="shield-check"></i>
-
-                        <span>
-
-                            Check HTTPS certificates.
-
-                        </span>
-
-                    </div>
-
-                    <div class="recommendation-item">
-
-                        <i data-lucide="shield-check"></i>
-
-                        <span>
-
-                            Never enter credentials on unknown websites.
-
-                        </span>
-
-                    </div>
-
-                </div>
+                </ul>
 
             </div>
 
@@ -378,40 +226,45 @@ RakshakAI | URL Threat Intelligence
 
     </section>
 
-    <!-- ================================================= -->
-    <!-- LOADING -->
-    <!-- ================================================= -->
+    <!-- Loading -->
 
     <section
         id="loadingCard"
-        class="card hidden">
+        class="hidden glass rounded-3xl p-8">
 
-        <div class="loading-card">
+        <div class="flex items-center gap-6">
 
-            <div class="loading-spinner"></div>
+            <div
+                class="w-12 h-12 rounded-full border-4 border-primary border-t-transparent animate-spin">
 
-            <h2>
+            </div>
 
-                AI Investigation Running
+            <div>
 
-            </h2>
+                <h2 class="text-2xl font-bold">
 
-            <p>
+                    AI Analysis Running
 
-                Initializing URL Intelligence Engine...
+                </h2>
 
-            </p>
+                <p class="text-muted mt-2">
+
+                    RakshakAI is analyzing the submitted URL...
+
+                </p>
+
+            </div>
 
         </div>
 
     </section>
 
-    <!-- ================================================= -->
-    <!-- RESULT -->
-    <!-- ================================================= -->
+    <!-- Result -->
 
     <section
+
         id="resultContainer"
+
         class="hidden">
 
     </section>
@@ -424,600 +277,411 @@ RakshakAI | URL Threat Intelligence
 
 <script src="{{ url_for('static', filename='js/result_renderer.js') }}"></script>
 
+<script src="{{ url_for('static', filename='js/ai_explanation.js') }}"></script>
+
+<script src="{{ url_for('static', filename='js/ai_assistant.js') }}"></script>
+
 <script>
 
-const urlInput = document.getElementById("urlInput");
-const status = document.getElementById("urlStatus");
+const urlInput=document.getElementById("urlInput");
+const status=document.getElementById("urlStatus");
 
-const sampleBtn = document.getElementById("sampleBtn");
-const clearBtn = document.getElementById("clearBtn");
-const scanBtn = document.getElementById("scanBtn");
+const sampleBtn=document.getElementById("sampleBtn");
+const clearBtn=document.getElementById("clearBtn");
+const scanBtn=document.getElementById("scanBtn");
 
-const loadingCard = document.getElementById("loadingCard");
-const resultContainer = document.getElementById("resultContainer");
+const loadingCard=document.getElementById("loadingCard");
+const resultContainer=document.getElementById("resultContainer");
 
-/* =======================================================
-URL STATUS
-======================================================= */
+/* ===========================
+URL Status
+=========================== */
 
-function updateStatus(){
+urlInput.addEventListener("input",()=>{
 
     if(urlInput.value.trim()===""){
 
         status.textContent="Ready";
 
-    }
-
-    else{
+    }else{
 
         status.textContent="URL Loaded";
 
     }
 
-}
+});
 
-urlInput.addEventListener("input",updateStatus);
+/* ===========================
+Clear
+=========================== */
 
-/* =======================================================
-SAMPLE URL
-======================================================= */
-
-const sampleURL =
-"https://secure-bank-verification-login.com";
-
-function loadSample(){
-
-    urlInput.value = sampleURL;
-
-    updateStatus();
-
-    urlInput.focus();
-
-}
-
-sampleBtn.addEventListener("click",loadSample);
-
-/* =======================================================
-CLEAR
-======================================================= */
-
-function clearWorkspace(){
+clearBtn.addEventListener("click",()=>{
 
     urlInput.value="";
 
-    updateStatus();
+    status.textContent="Ready";
 
     loadingCard.classList.add("hidden");
 
     resultContainer.classList.add("hidden");
 
-    window.scrollTo({
+});
 
-        top:0,
+/* ===========================
+Sample URL
+=========================== */
 
-        behavior:"smooth"
+sampleBtn.addEventListener("click",()=>{
 
-    });
+urlInput.value="https://secure-bank-verification-login.com";
 
-}
+status.textContent="Sample Loaded";
 
-clearBtn.addEventListener("click",clearWorkspace);
+});
 
-/* =======================================================
-LOADING
-======================================================= */
+/* ===========================
+Analyze URL
+=========================== */
 
-const loadingSteps=[
+scanBtn.addEventListener("click",async()=>{
 
-"Initializing URL Intelligence Engine...",
+const url=urlInput.value.trim();
 
-"Normalizing URL Structure...",
+if(url===""){
 
-"Checking Domain Reputation...",
+alert("Please enter a URL.");
 
-"Detecting Phishing Patterns...",
-
-"Running Machine Learning Models...",
-
-"Calculating Threat Score...",
-
-"Generating AI Recommendation..."
-
-];
-
-let loadingInterval=null;
-
-function startLoading(){
-
-    loadingCard.classList.remove("hidden");
-
-    resultContainer.classList.add("hidden");
-
-    const text=loadingCard.querySelector("p");
-
-    let index=0;
-
-    text.textContent=loadingSteps[0];
-
-    loadingInterval=setInterval(()=>{
-
-        index++;
-
-        if(index>=loadingSteps.length){
-
-            index=loadingSteps.length-1;
-
-        }
-
-        text.textContent=loadingSteps[index];
-
-    },700);
+return;
 
 }
 
-function stopLoading(){
+scanBtn.disabled=true;
 
-    clearInterval(loadingInterval);
+scanBtn.innerHTML="Analyzing...";
 
-    loadingCard.classList.add("hidden");
+loadingCard.classList.remove("hidden");
+
+resultContainer.classList.add("hidden");
+
+try{
+
+const response=await fetch("/api/url",{
+
+method:"POST",
+
+headers:{
+
+"Content-Type":"application/json"
+
+},
+
+body:JSON.stringify({
+
+url:url
+
+})
+
+});
+
+const data=await response.json();
+
+loadingCard.classList.add("hidden");
+
+resultContainer.classList.remove("hidden");
+
+renderResult(data);
 
 }
 
-/* =======================================================
-BUTTON STATE
-======================================================= */
+catch(error){
 
-function setButtons(state){
+loadingCard.classList.add("hidden");
 
-    scanBtn.disabled=state;
+resultContainer.classList.remove("hidden");
 
-    if(state){
+resultContainer.innerHTML=`
 
-        scanBtn.innerHTML="Analyzing...";
-        
+<div class="glass rounded-3xl p-8 border border-red-500/30">
 
-    }
-
-    else{
-
-        scanBtn.innerHTML="Analyze URL";
-
-    }
-
-}
-
-/* =======================================================
-SCAN URL
-======================================================= */
-
-async function scanURL(){
-
-    const url=urlInput.value.trim();
-
-    if(url===""){
-
-        showToast(
-
-            "Please enter a URL before scanning.",
-
-            "warning"
-
-        );
-
-        return;
-
-    }
-
-    setButtons(true);
-
-    startLoading();
-
-    try{
-
-        const response=await fetch(
-
-            "/api/url",
-
-            {
-
-                method:"POST",
-
-                headers:{
-
-                    "Content-Type":"application/json"
-
-                },
-
-                body:JSON.stringify({
-
-                    url:url
-
-                })
-
-            }
-
-        );
-
-        const data=await response.json();
-
-        if(!data.success){
-
-            throw new Error(
-
-                data.error ||
-
-                "Analysis Failed"
-
-            );
-
-        }
-
-        stopLoading();
-
-        resultContainer.classList.remove("hidden");
-
-        renderResult(data);
-
-        resultContainer.scrollIntoView({
-
-            behavior:"smooth",
-
-            block:"start"
-
-        });
-
-    }
-
-    catch(error){
-
-        stopLoading();
-
-        resultContainer.classList.remove("hidden");
-
-        resultContainer.innerHTML=`
-
-<div class="alert alert-danger">
-
-<div>
-
-<h3>
+<h2 class="text-2xl font-bold text-danger">
 
 Analysis Failed
 
-</h3>
+</h2>
 
-<p class="mt-3">
+<p class="text-muted mt-4">
 
-${error.message}
+Unable to connect to RakshakAI backend.
 
 </p>
-
-</div>
 
 </div>
 
 `;
 
-    }
+}
 
-    finally{
+finally{
 
-        setButtons(false);
+scanBtn.disabled=false;
 
-    }
+scanBtn.innerHTML="Analyze URL";
 
 }
 
-scanBtn.addEventListener(
+});
 
-    "click",
-
-    scanURL
-
-);
-/* =======================================================
-RESULT RENDERING
-======================================================= */
+/* ===========================
+Render Result
+=========================== */
 
 function renderResult(data){
 
-    const score = RESULT_ENGINE.getThreatScore(data);
-    const badge = RESULT_ENGINE.getBadge(data.risk);
-    const confidence = RESULT_ENGINE.getConfidence(data);
+const score = RESULT_ENGINE.getThreatScore(data);
 
-    let recommendation =
-        "The submitted URL appears safe to visit.";
+const badge = RESULT_ENGINE.getBadge(data.risk);
 
-    if(data.risk==="MEDIUM"){
+const confidence = RESULT_ENGINE.getConfidence(data);
 
-        recommendation =
-        "This URL shows suspicious characteristics. Verify the website before visiting.";
+let recommendation =
+"The submitted URL appears safe.";
 
-    }
-    else if(data.risk==="HIGH"){
+if(data.risk==="MEDIUM"){
 
-        recommendation =
-        "High-risk URL detected. Do not open the website or submit personal information.";
+recommendation =
+"This URL contains suspicious characteristics. Verify the domain before visiting.";
 
-    }
-    else if(data.risk==="CRITICAL"){
+}
 
-        recommendation =
-        "Critical phishing website detected. Block this URL immediately and report it.";
+else if(data.risk==="HIGH"){
 
-    }
+recommendation =
+"High-risk URL detected. Do not open the website or enter any credentials.";
 
-    resultContainer.innerHTML = `
+}
 
-<div class="dashboard-section">
+else if(data.risk==="CRITICAL"){
 
-<div class="kpi-grid">
+recommendation =
+"Critical phishing URL detected. Block this URL immediately.";
 
-<div class="kpi-card">
+}
 
-<div class="kpi-icon">
+resultContainer.innerHTML=`
 
-<i data-lucide="shield-alert"></i>
+<div class="space-y-8">
+
+<div class="grid xl:grid-cols-3 gap-6">
+
+<div class="glass rounded-3xl p-7">
+
+<p class="text-muted">
+
+Threat Score
+
+</p>
+
+<h2 class="text-5xl font-bold mt-3">
+
+${score}<span class="text-2xl">%</span>
+
+</h2>
+
+<div class="w-full h-3 rounded-full bg-white/10 mt-6">
+
+<div
+
+class="h-3 rounded-full bg-primary"
+
+style="width:${score}%">
 
 </div>
 
-<span>Threat Score</span>
+</div>
 
-<h2>${score}%</h2>
+</div>
 
-<div class="progress mt-4">
+<div class="glass rounded-3xl p-7">
 
-<div class="progress-bar" style="width:${score}%"></div>
+<p class="text-muted">
+
+Risk Level
+
+</p>
+
+<div class="mt-5">
+
+<span class="px-5 py-2 rounded-full font-bold ${badge}">
+
+${data.risk}
+
+</span>
 
 </div>
 
 </div>
 
-<div class="kpi-card">
+<div class="glass rounded-3xl p-7">
 
-<div class="kpi-icon">
+<p class="text-muted">
 
-<i data-lucide="triangle-alert"></i>
+Prediction
 
-</div>
+</p>
 
-<span>Risk Level</span>
-
-<h2>${data.risk}</h2>
-
-<div class="badge ${badge} mt-3">
+<h2 class="text-3xl font-bold mt-4">
 
 ${data.result}
 
-</div>
-
-</div>
-
-<div class="kpi-card">
-
-<div class="kpi-icon">
-
-<i data-lucide="brain"></i>
-
-</div>
-
-<span>AI Confidence</span>
-
-<h2>${confidence}</h2>
-
-<p class="mt-2">
-
-${data.engine}
-
-</p>
+</h2>
 
 </div>
 
 </div>
 
-<div class="dashboard-grid mt-5">
+<div class="grid xl:grid-cols-2 gap-6">
 
-<div class="card">
+    <!-- Scan Information -->
 
-<div class="card-header">
+    <div class="glass rounded-3xl p-7">
 
-<h3>
+        <h3 class="text-xl font-bold mb-6">
 
-Executive Summary
+            Scan Information
 
-</h3>
+        </h3>
 
-</div>
+        <div class="space-y-5">
 
-<div class="alert alert-primary">
+            <div class="flex justify-between">
 
-<p>
+                <span class="text-muted">
 
-${recommendation}
+                    AI Engine
 
-</p>
+                </span>
 
-</div>
+                <span>
 
-<div class="divider"></div>
+                    ${data.engine}
 
-<div class="result-grid">
+                </span>
 
-<div class="result-box">
+            </div>
 
-<h4>Prediction</h4>
+            <div class="flex justify-between">
 
-<p>${data.result}</p>
+                <span class="text-muted">
 
-</div>
+                    Confidence
 
-<div class="result-box">
+                </span>
 
-<h4>Risk</h4>
+                <span>
 
-<p>${data.risk}</p>
+                    ${confidence}
 
-</div>
+                </span>
 
-<div class="result-box">
+            </div>
 
-<h4>Confidence</h4>
+            <div class="flex justify-between">
 
-<p>${confidence}</p>
+                <span class="text-muted">
 
-</div>
+                    Scan ID
 
-<div class="result-box">
+                </span>
 
-<h4>Threat Score</h4>
+                <span class="font-mono">
 
-<p>${score}%</p>
+                    ${data.scan_id}
 
-</div>
+                </span>
 
-</div>
+            </div>
 
-</div>
+            <div class="flex justify-between">
 
-<div class="card">
+                <span class="text-muted">
 
-<div class="card-header">
+                    Timestamp
 
-<h3>
+                </span>
 
-Investigation Details
+                <span>
 
-</h3>
+                    ${data.timestamp}
 
-</div>
+                </span>
 
-<div class="timeline">
+            </div>
 
-<div class="timeline-item">
+        </div>
 
-<div class="timeline-marker"></div>
+    </div>
 
-<div class="timeline-content">
+    <!-- Recommendation -->
 
-<h4>Detection Engine</h4>
+    <div class="glass rounded-3xl p-7">
 
-<p>${data.engine}</p>
+        <h3 class="text-xl font-bold mb-6">
 
-</div>
+            AI Recommendation
 
-</div>
+        </h3>
 
-<div class="timeline-item">
+        <div class="rounded-2xl border border-primary/20 bg-primary/5 p-5">
 
-<div class="timeline-marker"></div>
+            <p class="leading-8 text-slate-300">
 
-<div class="timeline-content">
+                ${recommendation}
 
-<h4>Scan ID</h4>
+            </p>
 
-<p class="font-mono">${data.scan_id}</p>
+        </div>
 
-</div>
-
-</div>
-
-<div class="timeline-item">
-
-<div class="timeline-marker"></div>
-
-<div class="timeline-content">
-
-<h4>Timestamp</h4>
-
-<p>${data.timestamp}</p>
+    </div>
 
 </div>
 
-</div>
+<div class="glass rounded-3xl p-7">
 
-<div class="timeline-item">
-
-<div class="timeline-marker"></div>
-
-<div class="timeline-content">
-
-<h4>Classification</h4>
-
-<p>${data.result}</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="card mt-5">
-
-<div class="card-header">
-
-<h3>
+<h3 class="text-xl font-bold mb-6">
 
 Explainable AI
 
 </h3>
 
-</div>
+<div class="space-y-4">
 
-<div class="evidence-list">
+<div class="flex items-center gap-3">
 
-<div class="evidence-item">
+<span class="text-primary text-xl">➜</span>
 
-<i data-lucide="check-circle"></i>
-
-<div>
-
-<strong>Prediction</strong>
-
-<p>
-
-The submitted URL has been classified as <b>${data.result}</b>.
-
-</p>
+<span>
+URL classified as <strong>${data.result}</strong>.
+</span>
 
 </div>
 
-</div>
+<div class="flex items-center gap-3">
 
-<div class="evidence-item">
+<span class="text-primary text-xl">➜</span>
 
-<i data-lucide="check-circle"></i>
-
-<div>
-
-<strong>Risk Analysis</strong>
-
-<p>
-
-Risk level identified as <b>${data.risk}</b>.
-
-</p>
+<span>
+Risk level detected as <strong>${data.risk}</strong>.
+</span>
 
 </div>
 
-</div>
+<div class="flex items-center gap-3">
 
-<div class="evidence-item">
+<span class="text-primary text-xl">➜</span>
 
-<i data-lucide="check-circle"></i>
-
-<div>
-
-<strong>Confidence</strong>
-
-<p>
-
-Prediction confidence is <b>${confidence}</b>.
-
-</p>
+<span>
+AI confidence: <strong>${confidence}</strong>.
+</span>
 
 </div>
 
@@ -1025,95 +689,47 @@ Prediction confidence is <b>${confidence}</b>.
 
 </div>
 
-</div>
+<div class="glass rounded-3xl p-7">
 
-<div class="card mt-5">
-
-<div class="card-header">
-
-<h3>
+<h3 class="text-xl font-bold mb-6">
 
 Threat Indicators
 
 </h3>
 
-</div>
+<div class="space-y-4">
 
-<div class="ioc-container">
+<div class="flex items-center gap-3">
 
-<div class="ioc-tag">
-
-Prediction : ${data.result}
-
-</div>
-
-<div class="ioc-tag">
-
-Risk : ${data.risk}
-
-</div>
-
-<div class="ioc-tag">
-
-Engine : ${data.engine}
-
-</div>
-
-<div class="ioc-tag">
-
-Threat Score : ${score}%
-
-</div>
-
-</div>
-
-</div>
-
-<div class="card mt-5">
-
-<div class="card-header">
-
-<h3>
-
-Recommended Actions
-
-</h3>
-
-</div>
-
-<div class="recommendation-list">
-
-<div class="recommendation-item">
-
-<i data-lucide="shield-check"></i>
+<span class="text-danger text-xl">✔</span>
 
 <span>
 
-${recommendation}
+Prediction: ${data.result}
 
 </span>
 
 </div>
 
-<div class="recommendation-item">
+<div class="flex items-center gap-3">
 
-<i data-lucide="globe-lock"></i>
+<span class="text-danger text-xl">✔</span>
 
 <span>
 
-Verify the website domain before visiting.
+Risk Level: ${data.risk}
 
 </span>
 
 </div>
 
-<div class="recommendation-item">
+<div class="flex items-center gap-3">
 
-<i data-lucide="ban"></i>
+<span class="text-danger text-xl">✔</span>
 
 <span>
 
-Do not enter passwords or banking information on suspicious websites.
+Engine: ${data.engine}
 
 </span>
 
@@ -1123,31 +739,35 @@ Do not enter passwords or banking information on suspicious websites.
 
 </div>
 
-<div class="flex flex-wrap gap-4 mt-5">
+<!-- Action Buttons -->
+
+<div class="flex flex-wrap gap-4">
 
 <button
 id="newScan"
-class="btn btn-primary">
+class="bg-primary text-black font-bold px-6 py-3 rounded-2xl">
 
-New Investigation
+🔄 New Scan
 
 </button>
 
 <button
 id="copyResult"
-class="btn btn-outline">
+class="glass px-6 py-3 rounded-2xl">
 
-Copy Report
+📋 Copy Result
 
 </button>
 
 <button
 id="exportBtn"
-class="btn btn-outline">
+class="glass px-6 py-3 rounded-2xl">
 
-Export JSON
+⬇ Export JSON
 
 </button>
+
+</div>
 
 </div>
 
@@ -1155,51 +775,57 @@ Export JSON
 
 `;
 
-    lucide.createIcons();
+document.getElementById("copyResult").addEventListener("click",()=>{
 
-    document.getElementById("copyResult").addEventListener("click",()=>{
-
-        navigator.clipboard.writeText(
-
-`Prediction : ${data.result}
+const text=`
+Result : ${data.result}
 Risk : ${data.risk}
-Confidence : ${confidence}
 Engine : ${data.engine}
 Scan ID : ${data.scan_id}
-Timestamp : ${data.timestamp}`
+Timestamp : ${data.timestamp}
+`;
 
-        );
+navigator.clipboard.writeText(text);
 
-        showToast("Report copied successfully.","success");
+showToast("Result copied successfully.", "success");
 
-    });
+});
 
-    document.getElementById("exportBtn").addEventListener("click",()=>{
+document.getElementById("exportBtn").addEventListener("click",()=>{
 
-        const blob = new Blob(
-            [JSON.stringify(data,null,4)],
-            {type:"application/json"}
-        );
+const blob=new Blob(
+[JSON.stringify(data,null,4)],
+{type:"application/json"}
+);
 
-        const a = document.createElement("a");
+const a=document.createElement("a");
 
-        a.href = URL.createObjectURL(blob);
+a.href=URL.createObjectURL(blob);
 
-        a.download = data.scan_id + ".json";
+a.download=data.scan_id+".json";
 
-        a.click();
+a.click();
 
-    });
+});
+document.getElementById("newScan").addEventListener("click",()=>{
 
-    document.getElementById("newScan").addEventListener("click",()=>{
+urlInput.value="";
 
-        clearWorkspace();
+status.textContent="Ready";
 
-    });
+resultContainer.classList.add("hidden");
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+});
 
 }
-
-lucide.createIcons();
 
 </script>
 

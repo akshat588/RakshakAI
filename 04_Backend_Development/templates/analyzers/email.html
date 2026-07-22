@@ -1,96 +1,60 @@
 {% extends "layout/base.html" %}
 
 {% block title %}
-RakshakAI | Email Threat Intelligence
+RakshakAI | Email Analyzer
 {% endblock %}
 
 {% block content %}
 
-<div class="analyzer-page fade-up">
+<div class="space-y-8 fade-up">
 
     <!-- ================================================= -->
-    <!-- HERO -->
+    <!-- PAGE HEADER -->
     <!-- ================================================= -->
 
-    <section class="hero">
+    <section class="flex flex-col xl:flex-row justify-between gap-6">
 
-        <div class="flex-between flex-wrap gap-5">
+        <div>
 
-            <div>
+            <p class="text-sm text-muted">
 
-                <span class="badge badge-primary">
+                Dashboard / AI Analyzers
 
-                    Email Threat Intelligence
+            </p>
 
-                </span>
+            <h1 class="text-4xl font-bold mt-2">
 
-                <h1 class="mt-4">
+                Email Threat Analyzer
 
-                    AI Powered Email Investigation
+            </h1>
 
-                </h1>
+            <p class="text-muted mt-3 max-w-3xl">
 
-                <p class="mt-3 max-w-3xl">
+                Analyze suspicious emails using RakshakAI's AI-powered phishing detection engine. Detect phishing attempts, business email compromise, credential theft, fake banking emails and other social engineering attacks.
 
-                    Investigate suspicious emails using RakshakAI's
-                    multi-layer phishing intelligence engine.
-                    Analyze business email compromise (BEC),
-                    credential theft, banking fraud,
-                    impersonation attacks and social engineering.
+            </p>
 
-                </p>
+        </div>
 
-            </div>
+        <div class="glass rounded-3xl px-6 py-5 min-w-[260px]">
 
-            <div class="glass p-5 rounded-lg w-[320px]">
+            <div class="flex items-center gap-4">
 
-                <div class="flex-between">
+                <div class="w-4 h-4 rounded-full bg-success animate-pulse"></div>
 
-                    <div>
+                <div>
 
-                        <p class="text-muted">
+                    <h3 class="font-semibold">
 
-                            AI Engine
+                        AI Engine Status
 
-                        </p>
+                    </h3>
 
-                        <h3>
+                    <p class="text-muted text-sm">
 
-                            Email Detector
+                        Email Detector Online
 
-                        </h3>
-
-                    </div>
-
-                    <div class="status-pill status-online">
-
-                        <span class="status-dot"></span>
-
-                        Online
-
-                    </div>
-
-                </div>
-
-                <div class="divider"></div>
-
-                <div class="grid grid-2 grid-gap">
-
-                    <div>
-
-                        <h2>97.6%</h2>
-
-                        <p>Accuracy</p>
-
-                    </div>
-
-                    <div>
-
-                        <h2>6</h2>
-
-                        <p>Threat Types</p>
-
-                    </div>
+                    </p>
 
                 </div>
 
@@ -101,230 +65,128 @@ RakshakAI | Email Threat Intelligence
     </section>
 
     <!-- ================================================= -->
-    <!-- EMAIL WORKSPACE -->
+    <!-- INPUT AREA -->
     <!-- ================================================= -->
 
-    <section class="card">
+    <section class="grid xl:grid-cols-3 gap-6">
 
-        <div class="card-header">
+        <!-- LEFT -->
 
-            <div>
+        <div class="xl:col-span-2 glass rounded-3xl p-8">
 
-                <h2>
+            <div class="flex justify-between items-center mb-6">
 
-                    Email Investigation Workspace
+                <h2 class="text-2xl font-bold">
+
+                    Email Content
 
                 </h2>
 
-                <small>
+                <span
+                    id="charCount"
+                    class="font-mono text-muted">
 
-                    Enter the complete email details for analysis.
+                    0 Characters
 
-                </small>
-
-            </div>
-
-        </div>
-
-        <div class="grid grid-2 gap-5 mt-5">
-
-            <div>
-
-                <label class="form-label">
-
-                    Sender Name
-
-                </label>
-
-                <input
-                    id="senderName"
-                    type="text"
-                    placeholder="John Smith">
+                </span>
 
             </div>
-
-            <div>
-
-                <label class="form-label">
-
-                    Sender Email
-
-                </label>
-
-                <input
-                    id="senderEmail"
-                    type="email"
-                    placeholder="john@example.com">
-
-            </div>
-
-            <div>
-
-                <label class="form-label">
-
-                    Recipient Email (Optional)
-
-                </label>
-
-                <input
-                    id="recipientEmail"
-                    type="email"
-                    placeholder="user@example.com">
-
-            </div>
-
-            <div>
-
-                <label class="form-label">
-
-                    Subject
-
-                </label>
-
-                <input
-                    id="emailSubject"
-                    type="text"
-                    placeholder="Enter email subject">
-
-            </div>
-
-        </div>
-
-        <div class="mt-6">
-
-            <label class="form-label">
-
-                Email Body
-
-            </label>
 
             <textarea
 
-                id="emailBody"
+                id="emailText"
 
-                rows="12"
+                rows="18"
 
-                placeholder="Paste the email body here..."
+                placeholder="Paste suspicious email content here..."
+
+                class="w-full rounded-2xl bg-background border border-white/10 p-6 resize-none outline-none focus:border-primary transition"
 
             ></textarea>
 
+            <div class="flex flex-wrap gap-4 mt-6">
+
+                <button
+                    id="sampleBtn"
+                    class="glass px-6 py-3 rounded-2xl hover:border-primary border border-transparent transition">
+
+                    Load Sample
+
+                </button>
+
+                <button
+                    id="clearBtn"
+                    class="glass px-6 py-3 rounded-2xl hover:border-danger border border-transparent transition">
+
+                    Clear
+
+                </button>
+
+                <button
+                    id="scanBtn"
+                    class="bg-primary text-black font-bold px-8 py-3 rounded-2xl hover:scale-105 transition">
+
+                    Analyze Email
+
+                </button>
+
+            </div>
+
         </div>
 
-        <div class="flex gap-4 mt-6 flex-wrap">
+        <!-- RIGHT -->
 
-            <button
-                id="scanBtn"
-                class="btn btn-primary">
+        <div class="space-y-6">
 
-                Analyze Email
+            <!-- Detection -->
 
-            </button>
+            <div class="glass rounded-3xl p-6">
 
-            <button
-                id="sampleBtn"
-                class="btn btn-outline">
+                <h3 class="text-xl font-bold mb-5">
 
-                Load Sample
-
-            </button>
-
-            <button
-                id="clearBtn"
-                class="btn btn-outline">
-
-                Reset
-
-            </button>
-
-        </div>
-
-    </section>
-
-    <!-- ================================================= -->
-    <!-- INFORMATION GRID -->
-    <!-- ================================================= -->
-
-    <section class="dashboard-grid mt-6">
-
-        <div class="card">
-
-            <div class="card-header">
-
-                <h3>
-
-                    Detection Capabilities
+                    AI Detection
 
                 </h3>
 
-            </div>
+                <div class="space-y-4">
 
-            <div class="timeline">
+                    <div class="flex justify-between">
 
-                <div class="timeline-item">
+                        <span>Phishing</span>
 
-                    <div class="timeline-marker"></div>
-
-                    <div class="timeline-content">
-
-                        <h4>Phishing Emails</h4>
-
-                        <p>Credential harvesting attacks</p>
+                        <span class="text-success">✓</span>
 
                     </div>
 
-                </div>
+                    <div class="flex justify-between">
 
-                <div class="timeline-item">
+                        <span>Credential Theft</span>
 
-                    <div class="timeline-marker"></div>
-
-                    <div class="timeline-content">
-
-                        <h4>Business Email Compromise</h4>
-
-                        <p>Executive impersonation</p>
+                        <span class="text-success">✓</span>
 
                     </div>
 
-                </div>
+                    <div class="flex justify-between">
 
-                <div class="timeline-item">
+                        <span>Fake Banking</span>
 
-                    <div class="timeline-marker"></div>
-
-                    <div class="timeline-content">
-
-                        <h4>Banking Fraud</h4>
-
-                        <p>Financial phishing campaigns</p>
+                        <span class="text-success">✓</span>
 
                     </div>
 
-                </div>
+                    <div class="flex justify-between">
 
-                <div class="timeline-item">
+                        <span>Lottery Scam</span>
 
-                    <div class="timeline-marker"></div>
-
-                    <div class="timeline-content">
-
-                        <h4>Social Engineering</h4>
-
-                        <p>Human manipulation detection</p>
+                        <span class="text-success">✓</span>
 
                     </div>
 
-                </div>
+                    <div class="flex justify-between">
 
-                <div class="timeline-item">
+                        <span>BEC Attack</span>
 
-                    <div class="timeline-marker"></div>
-
-                    <div class="timeline-content">
-
-                        <h4>Malicious Attachments</h4>
-
-                        <p>Dangerous file indicators</p>
+                        <span class="text-success">✓</span>
 
                     </div>
 
@@ -332,61 +194,29 @@ RakshakAI | Email Threat Intelligence
 
             </div>
 
-        </div>
+            <!-- Tips -->
 
-        <div class="card">
+            <div class="glass rounded-3xl p-6">
 
-            <div class="card-header">
+                <h3 class="text-xl font-bold mb-5">
 
-                <h3>
-
-                    Security Checklist
+                    Security Tips
 
                 </h3>
 
-            </div>
+                <ul class="space-y-3 text-muted">
 
-            <div class="recommendation-list">
+                    <li>• Verify sender domain.</li>
 
-                <div class="recommendation-item">
+                    <li>• Avoid unknown links.</li>
 
-                    <i data-lucide="shield-check"></i>
+                    <li>• Never share OTP.</li>
 
-                    <span>Verify sender identity.</span>
+                    <li>• Check attachments.</li>
 
-                </div>
+                    <li>• Report phishing immediately.</li>
 
-                <div class="recommendation-item">
-
-                    <i data-lucide="shield-check"></i>
-
-                    <span>Inspect suspicious links.</span>
-
-                </div>
-
-                <div class="recommendation-item">
-
-                    <i data-lucide="shield-check"></i>
-
-                    <span>Never share passwords or OTPs.</span>
-
-                </div>
-
-                <div class="recommendation-item">
-
-                    <i data-lucide="shield-check"></i>
-
-                    <span>Check unexpected attachments.</span>
-
-                </div>
-
-                <div class="recommendation-item">
-
-                    <i data-lucide="shield-check"></i>
-
-                    <span>Verify urgent payment requests.</span>
-
-                </div>
+                </ul>
 
             </div>
 
@@ -400,31 +230,36 @@ RakshakAI | Email Threat Intelligence
 
     <section
         id="loadingCard"
-        class="card hidden">
+        class="hidden glass rounded-3xl p-8">
 
-        <div class="loading-card">
+        <div class="flex items-center gap-6">
 
-            <div class="loading-spinner"></div>
+            <div
+                class="w-12 h-12 rounded-full border-4 border-primary border-t-transparent animate-spin">
 
-            <h2>
+            </div>
 
-                AI Investigation Running
+            <div>
 
-            </h2>
+                <h2 class="text-2xl font-bold">
 
-            <p>
+                    AI Analysis Running
 
-                Initializing Email Intelligence Engine...
+                </h2>
 
-            </p>
+                <p class="text-muted mt-2">
+
+                    RakshakAI is processing your email...
+
+                </p>
+
+            </div>
 
         </div>
 
     </section>
 
-    <!-- ================================================= -->
     <!-- RESULT -->
-    <!-- ================================================= -->
 
     <section
         id="resultContainer"
@@ -434,441 +269,158 @@ RakshakAI | Email Threat Intelligence
 
 </div>
 
-    <!-- ========================================= -->
-    <!-- LOADING -->
-    <!-- ========================================= -->
-
-    <section
-        id="loadingCard"
-        class="card hidden">
-
-        <div class="loading-card">
-
-            <div class="loading-spinner"></div>
-
-            <h2>
-
-                AI Investigation Running
-
-            </h2>
-
-            <p>
-
-                Initializing Email Engine...
-
-            </p>
-
-        </div>
-
-    </section>
-
-    <!-- ========================================= -->
-    <!-- RESULT -->
-    <!-- ========================================= -->
-
-    <section
-        id="resultContainer"
-        class="hidden">
-
-    </section>
-
-    {% endblock %}
+{% endblock %}
 
 {% block extra_js %}
 
 <script src="{{ url_for('static', filename='js/result_renderer.js') }}"></script>
+
 <script>
 
-/* ==========================================================
-DOM ELEMENTS
-========================================================== */
+const textarea=document.getElementById("emailText");
+const counter=document.getElementById("charCount");
 
-const senderName =
-document.getElementById("senderName");
+const sampleBtn=document.getElementById("sampleBtn");
+const clearBtn=document.getElementById("clearBtn");
+const scanBtn=document.getElementById("scanBtn");
 
-const senderEmail =
-document.getElementById("senderEmail");
+const loadingCard=document.getElementById("loadingCard");
+const resultContainer=document.getElementById("resultContainer");
 
-const recipientEmail =
-document.getElementById("recipientEmail");
+/* ===========================
+Character Counter
+=========================== */
 
-const emailSubject =
-document.getElementById("emailSubject");
+textarea.addEventListener("input",()=>{
 
-const emailBody =
-document.getElementById("emailBody");
-
-const sampleBtn =
-document.getElementById("sampleBtn");
-
-const clearBtn =
-document.getElementById("clearBtn");
-
-const scanBtn =
-document.getElementById("scanBtn");
-
-const loadingCard =
-document.getElementById("loadingCard");
-
-const resultContainer =
-document.getElementById("resultContainer");
-
-/* ==========================================================
-SAMPLE EMAIL
-========================================================== */
-
-const SAMPLE={
-
-senderName:
-"John Smith",
-
-senderEmail:
-"security@bank-verification.com",
-
-recipientEmail:
-"user@example.com",
-
-subject:
-"Urgent Account Verification Required",
-
-body:
-`Dear Customer,
-
-We detected suspicious activity on your account.
-
-Please verify your banking information immediately using the secure link below.
-
-https://secure-bank-verification-login.com
-
-Failure to verify your account within 24 hours may permanently suspend your online banking access.
-
-Regards,
-
-Bank Security Team`
-
-};
-
-/* ==========================================================
-LOAD SAMPLE
-========================================================== */
-
-function loadSample(){
-
-senderName.value=SAMPLE.senderName;
-
-senderEmail.value=SAMPLE.senderEmail;
-
-recipientEmail.value=SAMPLE.recipientEmail;
-
-emailSubject.value=SAMPLE.subject;
-
-emailBody.value=SAMPLE.body;
-
-}
-
-sampleBtn.addEventListener(
-
-"click",
-
-loadSample
-
-);
-
-/* ==========================================================
-CLEAR
-========================================================== */
-
-function clearWorkspace(){
-
-senderName.value="";
-
-senderEmail.value="";
-
-recipientEmail.value="";
-
-emailSubject.value="";
-
-emailBody.value="";
-
-loadingCard.classList.add(
-
-"hidden"
-
-);
-
-resultContainer.classList.add(
-
-"hidden"
-
-);
-
-window.scrollTo({
-
-top:0,
-
-behavior:"smooth"
+    counter.textContent=`${textarea.value.length} Characters`;
 
 });
 
-}
+/* ===========================
+Clear
+=========================== */
 
-clearBtn.addEventListener(
+clearBtn.addEventListener("click",()=>{
 
-"click",
+    textarea.value="";
 
-clearWorkspace
+    counter.textContent="0 Characters";
 
-);
+    loadingCard.classList.add("hidden");
 
-/* ==========================================================
-LOADING
-========================================================== */
+    resultContainer.classList.add("hidden");
 
-const loadingSteps=[
+});
 
-"Initializing Email Intelligence Engine...",
+/* ===========================
+Sample Email
+=========================== */
 
-"Extracting Email Metadata...",
+sampleBtn.addEventListener("click",()=>{
 
-"Analyzing Sender Reputation...",
+textarea.value=`Dear Customer,
 
-"Inspecting Subject Line...",
+Your account has been temporarily suspended due to suspicious login activity.
 
-"Analyzing Email Body...",
+Please verify your account immediately by clicking the secure link below.
 
-"Running AI Detection Models...",
+https://secure-bank-verification-login.com
 
-"Generating Investigation Report..."
+Failure to verify your account within 24 hours will permanently suspend your online banking services.
 
-];
+Regards,
+Bank Security Department`;
 
-let loadingInterval=null;
+counter.textContent=`${textarea.value.length} Characters`;
 
-function startLoading(){
+});
 
-loadingCard.classList.remove(
+/* ===========================
+Scan Email
+=========================== */
 
-"hidden"
+scanBtn.addEventListener("click",async()=>{
 
-);
+const emailText=textarea.value.trim();
 
-resultContainer.classList.add(
+if(emailText===""){
 
-"hidden"
-
-);
-
-const text=
-
-loadingCard.querySelector("p");
-
-let index=0;
-
-text.textContent=
-
-loadingSteps[0];
-
-loadingInterval=setInterval(()=>{
-
-index++;
-
-if(index>=loadingSteps.length){
-
-index=loadingSteps.length-1;
-
-}
-
-text.textContent=
-
-loadingSteps[index];
-
-},700);
-
-}
-
-function stopLoading(){
-
-clearInterval(
-
-loadingInterval
-
-);
-
-loadingCard.classList.add(
-
-"hidden"
-
-);
-
-}
-
-/* ==========================================================
-BUTTON STATE
-========================================================== */
-
-function setButtons(state){
-
-scanBtn.disabled=state;
-
-scanBtn.innerHTML=
-
-state?
-
-"Analyzing..."
-
-:
-
-"Analyze Email";
-
-}
-
-/* ==========================================================
-BUILD EMAIL
-========================================================== */
-
-function buildEmail(){
-
-return `
-
-Sender Name:
-${senderName.value}
-
-Sender Email:
-${senderEmail.value}
-
-Recipient Email:
-${recipientEmail.value}
-
-Subject:
-${emailSubject.value}
-
-Body:
-
-${emailBody.value}
-
-`;
-
-}
-
-/* ==========================================================
-SCAN EMAIL
-========================================================== */
-
-async function scanEmail(){
-
-if(
-
-senderEmail.value.trim()==="" &&
-
-emailBody.value.trim()===""
-
-){
-
-showToast(
-
-"Please enter email information.",
-
-"warning"
-
-);
+showToast("Please enter content before scanning.", "warning");
 
 return;
 
 }
 
-setButtons(true);
+scanBtn.disabled=true;
 
-startLoading();
+scanBtn.innerHTML="Analyzing...";
+
+loadingCard.classList.remove("hidden");
+
+resultContainer.classList.add("hidden");
 
 try{
 
-const response=
-
-await fetch(
-
-"/api/email",
-
-{
+const response=await fetch("/api/email",{
 
 method:"POST",
 
 headers:{
 
-"Content-Type":
-
-"application/json"
+"Content-Type":"application/json"
 
 },
 
 body:JSON.stringify({
 
-text:
-
-buildEmail()
+text:emailText
 
 })
 
-}
+});
 
-);
+const data = await response.json();
 
-const data=
+console.log(data);
 
-await response.json();
+if (!data.success) {
 
-if(!data.success){
+    alert(data.error || "Analysis failed.");
 
-throw new Error(
+    loadingCard.classList.add("hidden");
 
-data.error ||
-
-"Analysis Failed"
-
-);
+    return;
 
 }
 
-stopLoading();
+loadingCard.classList.add("hidden");
 
-resultContainer.classList.remove(
-
-"hidden"
-
-);
+resultContainer.classList.remove("hidden");
 
 renderResult(data);
-
-resultContainer.scrollIntoView({
-
-behavior:"smooth"
-
-});
 
 }
 
 catch(error){
 
-stopLoading();
+loadingCard.classList.add("hidden");
 
-resultContainer.classList.remove(
-
-"hidden"
-
-);
+resultContainer.classList.remove("hidden");
 
 resultContainer.innerHTML=`
 
-<div class="alert alert-danger">
+<div class="glass rounded-3xl p-8 border border-red-500/30">
 
-<h3>
+<h2 class="text-2xl font-bold text-danger">
 
 Analysis Failed
 
-</h3>
+</h2>
 
-<p class="mt-3">
+<p class="text-muted mt-4">
 
-${error.message}
+Unable to connect to RakshakAI backend.
 
 </p>
 
@@ -880,218 +432,74 @@ ${error.message}
 
 finally{
 
-setButtons(false);
+scanBtn.disabled=false;
+
+scanBtn.innerHTML="Analyze Email";
 
 }
 
-}
+});
 
-scanBtn.addEventListener(
-
-"click",
-
-scanEmail
-
-);
-
-
-/* ==========================================================
-RESULT RENDERING
-========================================================== */
+/* ===========================
+Render Result
+=========================== */
 
 function renderResult(data){
 
-    const score = RESULT_ENGINE.getThreatScore(data);
+const score = RESULT_ENGINE.getThreatScore(data);
 
-    const badge = RESULT_ENGINE.getBadge(data.risk);
+const badge = RESULT_ENGINE.getBadge(data.risk);
 
-    const confidence = RESULT_ENGINE.getConfidence(data);
+const confidence = RESULT_ENGINE.getConfidence(data);
 
-    let recommendation =
-        "No major phishing indicators were detected.";
+let recommendation = "No major phishing indicators detected.";
 
-    if(data.risk==="MEDIUM"){
+if(data.risk==="MEDIUM"){
 
-        recommendation =
-        "Exercise caution before interacting with this email.";
+    recommendation =
+    "Exercise caution before interacting with this email.";
 
-    }
+}
+else if(data.risk==="HIGH"){
 
-    else if(data.risk==="HIGH"){
+    recommendation =
+    "This email appears malicious. Avoid clicking links, downloading attachments, or replying.";
 
-        recommendation =
-        "This email appears malicious. Avoid clicking links, downloading attachments, or replying.";
+}
+else if(data.risk==="CRITICAL"){
 
-    }
+    recommendation =
+    "Critical phishing attack detected. Delete this email immediately and report it.";
 
-    else if(data.risk==="CRITICAL"){
+}
 
-        recommendation =
-        "Critical phishing attack detected. Delete the email immediately and report it to your security team.";
+resultContainer.innerHTML=`
 
-    }
+<div class="space-y-8">
 
-    resultContainer.innerHTML = `
+<div class="grid xl:grid-cols-3 gap-6">
 
-<div class="dashboard-section">
+<div class="glass rounded-3xl p-7">
 
-<div class="kpi-grid">
+<p class="text-muted">
 
-<div class="kpi-card">
-
-<div class="kpi-icon">
-
-<i data-lucide="shield-alert"></i>
-
-</div>
-
-<span>Threat Score</span>
-
-<h2>${score}%</h2>
-
-<div class="progress mt-4">
-
-<div class="progress-bar" style="width:${score}%"></div>
-
-</div>
-
-</div>
-
-<div class="kpi-card">
-
-<div class="kpi-icon">
-
-<i data-lucide="triangle-alert"></i>
-
-</div>
-
-<span>Risk Level</span>
-
-<h2>${data.risk}</h2>
-
-<div class="badge ${badge} mt-3">
-
-${data.result}
-
-</div>
-
-</div>
-
-<div class="kpi-card">
-
-<div class="kpi-icon">
-
-<i data-lucide="brain"></i>
-
-</div>
-
-<span>AI Confidence</span>
-
-<h2>${confidence}</h2>
-
-<p class="mt-2">
-
-${data.engine}
+Threat Score
 
 </p>
 
-</div>
+<h2 class="text-5xl font-bold mt-3">
 
-</div>
+${score}<span class="text-2xl">%</span>
 
-<div class="dashboard-grid mt-5">
+</h2>
 
-<div class="card">
+<div class="w-full h-3 rounded-full bg-white/10 mt-6">
 
-<div class="card-header">
+<div
 
-<h3>
+class="h-3 rounded-full bg-primary"
 
-Executive Summary
-
-</h3>
-
-</div>
-
-<div class="alert alert-primary">
-
-<div>
-
-<p>
-
-${recommendation}
-
-</p>
-
-</div>
-
-</div>
-
-<div class="divider"></div>
-
-<div class="result-grid">
-
-<div class="result-box">
-
-<h4>
-
-Prediction
-
-</h4>
-
-<p>
-
-${data.result}
-
-</p>
-
-</div>
-
-<div class="result-box">
-
-<h4>
-
-Risk
-
-</h4>
-
-<p>
-
-${data.risk}
-
-</p>
-
-</div>
-
-<div class="result-box">
-
-<h4>
-
-Confidence
-
-</h4>
-
-<p>
-
-${confidence}
-
-</p>
-
-</div>
-
-<div class="result-box">
-
-<h4>
-
-Scan ID
-
-</h4>
-
-<p class="font-mono">
-
-${data.scan_id}
-
-</p>
+style="width:${score}%">
 
 </div>
 
@@ -1099,177 +507,187 @@ ${data.scan_id}
 
 </div>
 
-<div class="card">
+<div class="glass rounded-3xl p-7">
 
-<div class="card-header">
-
-<h3>
-
-Investigation Details
-
-</h3>
-
-</div>
-
-<div class="timeline">
-
-<div class="timeline-item">
-
-<div class="timeline-marker"></div>
-
-<div class="timeline-content">
-
-<h4>
-
-Threat Classification
-
-</h4>
-
-<p>
-
-${data.result}
-
-</p>
-
-</div>
-
-</div>
-
-<div class="timeline-item">
-
-<div class="timeline-marker"></div>
-
-<div class="timeline-content">
-
-<h4>
+<p class="text-muted">
 
 Risk Level
 
-</h4>
+</p>
 
-<p>
+<div class="mt-5">
+
+<span class="px-5 py-2 rounded-full font-bold ${badge}">
 
 ${data.risk}
 
-</p>
+</span>
 
 </div>
 
 </div>
 
-<div class="timeline-item">
+<div class="glass rounded-3xl p-7">
 
-<div class="timeline-marker"></div>
+<p class="text-muted">
 
-<div class="timeline-content">
-
-<h4>
-
-Detection Engine
-
-</h4>
-
-<p>
-
-${data.engine}
+Prediction
 
 </p>
 
-</div>
+<h2 class="text-3xl font-bold mt-4">
 
-</div>
+${data.result}
 
-<div class="timeline-item">
-
-<div class="timeline-marker"></div>
-
-<div class="timeline-content">
-
-<h4>
-
-Timestamp
-
-</h4>
-
-<p>
-
-${data.timestamp}
-
-</p>
+</h2>
 
 </div>
 
 </div>
 
-</div>
+<div class="grid xl:grid-cols-2 gap-6">
+
+    <!-- Scan Information -->
+
+    <div class="glass rounded-3xl p-7">
+
+        <h3 class="text-xl font-bold mb-6">
+
+            Scan Information
+
+        </h3>
+
+        <div class="space-y-5">
+
+            <div class="flex justify-between">
+
+                <span class="text-muted">
+
+                    AI Engine
+
+                </span>
+
+                <span>
+
+                    ${data.engine}
+
+                </span>
+
+            </div>
+
+            <div class="flex justify-between">
+
+                <span class="text-muted">
+
+                    Confidence
+
+                </span>
+
+                <span>
+
+                    ${confidence}
+
+                </span>
+
+            </div>
+
+            <div class="flex justify-between">
+
+                <span class="text-muted">
+
+                    Scan ID
+
+                </span>
+
+                <span class="font-mono">
+
+                    ${data.scan_id}
+
+                </span>
+
+            </div>
+
+            <div class="flex justify-between">
+
+                <span class="text-muted">
+
+                    Timestamp
+
+                </span>
+
+                <span>
+
+                    ${data.timestamp}
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- AI Recommendation -->
+
+    <div class="glass rounded-3xl p-7">
+
+        <h3 class="text-xl font-bold mb-6">
+
+            AI Recommendation
+
+        </h3>
+
+        <div class="rounded-2xl border border-primary/20 bg-primary/5 p-5">
+
+            <p class="leading-8 text-slate-300">
+
+                ${recommendation}
+
+            </p>
+
+        </div>
+
+    </div>
 
 </div>
 
-</div>
+<div class="glass rounded-3xl p-7">
 
-<div class="card mt-5">
-
-<div class="card-header">
-
-<h3>
+<h3 class="text-xl font-bold mb-6">
 
 Explainable AI
 
 </h3>
 
-</div>
+<div class="space-y-4">
 
-<div class="evidence-list">
+<div class="flex items-center gap-3">
 
-<div class="evidence-item">
+<span class="text-primary text-xl">➜</span>
 
-<i data-lucide="check-circle"></i>
-
-<div>
-
-<strong>Classification</strong>
-
-<p>
-
-Email classified as <b>${data.result}</b>.
-
-</p>
+<span>
+Email classified as <strong>${data.result}</strong>.
+</span>
 
 </div>
 
-</div>
+<div class="flex items-center gap-3">
 
-<div class="evidence-item">
+<span class="text-primary text-xl">➜</span>
 
-<i data-lucide="check-circle"></i>
-
-<div>
-
-<strong>Risk Assessment</strong>
-
-<p>
-
-Threat level detected as <b>${data.risk}</b>.
-
-</p>
+<span>
+Risk level detected as <strong>${data.risk}</strong>.
+</span>
 
 </div>
 
-</div>
+<div class="flex items-center gap-3">
 
-<div class="evidence-item">
+<span class="text-primary text-xl">➜</span>
 
-<i data-lucide="check-circle"></i>
-
-<div>
-
-<strong>Confidence</strong>
-
-<p>
-
-Prediction confidence is <b>${confidence}</b>.
-
-</p>
+<span>
+AI confidence: <strong>${confidence}</strong>.
+</span>
 
 </div>
 
@@ -1277,99 +695,47 @@ Prediction confidence is <b>${confidence}</b>.
 
 </div>
 
-</div>
+<div class="glass rounded-3xl p-7">
 
-<div class="card mt-5">
-
-<div class="card-header">
-
-<h3>
+<h3 class="text-xl font-bold mb-6">
 
 Threat Indicators
 
 </h3>
 
-</div>
+<div class="space-y-4">
 
-<div class="ioc-container">
+<div class="flex items-center gap-3">
 
-<div class="ioc-tag">
-
-Prediction :
-${data.result}
-
-</div>
-
-<div class="ioc-tag">
-
-Risk :
-${data.risk}
-
-</div>
-
-<div class="ioc-tag">
-
-Engine :
-${data.engine}
-
-</div>
-
-<div class="ioc-tag">
-
-Score :
-${score}%
-
-</div>
-
-</div>
-
-</div>
-
-<div class="card mt-5">
-
-<div class="card-header">
-
-<h3>
-
-Recommended Actions
-
-</h3>
-
-</div>
-
-<div class="recommendation-list">
-
-<div class="recommendation-item">
-
-<i data-lucide="shield-check"></i>
+<span class="text-danger text-xl">✔</span>
 
 <span>
 
-${recommendation}
+Prediction: ${data.result}
 
 </span>
 
 </div>
 
-<div class="recommendation-item">
+<div class="flex items-center gap-3">
 
-<i data-lucide="mail-warning"></i>
+<span class="text-danger text-xl">✔</span>
 
 <span>
 
-Do not click suspicious links or download unknown attachments.
+Risk Level: ${data.risk}
 
 </span>
 
 </div>
 
-<div class="recommendation-item">
+<div class="flex items-center gap-3">
 
-<i data-lucide="lock"></i>
+<span class="text-danger text-xl">✔</span>
 
 <span>
 
-Verify the sender independently before responding.
+Engine: ${data.engine}
 
 </span>
 
@@ -1379,31 +745,35 @@ Verify the sender independently before responding.
 
 </div>
 
-<div class="flex flex-wrap gap-4 mt-5">
+<!-- Action Buttons -->
+
+<div class="flex flex-wrap gap-4">
 
 <button
 id="newScan"
-class="btn btn-primary">
+class="bg-primary text-black font-bold px-6 py-3 rounded-2xl">
 
-New Investigation
+🔄 New Scan
 
 </button>
 
 <button
 id="copyResult"
-class="btn btn-outline">
+class="glass px-6 py-3 rounded-2xl">
 
-Copy Report
+📋 Copy Result
 
 </button>
 
 <button
 id="exportBtn"
-class="btn btn-outline">
+class="glass px-6 py-3 rounded-2xl">
 
-Export JSON
+⬇ Export JSON
 
 </button>
+
+</div>
 
 </div>
 
@@ -1411,69 +781,56 @@ Export JSON
 
 `;
 
-    lucide.createIcons();
+document.getElementById("copyResult").addEventListener("click",()=>{
 
-    document.getElementById("copyResult")
-    .addEventListener("click",()=>{
-
-        navigator.clipboard.writeText(
-
-`Prediction : ${data.result}
+const text=`
+Prediction : ${data.result}
 Risk : ${data.risk}
-Confidence : ${confidence}
 Engine : ${data.engine}
 Scan ID : ${data.scan_id}
-Timestamp : ${data.timestamp}`
+Timestamp : ${data.timestamp}
+`;
 
-        );
+navigator.clipboard.writeText(text);
 
-        showToast(
+showToast("Result copied successfully.", "success");
 
-            "Investigation copied.",
+});
+document.getElementById("exportBtn").addEventListener("click",()=>{
 
-            "success"
+const blob=new Blob(
+[JSON.stringify(data,null,4)],
+{type:"application/json"}
+);
 
-        );
+const a=document.createElement("a");
 
-    });
+a.href=URL.createObjectURL(blob);
 
-    document.getElementById("exportBtn")
-    .addEventListener("click",()=>{
+a.download=data.scan_id+".json";
 
-        const blob = new Blob(
+a.click();
 
-            [JSON.stringify(data,null,4)],
+});
+document.getElementById("newScan").addEventListener("click",()=>{
 
-            {
+textarea.value="";
 
-                type:"application/json"
+counter.textContent="0 Characters";
 
-            }
+resultContainer.classList.add("hidden");
 
-        );
+window.scrollTo({
 
-        const a = document.createElement("a");
+top:0,
 
-        a.href = URL.createObjectURL(blob);
+behavior:"smooth"
 
-        a.download =
+});
 
-            data.scan_id + ".json";
-
-        a.click();
-
-    });
-
-    document.getElementById("newScan")
-    .addEventListener("click",()=>{
-
-        clearWorkspace();
-
-    });
+});
 
 }
-
-lucide.createIcons();
 
 </script>
 

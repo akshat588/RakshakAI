@@ -4,341 +4,214 @@
 
 {% block content %}
 
-<div class="analyzer-page fade-up">
+<div class="max-w-7xl mx-auto px-6 py-8">
 
-    <!-- ============================================= -->
-    <!-- HERO -->
-    <!-- ============================================= -->
+    <!-- Header -->
 
-    <section class="hero">
+    <div class="mb-8">
 
-        <div class="flex-between flex-wrap gap-5">
+        <h1 class="text-4xl font-bold text-white">
+            QR Code Threat Analyzer
+        </h1>
 
-            <div>
+        <p class="text-slate-400 mt-2">
+            Upload a QR Code and let RakshakAI detect phishing, malicious redirects,
+            suspicious URLs and dangerous QR payloads.
+        </p>
 
-                <span class="badge badge-primary">
-                    QR Threat Intelligence
-                </span>
+    </div>
 
-                <h1 class="mt-4">
-                    AI Powered QR Investigation
-                </h1>
+    <div class="grid lg:grid-cols-2 gap-8">
 
-                <p class="mt-3 max-w-3xl">
+        <!-- Upload Card -->
 
-                    Upload a QR code and let RakshakAI detect
-                    phishing URLs, fake payment QRs,
-                    malicious redirects and dangerous payloads.
+        <div
+            class="bg-slate-900 rounded-2xl border border-slate-700 p-8 shadow-xl">
 
-                </p>
+            <h2 class="text-xl font-semibold text-white mb-6">
 
-            </div>
+                Upload QR Image
 
-            <div class="glass p-5 rounded-lg w-[320px]">
+            </h2>
 
-                <div class="flex-between">
+            <form id="qrForm">
 
-                    <div>
+                <label
+                    id="dropZone"
+                    class="flex flex-col justify-center items-center h-80 rounded-xl border-2 border-dashed border-cyan-500 cursor-pointer hover:bg-slate-800 transition">
 
-                        <p class="text-muted">
+                    <svg class="w-16 h-16 text-cyan-400 mb-4"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24">
 
-                            AI Engine
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-9-13.5v13.5m0-13.5l-3.75 3.75M12 3l3.75 3.75" />
 
-                        </p>
+                    </svg>
 
-                        <h3>
+                    <span class="text-white font-medium">
 
-                            QR Threat Detector
+                        Drag & Drop QR Image
 
-                        </h3>
+                    </span>
 
-                    </div>
+                    <span class="text-slate-400 mt-2">
 
-                    <div class="status-pill status-online">
+                        PNG • JPG • JPEG • WEBP
 
-                        <span class="status-dot"></span>
+                    </span>
 
-                        Online
+                    <input
+                        id="qrImage"
+                        type="file"
+                        accept="image/*"
+                        hidden>
 
-                    </div>
+                </label>
 
-                </div>
+                <div class="mt-6">
 
-                <div class="divider"></div>
-
-                <div class="grid grid-2 grid-gap">
-
-                    <div>
-
-                        <h2>
-
-                            97.6%
-
-                        </h2>
-
-                        <p>
-
-                            Accuracy
-
-                        </p>
-
-                    </div>
-
-                    <div>
-
-                        <h2>
-
-                            6
-
-                        </h2>
-
-                        <p>
-
-                            Threat Types
-
-                        </p>
-
-                    </div>
+                    <img
+                        id="preview"
+                        class="hidden rounded-xl border border-slate-700 max-h-80 w-full object-contain">
 
                 </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- ============================================= -->
-    <!-- QR INVESTIGATION -->
-    <!-- ============================================= -->
-
-    <section class="card">
-
-        <div class="card-header">
-
-            <div>
-
-                <h2>
-
-                    QR Investigation Workspace
-
-                </h2>
-
-                <small>
-
-                    Upload or drag & drop a QR image.
-
-                </small>
-
-            </div>
-
-        </div>
-
-        <form id="qrForm">
-
-            <label
-                id="dropZone"
-                class="upload-zone">
-
-                <div class="upload-icon">
-
-                    <i data-lucide="qr-code"></i>
-
-                </div>
-
-                <h3>
-
-                    Drag & Drop QR Image
-
-                </h3>
-
-                <p>
-
-                    PNG • JPG • JPEG • WEBP
-
-                </p>
-
-                <input
-                    id="qrImage"
-                    type="file"
-                    accept="image/*"
-                    hidden>
-
-            </label>
-
-            <img
-                id="preview"
-                class="hidden preview-image">
-
-            <div class="flex gap-4 flex-wrap mt-6">
 
                 <button
                     id="scanButton"
                     type="submit"
-                    class="btn btn-primary">
+                    class="w-full mt-8 bg-cyan-600 hover:bg-cyan-700 transition rounded-xl py-4 text-white font-semibold">
 
-                    Analyze QR
-
-                </button>
-
-                <button
-                    type="button"
-                    id="clearBtn"
-                    class="btn btn-outline">
-
-                    Reset
+                    Analyze QR Code
 
                 </button>
 
-            </div>
-
-        </form>
-
-    </section>
-
-    <!-- ============================================= -->
-    <!-- INFORMATION -->
-    <!-- ============================================= -->
-
-    <section class="dashboard-grid mt-6">
-
-        <div class="card">
-
-            <div class="card-header">
-
-                <h3>
-
-                    Detection Capabilities
-
-                </h3>
-
-            </div>
-
-            <div class="timeline">
-
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h4>Malicious URLs</h4>
-                        <p>Detects phishing destinations.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h4>Fake Payment QR</h4>
-                        <p>Identifies fraudulent payment requests.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h4>Credential Theft</h4>
-                        <p>Detects fake login pages.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h4>APK Downloads</h4>
-                        <p>Flags malicious app downloads.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h4>Redirect Chains</h4>
-                        <p>Finds hidden redirect behaviour.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h4>UPI Fraud QR</h4>
-                        <p>Detects fake payment QR codes.</p>
-                    </div>
-                </div>
-
-            </div>
+            </form>
 
         </div>
 
-        <div class="card">
+        <!-- Instructions -->
 
-            <div class="card-header">
+        <div
+            class="bg-slate-900 rounded-2xl border border-slate-700 p-8 shadow-xl">
 
-                <h3>
+            <h2 class="text-xl font-semibold text-white mb-6">
 
-                    Security Checklist
+                RakshakAI Analysis
 
-                </h3>
+            </h2>
 
-            </div>
+            <div class="space-y-6">
 
-            <div class="recommendation-list">
+                <div class="flex items-start gap-4">
 
-                <div class="recommendation-item">
+                    <div
+                        class="w-10 h-10 rounded-full bg-cyan-600 flex items-center justify-center text-white">
 
-                    <i data-lucide="shield-check"></i>
+                        1
 
-                    <span>
+                    </div>
 
-                        Verify QR before scanning.
+                    <div>
 
-                    </span>
+                        <h3 class="text-white font-semibold">
 
-                </div>
+                            Upload QR
 
-                <div class="recommendation-item">
+                        </h3>
 
-                    <i data-lucide="shield-check"></i>
+                        <p class="text-slate-400">
 
-                    <span>
+                            Select any QR code image.
 
-                        Check the destination URL.
+                        </p>
 
-                    </span>
-
-                </div>
-
-                <div class="recommendation-item">
-
-                    <i data-lucide="shield-check"></i>
-
-                    <span>
-
-                        Never scan unknown payment QR codes.
-
-                    </span>
+                    </div>
 
                 </div>
 
-                <div class="recommendation-item">
+                <div class="flex items-start gap-4">
 
-                    <i data-lucide="shield-check"></i>
+                    <div
+                        class="w-10 h-10 rounded-full bg-cyan-600 flex items-center justify-center text-white">
 
-                    <span>
+                        2
 
-                        Avoid APK downloads.
+                    </div>
 
-                    </span>
+                    <div>
+
+                        <h3 class="text-white font-semibold">
+
+                            Decode
+
+                        </h3>
+
+                        <p class="text-slate-400">
+
+                            QR content is securely extracted.
+
+                        </p>
+
+                    </div>
 
                 </div>
 
-                <div class="recommendation-item">
+                <div class="flex items-start gap-4">
 
-                    <i data-lucide="shield-check"></i>
+                    <div
+                        class="w-10 h-10 rounded-full bg-cyan-600 flex items-center justify-center text-white">
 
-                    <span>
+                        3
 
-                        Confirm merchant identity.
+                    </div>
 
-                    </span>
+                    <div>
+
+                        <h3 class="text-white font-semibold">
+
+                            Threat Analysis
+
+                        </h3>
+
+                        <p class="text-slate-400">
+
+                            AI checks URLs, redirects, phishing indicators and suspicious payloads.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="flex items-start gap-4">
+
+                    <div
+                        class="w-10 h-10 rounded-full bg-cyan-600 flex items-center justify-center text-white">
+
+                        4
+
+                    </div>
+
+                    <div>
+
+                        <h3 class="text-white font-semibold">
+
+                            AI Decision
+
+                        </h3>
+
+                        <p class="text-slate-400">
+
+                            Professional threat report generated.
+
+                        </p>
+
+                    </div>
 
                 </div>
 
@@ -346,8 +219,10 @@
 
         </div>
 
-    </section>
+    </div>
 
 </div>
+
+<script src="{{ url_for('static', filename='js/qr.js') }}"></script>
 
 {% endblock %}

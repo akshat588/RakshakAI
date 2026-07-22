@@ -1,30 +1,32 @@
 <aside
     id="sidebar"
-    class="w-72 h-screen sticky top-0 flex flex-col border-r border-white/10 bg-slate-950/90 backdrop-blur-xl transition-all duration-300">
+    class="glass w-64 h-screen sticky top-0 flex flex-col border-r border-white/10 transition-all duration-300 overflow-hidden">
 
-    <!-- ===================================== -->
+    <!-- ========================= -->
     <!-- Logo -->
-    <!-- ===================================== -->
+    <!-- ========================= -->
 
-    <div class="px-6 py-6 border-b border-white/10">
+    <div class="px-6 py-5 border-b border-white/10">
 
         <div class="flex items-center gap-4">
 
-            <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center">
+            <div
+                class="w-10 h-10 rounded-2xl bg-primary/10 border border-primary/30 flex items-center justify-center glow">
 
-                <i data-lucide="shield-check" class="w-7 h-7 text-cyan-400"></i>
+                <i data-lucide="shield-check"
+                   class="w-6 h-6 text-primary"></i>
 
             </div>
 
             <div>
 
-                <h1 class="text-2xl font-extrabold tracking-wide">
+                <h1 class="text-xl font-bold tracking-wide">
 
                     RakshakAI
 
                 </h1>
 
-                <p class="text-xs text-slate-400">
+                <p class="text-xs text-muted">
 
                     Cyber Threat Intelligence
 
@@ -36,253 +38,131 @@
 
     </div>
 
-    <!-- ===================================== -->
-    <!-- AI Investigation -->
-    <!-- ===================================== -->
-
-    <div class="px-5 pt-6">
-
-        <a href="{{ url_for('home') }}"
-           class="block rounded-2xl bg-cyan-500 text-black p-5 hover:scale-[1.02] transition">
-
-            <div class="flex items-center gap-4">
-
-                <i data-lucide="sparkles" class="w-7 h-7"></i>
-
-                <div>
-
-                    <h3 class="font-bold">
-
-                        AI Investigation
-
-                    </h3>
-
-                    <p class="text-sm opacity-80">
-
-                        Start Investigation
-
-                    </p>
-
-                </div>
-
-            </div>
-
-        </a>
-
-    </div>
-
-    <!-- ===================================== -->
+    <!-- ========================= -->
     <!-- Navigation -->
-    <!-- ===================================== -->
+    <!-- ========================= -->
 
-    <nav class="flex-1 overflow-y-auto px-5 py-6 space-y-8">
+    <nav
+        class="flex-1 px-4 py-5 overflow-y-auto scrollbar-hide">
 
-        <!-- Dashboard -->
+        <p
+            class="text-[11px] uppercase tracking-[3px] text-muted mb-4 px-3">
 
-        <div>
+            MAIN MENU
 
-            <p class="text-[11px] uppercase tracking-[3px] text-slate-500 mb-3">
+        </p>
 
-                Overview
+        <div class="space-y-2">
 
-            </p>
+            <a href="{{ url_for('home') }}"
+               class="sidebar-link active">
 
-            <div class="space-y-2">
+                <i data-lucide="layout-dashboard"></i>
 
-                <a href="{{ url_for('home') }}" class="sidebar-link">
+                <span>Dashboard</span>
 
-                    <i data-lucide="layout-dashboard"></i>
+            </a>
 
-                    <span>Dashboard</span>
+            <a href="{{ url_for('email_page') }}"
+               class="sidebar-link">
 
-                </a>
+                <i data-lucide="mail-search"></i>
 
-                <a href="{{ url_for('scan_history_page') }}" class="sidebar-link">
+                <span>Email Analyzer</span>
 
-                    <i data-lucide="history"></i>
+            </a>
 
-                    <span>Investigation History</span>
+            <a href="{{ url_for('url_page') }}"
+               class="sidebar-link">
 
-                </a>
+                <i data-lucide="link"></i>
 
-            </div>
+                <span>URL Analyzer</span>
 
-        </div>
+            </a>
 
-        <!-- Detection Engines -->
+            <a href="{{ url_for('sms_page') }}"
+               class="sidebar-link">
 
-        <div>
+                <i data-lucide="message-square-warning"></i>
 
-            <p class="text-[11px] uppercase tracking-[3px] text-slate-500 mb-3">
+                <span>SMS Analyzer</span>
 
-                Detection Engines
+            </a>
 
-            </p>
+            <a href="{{ url_for('whatsapp_page') }}"
+               class="sidebar-link">
 
-            <div class="space-y-2">
+                <i data-lucide="messages-square"></i>
 
-                <a href="{{ url_for('email_page') }}" class="sidebar-link">
+                <span>WhatsApp Analyzer</span>
 
-                    <i data-lucide="mail-search"></i>
+            </a>
 
-                    <span>Email</span>
+            <a href="{{ url_for('fake_job_page') }}"
+               class="sidebar-link">
 
-                </a>
+                <i data-lucide="briefcase-business"></i>
 
-                <a href="{{ url_for('url_page') }}" class="sidebar-link">
+                <span>Fake Job</span>
 
-                    <i data-lucide="link"></i>
+            </a>
 
-                    <span>URL</span>
+            <a href="{{ url_for('social_engineering_page') }}"
+               class="sidebar-link">
 
-                </a>
+                <i data-lucide="users"></i>
 
-                <a href="{{ url_for('sms_page') }}" class="sidebar-link">
+                <span>Social Engineering</span>
 
-                    <i data-lucide="message-square-warning"></i>
+            </a>
 
-                    <span>SMS</span>
+            <a href="{{ url_for('upi_page') }}"
+               class="sidebar-link">
 
-                </a>
+                <i data-lucide="wallet-cards"></i>
 
-                <a href="{{ url_for('whatsapp_page') }}" class="sidebar-link">
+                <span>UPI Fraud</span>
 
-                    <i data-lucide="messages-square"></i>
+            </a>
 
-                    <span>WhatsApp</span>
+            <a href="/qr" class="sidebar-link">
+                <i data-lucide="scan-qr-code"></i>
+                <span>QR Analyzer</span>
+            </a>
 
-                </a>
-
-                <a href="{{ url_for('upi_page') }}" class="sidebar-link">
-
-                    <i data-lucide="wallet-cards"></i>
-
-                    <span>UPI Fraud</span>
-
-                </a>
-
-                <a href="{{ url_for('qr_page') }}" class="sidebar-link">
-
-                    <i data-lucide="scan-qr-code"></i>
-
-                    <span>QR Analyzer</span>
-
-                </a>
-
-                <a href="{{ url_for('deepfake_page') }}" class="sidebar-link">
-
-                    <i data-lucide="image-up"></i>
-
-                    <span>Deepfake</span>
-
-                </a>
-
-            </div>
+            <a href="/deepfake" class="sidebar-link">
+                <i data-lucide="image-up"></i>
+                <span>Deepfake Analyzer</span>
+            </a>
 
         </div>
 
-        <!-- Social Threats -->
+        <!-- Divider -->
 
-        <div>
+        <div class="border-t border-white/10 my-8"></div>
 
-            <p class="text-[11px] uppercase tracking-[3px] text-slate-500 mb-3">
+        <p
+            class="text-[11px] uppercase tracking-[3px] text-muted mb-4 px-3">
 
-                Human Threats
+            MANAGEMENT
 
-            </p>
+        </p>
 
-            <div class="space-y-2">
+        <div class="space-y-2">
 
-                <a href="{{ url_for('fake_job_page') }}" class="sidebar-link">
+            <a href="{{ url_for('scan_history_page') }}"
+               class="sidebar-link">
 
-                    <i data-lucide="briefcase-business"></i>
+                <i data-lucide="history"></i>
 
-                    <span>Fake Job</span>
+                <span>Scan History</span>
 
-                </a>
+            </a>
 
-                <a href="{{ url_for('social_engineering_page') }}" class="sidebar-link">
-
-                    <i data-lucide="users"></i>
-
-                    <span>Social Engineering</span>
-
-                </a>
-
-            </div>
 
         </div>
 
     </nav>
-
-    <!-- ===================================== -->
-    <!-- Footer -->
-    <!-- ===================================== -->
-
-    <div class="border-t border-white/10 p-5">
-
-        <div class="rounded-2xl bg-slate-900 border border-cyan-500/20 p-4">
-
-            <div class="flex justify-between items-center">
-
-                <div>
-
-                    <p class="text-xs text-slate-400">
-
-                        System Status
-
-                    </p>
-
-                    <h3 class="font-bold text-green-400 mt-1">
-
-                        All Engines Online
-
-                    </h3>
-
-                </div>
-
-                <div class="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
-
-            </div>
-
-            <div class="mt-4 grid grid-cols-2 gap-3 text-center">
-
-                <div>
-
-                    <p class="text-xs text-slate-500">
-
-                        Engines
-
-                    </p>
-
-                    <h3 class="font-bold">
-
-                        9/9
-
-                    </h3>
-
-                </div>
-
-                <div>
-
-                    <p class="text-xs text-slate-500">
-
-                        Accuracy
-
-                    </p>
-
-                    <h3 class="font-bold text-cyan-400">
-
-                        97.63%
-
-                    </h3>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
 
 </aside>

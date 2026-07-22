@@ -22,13 +22,9 @@ from api.upi import upi_bp
 from api.fake_job import fake_job_bp
 from api.social_engineering import social_bp
 from api.qr import qr_bp
+from api.twilio import twilio_bp
 from api.deepfake import deepfake_bp
 from api.history import history_bp
-from api.assistant_core.routes import assistant_bp
-from dotenv import load_dotenv
-
-load_dotenv()
-from api.whatsapp_bot.webhook import whatsapp_webhook
 
 # ==========================
 # Flask App
@@ -46,14 +42,13 @@ app.register_blueprint(email_bp)
 app.register_blueprint(url_bp)
 app.register_blueprint(sms_bp)
 app.register_blueprint(whatsapp_bp)
+app.register_blueprint(twilio_bp)
 app.register_blueprint(upi_bp)
 app.register_blueprint(fake_job_bp)
 app.register_blueprint(social_bp)
 app.register_blueprint(qr_bp)
 app.register_blueprint(deepfake_bp)
 app.register_blueprint(history_bp)
-app.register_blueprint(assistant_bp)
-app.register_blueprint(whatsapp_webhook, url_prefix="/whatsapp")
 
 # ==========================
 # Home Route
@@ -145,5 +140,4 @@ def scan_history_page():
 # ==========================
 
 if __name__ == "__main__":
-
-    app.run(debug=True)
+    app.run(host=config.HOST, port=config.PORT, debug=config.DEBUG)

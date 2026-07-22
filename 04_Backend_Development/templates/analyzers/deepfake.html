@@ -3,115 +3,18 @@
 {% block title %}Deepfake Image Analyzer{% endblock %}
 
 {% block content %}
-<div class="analyzer-page fade-up">
 
-    <section class="hero">
+<section class="max-w-4xl mx-auto py-12">
 
-        <div class="flex-between flex-wrap gap-5">
+    <div class="bg-slate-900 rounded-3xl border border-slate-700 p-10">
 
-            <div>
+        <h1 class="text-4xl font-bold text-white mb-4">
+            Deepfake Image Analyzer
+        </h1>
 
-                <span class="badge badge-primary">
-
-                    Deepfake Image Investigation
-
-                </span>
-
-                <h1 class="mt-4">
-
-                    AI Deepfake Detection
-
-                </h1>
-
-                <p class="mt-3 max-w-3xl">
-
-                    Upload an image to detect AI-generated, manipulated, or synthetic faces using RakshakAI Vision Engine.
-
-                </p>
-
-            </div>
-
-            <div class="glass p-5 rounded-lg w-[320px]">
-
-                <div class="flex-between">
-
-                    <div>
-
-                        <p class="text-muted">
-
-                            AI Engine
-
-                        </p>
-
-                        <h3>
-
-                            Vision Deepfake Detector
-
-                        </h3>
-
-                    </div>
-
-                    <div class="status-pill status-online">
-
-                        <span class="status-dot"></span>
-
-                        Online
-
-                    </div>
-
-                </div>
-
-                <div class="divider"></div>
-
-                <div class="grid grid-2 grid-gap">
-
-                    <div>
-
-                        <h2>
-
-                            97.6%
-
-                        </h2>
-
-                        <p>
-
-                            Accuracy
-
-                        </p>
-
-                    </div>
-
-                    <div>
-
-                        <h2>
-
-                            CNN
-
-                        </h2>
-
-                        <p>
-
-                            AI Model
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <section class="glass rounded-3xl p-8">
-
-        <h2 class="text-2xl font-bold mb-6">
-
-            Image Investigation Workspace
-
-        </h2>
+        <p class="text-slate-400 mb-8">
+            Upload an image to detect AI-generated or manipulated faces using the RakshakAI Vision Engine.
+        </p>
 
         <form
             id="deepfakeForm"
@@ -123,11 +26,11 @@
                 name="image"
                 type="file"
                 accept="image/*"
-                class="block w-full rounded-2xl border border-slate-700 bg-slate-900 p-5 text-white">
+                class="block w-full rounded-xl border border-slate-700 bg-slate-800 p-4 text-white">
 
             <button
                 type="submit"
-                class="w-full bg-primary text-black font-bold rounded-2xl py-4">
+                class="w-full bg-cyan-600 hover:bg-cyan-500 rounded-xl py-4 text-white font-semibold">
 
                 Analyze Image
 
@@ -135,9 +38,9 @@
 
         </form>
 
-    </section>
+    </div>
 
-</div>
+</section>
 
 <script src="{{ url_for('static', filename='js/deepfake.js') }}"></script>
 

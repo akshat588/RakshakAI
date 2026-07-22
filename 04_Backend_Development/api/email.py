@@ -14,38 +14,6 @@ model = load_model("email_detector")
 vectorizer = load_vectorizer("email_vectorizer")
 
 
-def analyze_email_ai(text: str):
-    """
-    Reusable Email AI Engine.
-
-    Used by:
-    - Existing Email API
-    - Universal Assistant
-    """
-
-    features = vectorizer.transform([text])
-
-    prediction = model.predict(features)[0]
-
-    probabilities = model.predict_proba(features)[0]
-
-    result_data = calculate_result(
-        prediction=prediction,
-        probabilities=probabilities,
-        classes=model.classes_,
-        safe_label="Safe Email",
-        phishing_label="Phishing Email",
-    )
-
-    return {
-        "prediction": result_data["prediction"],
-        "result": result_data["result"],
-        "risk": result_data["risk"],
-        "confidence": result_data["confidence"],
-        "risk_score": result_data["risk_score"],
-    }
-
-
 @email_bp.route("/api/email", methods=["POST"])
 def analyze_email():
     try:
@@ -63,7 +31,21 @@ def analyze_email():
                 400,
             )
 
-        result_data = analyze_email_ai(text)
+        features = vectorizer.transform([text])
+
+        print("Vectorization Successful")
+
+        prediction = model.predict(features)[0]
+
+        probabilities = model.predict_proba(features)[0]
+
+        result_data = calculate_result(
+            prediction=prediction,
+            probabilities=probabilities,
+            classes=model.classes_,
+            safe_label="Safe Email",
+            phishing_label="Phishing Email",
+        )
 
         response = build_response(
             engine="Email Detector",
@@ -84,6 +66,8 @@ def analyze_email():
         traceback.print_exc()
 
         return (
-            jsonify({"success": False, "error": str(e), "traceback": traceback.format_exc()}),
+            jsonify(
+                {"success": False, "error": str(e), "traceback": traceback.format_exc()}
+            ),
             500,
         )
