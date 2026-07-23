@@ -244,6 +244,33 @@ RakshakAI | Fake Job Analyzer
 const jobText=document.getElementById("jobText");
 const counter=document.getElementById("charCount");
 
+/* ===========================
+AI Investigation Auto Fill
+=========================== */
+
+const investigationInput = sessionStorage.getItem(
+    "rakshakai_investigation_input"
+);
+
+if (investigationInput) {
+
+    jobText.value = investigationInput;
+
+    counter.textContent =
+        `${jobText.value.length} Characters`;
+
+}
+
+if (investigationInput) {
+
+    setTimeout(() => {
+
+        scanBtn.click();
+
+    },300);
+
+}
+
 const sampleBtn=document.getElementById("sampleBtn");
 const clearBtn=document.getElementById("clearBtn");
 const scanBtn=document.getElementById("scanBtn");
@@ -348,6 +375,10 @@ loadingCard.classList.add("hidden");
 resultContainer.classList.remove("hidden");
 
 renderResult(data);
+
+sessionStorage.removeItem(
+    "rakshakai_investigation_input"
+);
 
 }
 
@@ -739,6 +770,9 @@ behavior:"smooth"
 });
 
 });
+    sessionStorage.setItem("fake_job_result", JSON.stringify(data));
+
+    window.location.href = "/fake-job/result";
 
 }
 

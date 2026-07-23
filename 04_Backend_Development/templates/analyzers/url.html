@@ -269,6 +269,33 @@ RakshakAI | URL Analyzer
 
     </section>
 
+        id="loadingCard"
+        class="card hidden">
+
+        <div class="loading-card">
+
+            <div class="loading-spinner"></div>
+
+            <h2>
+
+                AI Investigation Running
+
+            </h2>
+
+            <p>
+
+                Initializing URL Intelligence Engine...
+
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- ================================================= -->
+    <!-- RESULT -->
+    <!-- ================================================= -->
+
 </div>
 
 {% endblock %}
@@ -285,6 +312,31 @@ RakshakAI | URL Analyzer
 
 const urlInput=document.getElementById("urlInput");
 const status=document.getElementById("urlStatus");
+/* ===========================
+AI Investigation Auto Fill
+=========================== */
+
+const investigationInput = sessionStorage.getItem(
+    "rakshakai_investigation_input"
+);
+
+if (investigationInput) {
+
+    urlInput.value = investigationInput;
+
+    status.textContent = "Investigation Loaded";
+
+}
+
+if (investigationInput) {
+
+    setTimeout(() => {
+
+        scanBtn.click();
+
+    },300);
+
+}
 
 const sampleBtn=document.getElementById("sampleBtn");
 const clearBtn=document.getElementById("clearBtn");
@@ -390,6 +442,10 @@ loadingCard.classList.add("hidden");
 resultContainer.classList.remove("hidden");
 
 renderResult(data);
+sessionStorage.removeItem(
+    "rakshakai_investigation_input"
+);
+
 
 }
 

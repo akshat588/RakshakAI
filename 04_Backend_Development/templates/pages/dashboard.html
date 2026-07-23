@@ -648,7 +648,7 @@ Detection Accuracy
 
         <!-- Fake Job -->
 
-        <a href="{{ url_for('fake_job_page') }}"
+        <a href="{{ url_for('fake_job.fake_job_page' )}}"
            class="glass rounded-3xl p-6 hover:border-primary transition">
 
             <div class="flex justify-between items-center">
@@ -750,203 +750,102 @@ Detection Accuracy
 </section>
 
 <!-- ========================================= -->
-<!-- QUICK ACTIONS -->
+<!-- AI SECURITY INVESTIGATION -->
 <!-- ========================================= -->
 
-<section id="quick-actions" class="space-y-6">
+<section id="ai-investigation" class="space-y-6">
 
-    <div class="flex items-center justify-between">
+    <div class="glass rounded-3xl p-8">
 
-        <div>
+        <!-- Header -->
 
-            <h2 class="text-2xl font-bold">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-8">
 
-                Quick Actions
+            <div>
 
-            </h2>
+                <h2 class="text-3xl font-bold flex items-center gap-3">
 
-            <p class="text-muted mt-1">
+                    <i data-lucide="shield-search" class="w-8 h-8 text-primary"></i>
 
-                Launch any AI detection engine instantly
+                    AI Security Investigation
 
-            </p>
+                </h2>
+
+                <p class="text-muted mt-2">
+
+                    Investigate suspicious emails, URLs, SMS, WhatsApp messages,
+                    UPI IDs, QR codes, fake jobs, deepfakes and social engineering attacks
+                    from one unified interface.
+
+                </p>
+
+            </div>
+
+            <div class="px-5 py-2 rounded-xl bg-primary/10 border border-primary/20">
+
+                <span class="text-primary font-semibold">
+
+                    Unified Investigation Console
+
+                </span>
+
+            </div>
 
         </div>
 
-    </div>
+        <!-- Investigation Input -->
 
-    <div class="grid xl:grid-cols-3 md:grid-cols-2 gap-6">
+        <textarea
+            id="investigationInput"
+            rows="8"
+            class="w-full glass rounded-2xl p-5 resize-none outline-none border border-white/10 focus:border-primary transition"
+            placeholder="Paste suspicious email, URL, SMS, WhatsApp message, UPI ID, job description or any suspicious content here..."></textarea>
 
-        <a href="{{ url_for('email_page') }}"
-           class="glass rounded-3xl p-6 hover:border-primary hover:-translate-y-1 transition-all duration-300">
+        <!-- Detection Engines -->
 
-            <i data-lucide="mail" class="w-10 h-10 text-primary mb-4"></i>
+        <div class="grid xl:grid-cols-3 md:grid-cols-2 gap-4 mt-8">
 
-            <h3 class="font-bold text-xl">
+            <button class="engine-btn glass rounded-2xl p-4" data-engine="email">📧 Email</button>
 
-                Email Analyzer
+            <button class="engine-btn glass rounded-2xl p-4" data-engine="url">🔗 URL</button>
 
-            </h3>
+            <button class="engine-btn glass rounded-2xl p-4" data-engine="sms">💬 SMS</button>
 
-            <p class="text-muted mt-2">
+            <button class="engine-btn glass rounded-2xl p-4" data-engine="whatsapp">📱 WhatsApp</button>
 
-                Detect phishing emails and business email compromise.
+            <button class="engine-btn glass rounded-2xl p-4" data-engine="upi">💳 UPI</button>
 
-            </p>
+            <button class="engine-btn glass rounded-2xl p-4" data-engine="qr">📷 QR</button>
 
-        </a>
+            <button class="engine-btn glass rounded-2xl p-4" data-engine="fake-job">💼 Fake Job</button>
 
-        <a href="{{ url_for('url_page') }}"
-           class="glass rounded-3xl p-6 hover:border-primary hover:-translate-y-1 transition-all duration-300">
+            <button class="engine-btn glass rounded-2xl p-4" data-engine="social-engineering">🧠 Social Engineering</button>
 
-            <i data-lucide="link" class="w-10 h-10 text-primary mb-4"></i>
+            <button class="engine-btn glass rounded-2xl p-4" data-engine="deepfake">🎭 Deepfake</button>
 
-            <h3 class="font-bold text-xl">
+        </div>
 
-                URL Analyzer
+        <!-- Action Buttons -->
 
-            </h3>
+        <div class="flex flex-wrap gap-4 mt-8">
 
-            <p class="text-muted mt-2">
+            <button
+                id="startInvestigation"
+                class="px-8 py-4 rounded-2xl bg-primary text-black font-bold hover:scale-105 transition">
 
-                Scan suspicious URLs using AI and heuristics.
+                Analyze with AI
 
-            </p>
+            </button>
 
-        </a>
+            <button
+                id="uploadEvidence"
+                class="px-8 py-4 rounded-2xl glass border border-primary/20 hover:border-primary transition">
 
-        <a href="{{ url_for('sms_page') }}"
-           class="glass rounded-3xl p-6 hover:border-primary hover:-translate-y-1 transition-all duration-300">
+                Upload Evidence
 
-            <i data-lucide="message-square" class="w-10 h-10 text-primary mb-4"></i>
+            </button>
 
-            <h3 class="font-bold text-xl">
-
-                SMS Analyzer
-
-            </h3>
-
-            <p class="text-muted mt-2">
-
-                Detect SMS fraud and phishing attempts.
-
-            </p>
-
-        </a>
-
-        <a href="{{ url_for('whatsapp_page') }}"
-           class="glass rounded-3xl p-6 hover:border-primary hover:-translate-y-1 transition-all duration-300">
-
-            <i data-lucide="message-circle" class="w-10 h-10 text-primary mb-4"></i>
-
-            <h3 class="font-bold text-xl">
-
-                WhatsApp Analyzer
-
-            </h3>
-
-            <p class="text-muted mt-2">
-
-                Identify WhatsApp scam messages.
-
-            </p>
-
-        </a>
-
-        <a href="{{ url_for('upi_page') }}"
-           class="glass rounded-3xl p-6 hover:border-primary hover:-translate-y-1 transition-all duration-300">
-
-            <i data-lucide="wallet" class="w-10 h-10 text-primary mb-4"></i>
-
-            <h3 class="font-bold text-xl">
-
-                UPI Fraud Detector
-
-            </h3>
-
-            <p class="text-muted mt-2">
-
-                Analyze suspicious UPI transactions.
-
-            </p>
-
-        </a>
-
-        <a href="{{ url_for('qr_page') }}"
-           class="glass rounded-3xl p-6 hover:border-primary hover:-translate-y-1 transition-all duration-300">
-
-            <i data-lucide="scan-line" class="w-10 h-10 text-primary mb-4"></i>
-
-            <h3 class="font-bold text-xl">
-
-                QR Analyzer
-
-            </h3>
-
-            <p class="text-muted mt-2">
-
-                Detect malicious QR codes.
-
-            </p>
-
-        </a>
-
-        <a href="{{ url_for('fake_job_page') }}"
-           class="glass rounded-3xl p-6 hover:border-primary hover:-translate-y-1 transition-all duration-300">
-
-            <i data-lucide="briefcase" class="w-10 h-10 text-primary mb-4"></i>
-
-            <h3 class="font-bold text-xl">
-
-                Fake Job Detector
-
-            </h3>
-
-            <p class="text-muted mt-2">
-
-                Detect fraudulent recruitment offers.
-
-            </p>
-
-        </a>
-
-        <a href="{{ url_for('social_engineering_page') }}"
-           class="glass rounded-3xl p-6 hover:border-primary hover:-translate-y-1 transition-all duration-300">
-
-            <i data-lucide="users" class="w-10 h-10 text-primary mb-4"></i>
-
-            <h3 class="font-bold text-xl">
-
-                Social Engineering
-
-            </h3>
-
-            <p class="text-muted mt-2">
-
-                Identify manipulation and psychological attacks.
-
-            </p>
-
-        </a>
-
-        <a href="{{ url_for('deepfake_page') }}"
-           class="glass rounded-3xl p-6 hover:border-primary hover:-translate-y-1 transition-all duration-300">
-
-            <i data-lucide="image" class="w-10 h-10 text-primary mb-4"></i>
-
-            <h3 class="font-bold text-xl">
-
-                Deepfake Detector
-
-            </h3>
-
-            <p class="text-muted mt-2">
-
-                Verify AI-generated or manipulated images.
-
-            </p>
-
-        </a>
+        </div>
 
     </div>
 
@@ -1455,6 +1354,117 @@ ${scan.saved_at || scan.timestamp || "-"}
 refreshDashboard();
 
 setInterval(refreshDashboard,3000);
+
+//--------------------------------------------------
+// AI Investigation Engine Selector
+//--------------------------------------------------
+
+let selectedEngine = null;
+
+const engineButtons = document.querySelectorAll(".engine-btn");
+
+engineButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        engineButtons.forEach(btn => {
+            btn.classList.remove(
+                "border-primary",
+                "bg-primary/20",
+                "text-primary"
+            );
+        });
+
+        button.classList.add(
+            "border-primary",
+            "bg-primary/20",
+            "text-primary"
+        );
+
+        selectedEngine = button.dataset.engine;
+
+    });
+
+});
+
+//--------------------------------------------------
+// Analyze with AI
+//--------------------------------------------------
+
+document
+.getElementById("startInvestigation")
+.addEventListener("click", () => {
+
+    const input = document
+        .getElementById("investigationInput")
+        .value
+        .trim();
+
+    if (!selectedEngine) {
+
+        alert("Please select an AI Detection Engine.");
+
+        return;
+
+    }
+
+    if (!input) {
+
+        alert("Please enter suspicious content.");
+
+        return;
+
+    }
+
+    sessionStorage.setItem(
+        "rakshakai_investigation_input",
+        input
+    );
+
+    switch (selectedEngine) {
+
+        case "email":
+            window.location.href = "/email";
+            break;
+
+        case "url":
+            window.location.href = "/url";
+            break;
+
+        case "sms":
+            window.location.href = "/sms";
+            break;
+
+        case "whatsapp":
+            window.location.href = "/whatsapp";
+            break;
+
+        case "upi":
+            window.location.href = "/upi";
+            break;
+
+        case "qr":
+            window.location.href = "/qr";
+            break;
+
+        case "fake-job":
+            window.location.href = "/fake-job";
+            break;
+
+        case "social-engineering":
+            window.location.href = "/social-engineering";
+            break;
+
+        case "deepfake":
+            window.location.href = "/deepfake";
+            break;
+
+        default:
+            alert("Unsupported analyzer.");
+
+    }
+
+});
 
 </script>
 

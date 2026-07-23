@@ -193,6 +193,24 @@ const sampleBtn=document.getElementById("sampleBtn");
 const clearBtn=document.getElementById("clearBtn");
 const scanBtn=document.getElementById("scanBtn");
 
+/* ===========================
+AI Investigation Auto Fill
+=========================== */
+
+const investigationInput = sessionStorage.getItem(
+    "rakshakai_investigation_input"
+);
+
+if (investigationInput) {
+
+    setTimeout(() => {
+
+        scanBtn.click();
+
+    },300);
+
+}
+
 const fields = [
 "Bank_Name",
 "Transaction_Amount",
@@ -204,6 +222,17 @@ const fields = [
 "Transaction_Type",
 "Channel"
 ];
+
+/* ===========================
+Populate Investigation Data
+=========================== */
+
+if (investigationInput) {
+
+    document.getElementById("Merchant_Name").value =
+        investigationInput;
+
+}
 
 /* ===========================
 Load Sample
@@ -293,6 +322,10 @@ loadingCard.classList.add("hidden");
 resultContainer.classList.remove("hidden");
 
 renderResult(data);
+
+sessionStorage.removeItem(
+    "rakshakai_investigation_input"
+);
 
 }
 

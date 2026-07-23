@@ -268,6 +268,33 @@ RakshakAI | SMS Analyzer
 
     </section>
 
+        id="loadingCard"
+        class="card hidden">
+
+        <div class="loading-card">
+
+            <div class="loading-spinner"></div>
+
+            <h2>
+
+                AI Investigation Running
+
+            </h2>
+
+            <p>
+
+                Initializing SMS Intelligence Engine...
+
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- =============================================== -->
+    <!-- RESULT -->
+    <!-- =============================================== -->
+
 </div>
 
 {% endblock %}
@@ -278,6 +305,33 @@ RakshakAI | SMS Analyzer
 
 const smsText=document.getElementById("smsText");
 const counter=document.getElementById("charCount");
+
+/* ===========================
+AI Investigation Auto Fill
+=========================== */
+
+const investigationInput = sessionStorage.getItem(
+    "rakshakai_investigation_input"
+);
+
+if (investigationInput) {
+
+    smsText.value = investigationInput;
+
+    counter.textContent =
+        `${smsText.value.length} Characters`;
+
+}
+
+if (investigationInput) {
+
+    setTimeout(() => {
+
+        scanBtn.click();
+
+    },300);
+
+}
 
 const sampleBtn=document.getElementById("sampleBtn");
 const clearBtn=document.getElementById("clearBtn");
@@ -383,6 +437,10 @@ loadingCard.classList.add("hidden");
 resultContainer.classList.remove("hidden");
 
 renderResult(data);
+
+sessionStorage.removeItem(
+    "rakshakai_investigation_input"
+);
 
 }
 

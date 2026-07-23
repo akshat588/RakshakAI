@@ -209,11 +209,11 @@ RakshakAI | WhatsApp Analyzer
 
     <!-- Result -->
 
-    <section
-        id="resultContainer"
-        class="hidden">
+<section
+    id="resultContainer"
+    class="hidden">
 
-    </section>
+</section>
 
 </div>
 
@@ -221,10 +221,37 @@ RakshakAI | WhatsApp Analyzer
 
 {% block extra_js %}
 
+
 <script>
 
 const waText=document.getElementById("waText");
 const counter=document.getElementById("charCount");
+/* ===========================
+AI Investigation Auto Fill
+=========================== */
+
+const investigationInput = sessionStorage.getItem(
+    "rakshakai_investigation_input"
+);
+
+if (investigationInput) {
+
+    waText.value = investigationInput;
+
+    counter.textContent =
+        `${waText.value.length} Characters`;
+
+}
+
+if (investigationInput) {
+
+    setTimeout(() => {
+
+        scanBtn.click();
+
+    },300);
+
+}
 
 const sampleBtn=document.getElementById("sampleBtn");
 const clearBtn=document.getElementById("clearBtn");
@@ -330,6 +357,10 @@ loadingCard.classList.add("hidden");
 resultContainer.classList.remove("hidden");
 
 renderResult(data);
+
+sessionStorage.removeItem(
+    "rakshakai_investigation_input"
+);
 
 }
 

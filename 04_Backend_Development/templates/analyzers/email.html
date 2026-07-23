@@ -8,30 +8,26 @@ RakshakAI | Email Analyzer
 
 <div class="space-y-8 fade-up">
 
-    <!-- ================================================= -->
-    <!-- PAGE HEADER -->
-    <!-- ================================================= -->
+    <!-- ========================= -->
+    <!-- Header -->
+    <!-- ========================= -->
 
     <section class="flex flex-col xl:flex-row justify-between gap-6">
 
         <div>
 
             <p class="text-sm text-muted">
-
                 Dashboard / AI Analyzers
-
             </p>
 
             <h1 class="text-4xl font-bold mt-2">
-
                 Email Threat Analyzer
-
             </h1>
 
             <p class="text-muted mt-3 max-w-3xl">
-
-                Analyze suspicious emails using RakshakAI's AI-powered phishing detection engine. Detect phishing attempts, business email compromise, credential theft, fake banking emails and other social engineering attacks.
-
+                Analyze suspicious emails using RakshakAI's AI-powered phishing detection engine.
+                Detect phishing attempts, business email compromise, credential theft,
+                fake banking emails and other social engineering attacks.
             </p>
 
         </div>
@@ -45,15 +41,11 @@ RakshakAI | Email Analyzer
                 <div>
 
                     <h3 class="font-semibold">
-
                         AI Engine Status
-
                     </h3>
 
                     <p class="text-muted text-sm">
-
                         Email Detector Online
-
                     </p>
 
                 </div>
@@ -64,22 +56,20 @@ RakshakAI | Email Analyzer
 
     </section>
 
-    <!-- ================================================= -->
-    <!-- INPUT AREA -->
-    <!-- ================================================= -->
+    <!-- ========================= -->
+    <!-- Input -->
+    <!-- ========================= -->
 
     <section class="grid xl:grid-cols-3 gap-6">
 
-        <!-- LEFT -->
+        <!-- Left -->
 
         <div class="xl:col-span-2 glass rounded-3xl p-8">
 
             <div class="flex justify-between items-center mb-6">
 
                 <h2 class="text-2xl font-bold">
-
                     Email Content
-
                 </h2>
 
                 <span
@@ -98,7 +88,7 @@ RakshakAI | Email Analyzer
 
                 rows="18"
 
-                placeholder="Paste suspicious email content here..."
+                placeholder="Paste suspicious email here..."
 
                 class="w-full rounded-2xl bg-background border border-white/10 p-6 resize-none outline-none focus:border-primary transition"
 
@@ -107,24 +97,30 @@ RakshakAI | Email Analyzer
             <div class="flex flex-wrap gap-4 mt-6">
 
                 <button
+
                     id="sampleBtn"
-                    class="glass px-6 py-3 rounded-2xl hover:border-primary border border-transparent transition">
+
+                    class="glass px-6 py-3 rounded-2xl">
 
                     Load Sample
 
                 </button>
 
                 <button
+
                     id="clearBtn"
-                    class="glass px-6 py-3 rounded-2xl hover:border-danger border border-transparent transition">
+
+                    class="glass px-6 py-3 rounded-2xl">
 
                     Clear
 
                 </button>
 
                 <button
+
                     id="scanBtn"
-                    class="bg-primary text-black font-bold px-8 py-3 rounded-2xl hover:scale-105 transition">
+
+                    class="bg-primary text-black font-bold px-8 py-3 rounded-2xl">
 
                     Analyze Email
 
@@ -134,87 +130,64 @@ RakshakAI | Email Analyzer
 
         </div>
 
-        <!-- RIGHT -->
+        <!-- Right -->
 
         <div class="space-y-6">
 
-            <!-- Detection -->
-
             <div class="glass rounded-3xl p-6">
 
-                <h3 class="text-xl font-bold mb-5">
+                <h3 class="text-xl font-bold mb-4">
 
                     AI Detection
 
                 </h3>
 
-                <div class="space-y-4">
+                <div class="space-y-3">
 
                     <div class="flex justify-between">
-
                         <span>Phishing</span>
-
                         <span class="text-success">✓</span>
-
                     </div>
 
                     <div class="flex justify-between">
-
                         <span>Credential Theft</span>
-
                         <span class="text-success">✓</span>
-
                     </div>
 
                     <div class="flex justify-between">
-
                         <span>Fake Banking</span>
-
                         <span class="text-success">✓</span>
-
                     </div>
 
                     <div class="flex justify-between">
-
-                        <span>Lottery Scam</span>
-
+                        <span>Business Email Compromise</span>
                         <span class="text-success">✓</span>
-
                     </div>
 
                     <div class="flex justify-between">
-
-                        <span>BEC Attack</span>
-
+                        <span>Social Engineering</span>
                         <span class="text-success">✓</span>
-
                     </div>
 
                 </div>
 
             </div>
 
-            <!-- Tips -->
-
             <div class="glass rounded-3xl p-6">
 
-                <h3 class="text-xl font-bold mb-5">
+                <h3 class="text-xl font-bold mb-4">
 
                     Security Tips
 
                 </h3>
 
-                <ul class="space-y-3 text-muted">
+                <ul class="space-y-2 text-muted">
 
-                    <li>• Verify sender domain.</li>
-
-                    <li>• Avoid unknown links.</li>
-
-                    <li>• Never share OTP.</li>
-
-                    <li>• Check attachments.</li>
-
-                    <li>• Report phishing immediately.</li>
+                    <li>• Verify sender identity.</li>
+                    <li>• Avoid clicking unknown links.</li>
+                    <li>• Never share passwords or OTPs.</li>
+                    <li>• Inspect attachments carefully.</li>
+                    <li>• Report suspicious emails immediately.</li>
 
                 </ul>
 
@@ -224,9 +197,9 @@ RakshakAI | Email Analyzer
 
     </section>
 
-    <!-- ================================================= -->
-    <!-- LOADING -->
-    <!-- ================================================= -->
+        <!-- ========================= -->
+    <!-- Loading -->
+    <!-- ========================= -->
 
     <section
         id="loadingCard"
@@ -242,15 +215,11 @@ RakshakAI | Email Analyzer
             <div>
 
                 <h2 class="text-2xl font-bold">
-
                     AI Analysis Running
-
                 </h2>
 
                 <p class="text-muted mt-2">
-
-                    RakshakAI is processing your email...
-
+                    RakshakAI is analyzing your email. Please wait...
                 </p>
 
             </div>
@@ -259,7 +228,9 @@ RakshakAI | Email Analyzer
 
     </section>
 
-    <!-- RESULT -->
+    <!-- ========================= -->
+    <!-- Result -->
+    <!-- ========================= -->
 
     <section
         id="resultContainer"
@@ -277,138 +248,150 @@ RakshakAI | Email Analyzer
 
 <script>
 
-const textarea=document.getElementById("emailText");
-const counter=document.getElementById("charCount");
+    document.addEventListener("DOMContentLoaded", () => {
 
-const sampleBtn=document.getElementById("sampleBtn");
-const clearBtn=document.getElementById("clearBtn");
-const scanBtn=document.getElementById("scanBtn");
+    const textarea = document.getElementById("emailText");
+    const counter = document.getElementById("charCount");
+    /* ------------------------------
+    Auto-fill from AI Investigation
+    ------------------------------ */
 
-const loadingCard=document.getElementById("loadingCard");
-const resultContainer=document.getElementById("resultContainer");
+    const investigationInput = sessionStorage.getItem(
+        "rakshakai_investigation_input"
+    );
 
-/* ===========================
-Character Counter
-=========================== */
+    if (investigationInput) {
 
-textarea.addEventListener("input",()=>{
+        textarea.value = investigationInput;
 
-    counter.textContent=`${textarea.value.length} Characters`;
+        counter.textContent =
+            `${investigationInput.length} Characters`;
 
-});
+    }
 
-/* ===========================
-Clear
-=========================== */
+    const sampleBtn = document.getElementById("sampleBtn");
+    const clearBtn = document.getElementById("clearBtn");
+    const scanBtn = document.getElementById("scanBtn");
 
-clearBtn.addEventListener("click",()=>{
+    const loadingCard = document.getElementById("loadingCard");
+    const resultContainer = document.getElementById("resultContainer");
 
-    textarea.value="";
+    /* ------------------------------
+       Character Counter
+    ------------------------------ */
 
-    counter.textContent="0 Characters";
+    textarea.addEventListener("input", () => {
+        counter.textContent = `${textarea.value.length} Characters`;
+    });
 
-    loadingCard.classList.add("hidden");
+    /* ------------------------------
+       Sample Email
+    ------------------------------ */
 
-    resultContainer.classList.add("hidden");
+    sampleBtn.addEventListener("click", () => {
 
-});
+        textarea.value = `Dear Customer,
 
-/* ===========================
-Sample Email
-=========================== */
+Your account has been temporarily suspended because of suspicious login activity.
 
-sampleBtn.addEventListener("click",()=>{
-
-textarea.value=`Dear Customer,
-
-Your account has been temporarily suspended due to suspicious login activity.
-
-Please verify your account immediately by clicking the secure link below.
+Please verify your account immediately using the secure link below.
 
 https://secure-bank-verification-login.com
 
-Failure to verify your account within 24 hours will permanently suspend your online banking services.
+Failure to verify within 24 hours will permanently suspend your account.
 
 Regards,
-Bank Security Department`;
+Bank Security Team`;
 
-counter.textContent=`${textarea.value.length} Characters`;
+        counter.textContent =
+            `${textarea.value.length} Characters`;
 
-});
+    });
 
-/* ===========================
-Scan Email
-=========================== */
+    /* ------------------------------
+       Clear
+    ------------------------------ */
 
-scanBtn.addEventListener("click",async()=>{
+    clearBtn.addEventListener("click", () => {
 
-const emailText=textarea.value.trim();
+        textarea.value = "";
 
-if(emailText===""){
+        counter.textContent = "0 Characters";
 
-showToast("Please enter content before scanning.", "warning");
+        loadingCard.classList.add("hidden");
 
-return;
+        resultContainer.classList.add("hidden");
 
-}
+    });
 
-scanBtn.disabled=true;
+    /* ------------------------------
+       Analyze
+    ------------------------------ */
 
-scanBtn.innerHTML="Analyzing...";
+    scanBtn.addEventListener("click", async () => {
 
-loadingCard.classList.remove("hidden");
+        const emailText = textarea.value.trim();
 
-resultContainer.classList.add("hidden");
+        if (!emailText) {
 
-try{
+            showToast(
+                "Please enter email content.",
+                "warning"
+            );
 
-const response=await fetch("/api/email",{
+            return;
 
-method:"POST",
+        }
 
-headers:{
+        scanBtn.disabled = true;
 
-"Content-Type":"application/json"
+        scanBtn.textContent = "Analyzing...";
 
-},
+        loadingCard.classList.remove("hidden");
 
-body:JSON.stringify({
+        resultContainer.classList.add("hidden");
 
-text:emailText
+        try {
 
-})
+            const response = await fetch("/api/email", {
 
-});
+                method: "POST",
 
-const data = await response.json();
+                headers: {
 
-console.log(data);
+                    "Content-Type": "application/json"
 
-if (!data.success) {
+                },
 
-    alert(data.error || "Analysis failed.");
+                body: JSON.stringify({
 
-    loadingCard.classList.add("hidden");
+                    text: emailText
 
-    return;
+                })
 
-}
+            });
 
-loadingCard.classList.add("hidden");
+            const data = await response.json();
 
-resultContainer.classList.remove("hidden");
+            loadingCard.classList.add("hidden");
 
-renderResult(data);
+            resultContainer.classList.remove("hidden");
 
-}
+            renderResult(data);
 
-catch(error){
+            sessionStorage.removeItem(
+                "rakshakai_investigation_input"
+            );
 
-loadingCard.classList.add("hidden");
+        }
 
-resultContainer.classList.remove("hidden");
+        catch (error) {
 
-resultContainer.innerHTML=`
+            loadingCard.classList.add("hidden");
+
+            resultContainer.classList.remove("hidden");
+
+            resultContainer.innerHTML = `
 
 <div class="glass rounded-3xl p-8 border border-red-500/30">
 
@@ -420,7 +403,7 @@ Analysis Failed
 
 <p class="text-muted mt-4">
 
-Unable to connect to RakshakAI backend.
+${error.message}
 
 </p>
 
@@ -428,410 +411,162 @@ Unable to connect to RakshakAI backend.
 
 `;
 
-}
+        }
 
-finally{
+        finally {
 
-scanBtn.disabled=false;
+            scanBtn.disabled = false;
 
-scanBtn.innerHTML="Analyze Email";
+            scanBtn.textContent = "Analyze Email";
 
-}
+        }
 
-});
+    });
 
-/* ===========================
-Render Result
-=========================== */
+    function renderResult(data) {
 
-function renderResult(data){
+    const score =
+        data.risk_score ||
+        data.confidence ||
+        0;
 
-const score = RESULT_ENGINE.getThreatScore(data);
+    resultContainer.innerHTML = `
 
-const badge = RESULT_ENGINE.getBadge(data.risk);
+<div class="glass rounded-3xl p-8 space-y-6">
 
-const confidence = RESULT_ENGINE.getConfidence(data);
+    <h2 class="text-3xl font-bold">
+        Investigation Result
+    </h2>
 
-let recommendation = "No major phishing indicators detected.";
+    <div class="grid md:grid-cols-2 gap-6">
 
-if(data.risk==="MEDIUM"){
+        <div class="glass rounded-2xl p-5">
 
-    recommendation =
-    "Exercise caution before interacting with this email.";
+            <p class="text-muted">Prediction</p>
 
-}
-else if(data.risk==="HIGH"){
+            <h3 class="text-2xl font-bold mt-2">
+                ${data.result || data.prediction}
+            </h3>
 
-    recommendation =
-    "This email appears malicious. Avoid clicking links, downloading attachments, or replying.";
+        </div>
 
-}
-else if(data.risk==="CRITICAL"){
+        <div class="glass rounded-2xl p-5">
 
-    recommendation =
-    "Critical phishing attack detected. Delete this email immediately and report it.";
+            <p class="text-muted">Risk Level</p>
 
-}
+            <h3 class="text-2xl font-bold mt-2">
+                ${data.risk}
+            </h3>
 
-resultContainer.innerHTML=`
+        </div>
 
-<div class="space-y-8">
+        <div class="glass rounded-2xl p-5">
 
-<div class="grid xl:grid-cols-3 gap-6">
+            <p class="text-muted">Confidence</p>
 
-<div class="glass rounded-3xl p-7">
+            <h3 class="text-2xl font-bold mt-2">
+                ${score}%
+            </h3>
 
-<p class="text-muted">
+        </div>
 
-Threat Score
+        <div class="glass rounded-2xl p-5">
 
-</p>
+            <p class="text-muted">Detection Engine</p>
 
-<h2 class="text-5xl font-bold mt-3">
-
-${score}<span class="text-2xl">%</span>
-
-</h2>
-
-<div class="w-full h-3 rounded-full bg-white/10 mt-6">
-
-<div
-
-class="h-3 rounded-full bg-primary"
-
-style="width:${score}%">
-
-</div>
-
-</div>
-
-</div>
-
-<div class="glass rounded-3xl p-7">
-
-<p class="text-muted">
-
-Risk Level
-
-</p>
-
-<div class="mt-5">
-
-<span class="px-5 py-2 rounded-full font-bold ${badge}">
-
-${data.risk}
-
-</span>
-
-</div>
-
-</div>
-
-<div class="glass rounded-3xl p-7">
-
-<p class="text-muted">
-
-Prediction
-
-</p>
-
-<h2 class="text-3xl font-bold mt-4">
-
-${data.result}
-
-</h2>
-
-</div>
-
-</div>
-
-<div class="grid xl:grid-cols-2 gap-6">
-
-    <!-- Scan Information -->
-
-    <div class="glass rounded-3xl p-7">
-
-        <h3 class="text-xl font-bold mb-6">
-
-            Scan Information
-
-        </h3>
-
-        <div class="space-y-5">
-
-            <div class="flex justify-between">
-
-                <span class="text-muted">
-
-                    AI Engine
-
-                </span>
-
-                <span>
-
-                    ${data.engine}
-
-                </span>
-
-            </div>
-
-            <div class="flex justify-between">
-
-                <span class="text-muted">
-
-                    Confidence
-
-                </span>
-
-                <span>
-
-                    ${confidence}
-
-                </span>
-
-            </div>
-
-            <div class="flex justify-between">
-
-                <span class="text-muted">
-
-                    Scan ID
-
-                </span>
-
-                <span class="font-mono">
-
-                    ${data.scan_id}
-
-                </span>
-
-            </div>
-
-            <div class="flex justify-between">
-
-                <span class="text-muted">
-
-                    Timestamp
-
-                </span>
-
-                <span>
-
-                    ${data.timestamp}
-
-                </span>
-
-            </div>
+            <h3 class="text-xl font-bold mt-2">
+                ${data.engine || "RakshakAI"}
+            </h3>
 
         </div>
 
     </div>
 
-    <!-- AI Recommendation -->
+    <div class="glass rounded-2xl p-6">
 
-    <div class="glass rounded-3xl p-7">
-
-        <h3 class="text-xl font-bold mb-6">
+        <h3 class="text-xl font-bold mb-4">
 
             AI Recommendation
 
         </h3>
 
-        <div class="rounded-2xl border border-primary/20 bg-primary/5 p-5">
+        <p>
 
-            <p class="leading-8 text-slate-300">
+            ${
+                data.recommendation ||
+                "Review this email carefully before interacting with it."
+            }
 
-                ${recommendation}
+        </p>
 
-            </p>
+    </div>
 
-        </div>
+    <div class="flex gap-4 flex-wrap">
+
+        <button
+            id="copyBtn"
+            class="glass px-6 py-3 rounded-2xl">
+
+            Copy Result
+
+        </button>
+
+        <button
+            id="newBtn"
+            class="glass px-6 py-3 rounded-2xl">
+
+            New Scan
+
+        </button>
 
     </div>
 
 </div>
 
-<div class="glass rounded-3xl p-7">
-
-<h3 class="text-xl font-bold mb-6">
-
-Explainable AI
-
-</h3>
-
-<div class="space-y-4">
-
-<div class="flex items-center gap-3">
-
-<span class="text-primary text-xl">➜</span>
-
-<span>
-Email classified as <strong>${data.result}</strong>.
-</span>
-
-</div>
-
-<div class="flex items-center gap-3">
-
-<span class="text-primary text-xl">➜</span>
-
-<span>
-Risk level detected as <strong>${data.risk}</strong>.
-</span>
-
-</div>
-
-<div class="flex items-center gap-3">
-
-<span class="text-primary text-xl">➜</span>
-
-<span>
-AI confidence: <strong>${confidence}</strong>.
-</span>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="glass rounded-3xl p-7">
-
-<h3 class="text-xl font-bold mb-6">
-
-Threat Indicators
-
-</h3>
-
-<div class="space-y-4">
-
-<div class="flex items-center gap-3">
-
-<span class="text-danger text-xl">✔</span>
-
-<span>
-
-Prediction: ${data.result}
-
-</span>
-
-</div>
-
-<div class="flex items-center gap-3">
-
-<span class="text-danger text-xl">✔</span>
-
-<span>
-
-Risk Level: ${data.risk}
-
-</span>
-
-</div>
-
-<div class="flex items-center gap-3">
-
-<span class="text-danger text-xl">✔</span>
-
-<span>
-
-Engine: ${data.engine}
-
-</span>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- Action Buttons -->
-
-<div class="flex flex-wrap gap-4">
-
-<button
-id="newScan"
-class="bg-primary text-black font-bold px-6 py-3 rounded-2xl">
-
-🔄 New Scan
-
-</button>
-
-<button
-id="copyResult"
-class="glass px-6 py-3 rounded-2xl">
-
-📋 Copy Result
-
-</button>
-
-<button
-id="exportBtn"
-class="glass px-6 py-3 rounded-2xl">
-
-⬇ Export JSON
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
 `;
 
-document.getElementById("copyResult").addEventListener("click",()=>{
+    document
+        .getElementById("copyBtn")
+        .addEventListener("click", () => {
 
-const text=`
-Prediction : ${data.result}
-Risk : ${data.risk}
-Engine : ${data.engine}
-Scan ID : ${data.scan_id}
-Timestamp : ${data.timestamp}
-`;
+            navigator.clipboard.writeText(
 
-navigator.clipboard.writeText(text);
+JSON.stringify(data, null, 2)
 
-showToast("Result copied successfully.", "success");
+            );
 
-});
-document.getElementById("exportBtn").addEventListener("click",()=>{
+            showToast(
+                "Result copied.",
+                "success"
+            );
 
-const blob=new Blob(
-[JSON.stringify(data,null,4)],
-{type:"application/json"}
-);
+        });
 
-const a=document.createElement("a");
+    document
+        .getElementById("newBtn")
+        .addEventListener("click", () => {
 
-a.href=URL.createObjectURL(blob);
+            textarea.value = "";
 
-a.download=data.scan_id+".json";
+            counter.textContent = "0 Characters";
 
-a.click();
+            resultContainer.classList.add(
+                "hidden"
+            );
 
-});
-document.getElementById("newScan").addEventListener("click",()=>{
+            window.scrollTo({
 
-textarea.value="";
+                top: 0,
 
-counter.textContent="0 Characters";
+                behavior: "smooth"
 
-resultContainer.classList.add("hidden");
+            });
 
-window.scrollTo({
-
-top:0,
-
-behavior:"smooth"
-
-});
-
-});
+        });
 
 }
 
+});
 </script>
 
 {% endblock %}

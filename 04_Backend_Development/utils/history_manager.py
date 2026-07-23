@@ -2,6 +2,8 @@ import json
 import os
 from datetime import datetime
 
+import numpy as np
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 HISTORY_FILE = os.path.join(
@@ -9,6 +11,26 @@ HISTORY_FILE = os.path.join(
     "data",
     "scan_history.json",
 )
+
+
+def json_converter(obj):
+    """
+    Convert NumPy objects into native Python types.
+    """
+
+    if isinstance(obj, np.integer):
+        return int(obj)
+
+    if isinstance(obj, np.floating):
+        return float(obj)
+
+    if isinstance(obj, np.bool_):
+        return bool(obj)
+
+    if isinstance(obj, np.ndarray):
+        return obj.tolist()
+
+    raise TypeError(f"Object of type {type(obj).__name__} is not JSON serializable")
 
 
 def load_history():
@@ -27,7 +49,6 @@ def load_history():
             return json.loads(content)
 
     except Exception:
-
         return []
 
 
@@ -77,6 +98,7 @@ def save_scan(result):
             f,
             indent=4,
             ensure_ascii=False,
+            default=json_converter,
         )
 
 

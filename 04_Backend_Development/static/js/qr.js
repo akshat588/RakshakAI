@@ -156,12 +156,65 @@ form.addEventListener("submit", async function (e) {
 
         }
 
+        const investigationResult = {
+
+            analyzer: "QR",
+
+            prediction:
+                result.prediction || result.result,
+
+            confidence:
+                result.confidence,
+
+            risk:
+                result.risk,
+
+            scan_id:
+                result.scan_id ||
+                crypto.randomUUID(),
+
+            timestamp:
+                result.timestamp ||
+                new Date().toLocaleString(),
+
+            explanation:
+                result.explanation ||
+                [],
+
+            indicators:
+                result.flags ||
+                result.iocs ||
+                [],
+
+            recommendations:
+                result.recommendation ||
+                result.recommendations ||
+                [],
+
+            metadata: {
+
+                qr_type:
+                    result.qr_type || "",
+
+                decoded_content:
+                    result.decoded_content || "",
+
+                engine:
+                    result.engine || "",
+
+                risk_score:
+                    result.risk_score || 0
+
+            }
+
+        };
+
         sessionStorage.setItem(
-            "qrResult",
-            JSON.stringify(result)
+            "investigation_result",
+            JSON.stringify(investigationResult)
         );
 
-        window.location.href = "/qr/result";
+        window.location.href = "/result";
 
     }
 

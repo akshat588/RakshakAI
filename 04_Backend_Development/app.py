@@ -95,11 +95,6 @@ def whatsapp_page():
     return render_template("analyzers/whatsapp.html")
 
 
-@app.route("/fake-job")
-def fake_job_page():
-    return render_template("analyzers/fake_job.html")
-
-
 @app.route("/social-engineering")
 def social_engineering_page():
     return render_template("analyzers/social_engineering.html")
@@ -115,11 +110,6 @@ def qr_page():
     return render_template("analyzers/qr.html")
 
 
-@app.route("/qr/result")
-def qr_result_page():
-    return render_template("analyzers/qr_result.html")
-
-
 @app.route("/deepfake")
 def deepfake_page():
     return render_template("analyzers/deepfake.html")
@@ -128,6 +118,11 @@ def deepfake_page():
 @app.route("/deepfake-result")
 def deepfake_result_page():
     return render_template("analyzers/deepfake_result.html")
+
+
+@app.route("/result")
+def investigation_result():
+    return render_template("analyzers/investigation_result.html")
 
 
 @app.route("/scan-history")
